@@ -1,15 +1,7 @@
 import * as React from "react";
 import Link from "gatsby-link";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
-import { menuItems } from "../layouts";
-import {
-  Button,
-  Segment,
-  Container,
-  Grid,
-  Header,
-  Icon,
-} from "semantic-ui-react";
+// import { menuItems } from "../layouts";
 
 interface IndexPageProps {
   location: {
@@ -17,18 +9,27 @@ interface IndexPageProps {
   };
 }
 
-const logo = require("./oni-header.png");
+const logo = require("./logo-256x256.png");
+
+
 
 // import logo from "./oni-header.png"
 
 export default (props: IndexPageProps) =>
   <div>
     {/* Master head */}
-    <Segment vertical textAlign="center" className="masthead">
-      <Container text>
-        <img src={logo} alt="Oni Logo" />
-        <Header as="h2">Modern IDE for (neo)vim</Header>
-        <Button primary size="huge">Download</Button>
-      </Container>
-    </Segment>
+    <div className="page">
+        <div className="oni-navigation">
+        </div>
+        <div className="oni-content">
+            <div>
+                <a href="https://github.com/bryphe/oni">
+                    <img src={logo} alt="Oni Logo" style={{width: "128px"}} />
+                </a>
+            </div>
+            <div>
+                <h1>ONI</h1>
+            </div>
+        </div>
+    </div>
   </div>;

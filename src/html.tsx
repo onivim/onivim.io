@@ -35,13 +35,15 @@ module.exports = (props: HtmlProps) => {
     <html lang="en">
       <head>
         {props.headComponents}
-        <title>My website</title>
+        <title>Oni - Modern IDE for (neo)vim</title>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
