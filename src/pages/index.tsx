@@ -25,9 +25,6 @@ export default (props: IndexPageProps) =>
   <div>
     {/* Master head */}
     <Segment vertical textAlign="center" className="masthead">
-      <HeaderMenu
-        Link={Link} pathname={props.location.pathname} items={menuItems}
-      />
       <Container text>
         <img src={logo} alt="Oni Logo" />
         <Header as="h2">Modern IDE for (neo)vim</Header>
