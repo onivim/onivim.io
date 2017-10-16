@@ -44,6 +44,7 @@ module.exports = (props: HtmlProps) => {
         />
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/cd8d2a72ac.js" />
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}

@@ -20,6 +20,22 @@ export default (props: IndexPageProps) =>
     {/* Master head */}
     <div className="page">
         <div className="oni-navigation">
+            <div className="nav-item">
+                <a href="https://github.com/bryphe/oni/releases">Download</a>
+            </div>
+            <div className="nav-item">
+                <a href="https://github.com/bryphe/oni/wiki">Wiki</a>
+            </div>
+            <div className="nav-item">
+                <a href="https://twitter.com/oni_vim">
+                    <i className="fa fa-twitter" />
+                </a>
+            </div>
+            <div className="nav-item">
+                <a href="https://github.com/bryphe/oni/wiki">
+                    <i className="fa fa-github" />
+                </a>
+            </div>
         </div>
         <div className="oni-content">
             <div>
