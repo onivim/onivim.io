@@ -5,12 +5,12 @@
 html, body {
     padding: 0px;
     margin: 0px;
-
-    background-color: rgb(40, 44, 52);
-    color: rgb(171, 178, 191);
-
-    font-family: 'Orbitron', sans-serif;
 }
+
+.navbar {
+    /* box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2); */
+}
+
 
 .page {
     width: 100vw;
@@ -62,7 +62,7 @@ html, body {
 }
 
 .oni-content {
-    box-shadow:  0 -8px 20px 0 rgba(0, 0, 0, 0.2);
+    /* box-shadow:  0 -8px 20px 0 rgba(0, 0, 0, 0.2); */
     width: 100%;
 
     flex: 1 0 auto;
