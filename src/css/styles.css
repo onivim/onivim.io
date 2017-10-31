@@ -11,6 +11,16 @@ html, body {
     /* box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2); */
 }
 
+.oni-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.oni-button {
+    border-radius: 0px;
+    box-shadow:  0 24px 20px 0 rgba(0, 0, 0, 0.2);
+}
 
 .page {
     width: 100vw;
@@ -29,7 +39,6 @@ html, body {
     width: 100%;
 
     flex: 0 0 auto;
-    font-family: 'Inconsolate', monospace;
 
     line-height: 3em;
 
