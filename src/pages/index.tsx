@@ -3,6 +3,8 @@ import Link from "gatsby-link";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 // import { menuItems } from "../layouts";
 
+const Waypoint = require("react-waypoint")
+
 interface IndexPageProps {
     location: {
         pathname: string;
@@ -56,37 +58,15 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     constructor() {
         super();
-        this.state = {
-            isRendered: false,
-        };
     }
 
     public componentDidMount(): void {
-        // window.setTimeout(() => {
-        // this.setState({
-        //     isRendered: true
-        // })
-        // }, 1000)
     }
 
     public render(): JSX.Element {
-        const settings = {
-            dots: true,
-            infinite: false,
-            speed: 500,
-            slidesToShow: 0,
-            slidesToScroll: 1,
-        };
 
-        // if (!this.state.isRendered) {
-        //     return <div />
-        // }
+        return <video className="oni-hero-video" src="webm-test2.webm" autoPlay={true} />
 
-        return <Carousel showThumbs={false} showIndicators={false}>
-                <div><img src="https://user-images.githubusercontent.com/13532591/28976286-25779704-78f2-11e7-967f-72cb438d77f6.png" /><h2>Showcase 1</h2></div>
-                <div><img src="https://user-images.githubusercontent.com/13532591/28976286-25779704-78f2-11e7-967f-72cb438d77f6.png" /></div>
-                <div><img src="https://user-images.githubusercontent.com/13532591/28976286-25779704-78f2-11e7-967f-72cb438d77f6.png" /></div>
-            </Carousel>;
     }
 }
 
@@ -118,7 +98,7 @@ const NavBarMenu = () => {
 
 };
 
-const FeatureCard = () => {
+const FeatureCard = (title: string, description: string) => {
 
     return <div className="card">
         <div className="card-header">
@@ -127,11 +107,21 @@ const FeatureCard = () => {
             </div>
         </div>
         <div className="card-content">
-            This is content about the feature
+            Break free of terminal limitations and experience Vim in a new way.
         </div>
     </div>;
 
 };
+
+// Other ones:
+// - No VimL
+// - 
+
+// License
+// Code of Conduct
+// FOoter
+// FAQ
+// Github
 
 // import logo from "./oni-header.png"
 
@@ -142,8 +132,8 @@ export default (props: IndexPageProps) => {
             <div className="container">
             <div className="navbar-brand">
                 <div className="navbar-item">
-                    <a href="https://github.com/bryphe/oni">
-                    <img src={header} alt="Oni Logo" />
+                    <a className="oni-brand-logo" href="https://github.com/bryphe/oni">
+                    <img src={logo} alt="Oni Logo" />
                     </a>
                 </div>
                 <NavBarItemHiddenOnDesktop href={"https://github.com/bryphe/oni"}>
@@ -162,46 +152,92 @@ export default (props: IndexPageProps) => {
             </div>
         </nav>
 
-        <section className="hero is-dark is-medium">
+        <section className="oni-header hero is-medium is-dark">
             <div className="hero-body">
                 <div className="columns">
                     <div className="column oni-flex-center">
+                        <h5 className="title is-5">Modal editing. Supercharged.</h5>
                         <a className="oni-button button is-primary is-large">Download</a>
                     </div>
                     <div className="column oni-flex-center">
                         <HeroImageSlider />
                     </div>
                     <div className="column oni-flex-center">
+                        <h5 className="title is-5">The power of vim, the comfort of an IDE.</h5>
                         <a className="oni-button button is-info is-large">Support</a>
                     </div>
                 </div>
             </div>
         </section>
-        <section className="section is-light">
+        <section className="section oni-dark-section is-medium is-light">
             <div className="container">
-                <h1 className="title">Features</h1>
-                <div className="columns is-8">
+                <div className="columns">
                     <div className="column">
-                        <FeatureCard />
+                        <h1 className="title">Modern UX</h1>
+                        <p className="content">
+                        Break free of terminal UI limitations and experience modal editing like never before. Oni uses neovim under-the-hood - no emulation. Built with Electron and web technologies, Oni combines fast modal editing with the features you expect from a modern code editor.
+                        </p>
                     </div>
                     <div className="column">
-                        <FeatureCard />
-                    </div>
-                    <div className="column">
-                        <FeatureCard />
                     </div>
                 </div>
             </div>
         </section>
-        <section className="section is-light">
+        <section className="section oni-dark-section is-medium is-light">
             <div className="container">
-                <h1 className="title">Support</h1>
+                <div className="columns">
+                    <div className="column">
+                    </div>
+                    <div className="column">
+                        <h1 className="title">Batteries Included</h1>
+                        <p className="content">
+                        Spend less time configuring and more time creating. Oni works great with language servers, and comes with out-of-the-box support for JavaScript, TypeScript, and Reason.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
-        <section className="section is-light">
+        <section className="section oni-dark-section is-medium is-light">
             <div className="container">
-                <h1 className="title">Learn More</h1>
+                <h1 className="title">Extensible</h1>
+                <p className="content">
+                Oni is fully configurable and scriptable via JavaScript, or your compile-to-Javascript dialect of choice.
+                </p>
             </div>
         </section>
+        <section className="section hero is-info">
+            <div className="container">
+                <h1 className="title is-1 is-spaced">Contribute</h1>
+                <p className="content">Oni needs your support!</p>
+                <h2 className="subtitle is-4">Help us build</h2>
+                <p className="content">
+                    <ul>
+                        <li>Find & report a bug</li>
+                        <li>Review our documentation</li>
+                        <li>Fix an issue and submit a PR</li>
+                    </ul>
+                </p>
+                <h2 className="subtitle is-4">Help us finance</h2>
+                <p className="content">
+
+                </p>
+            </div>
+        </section>
+            <section className="section is-medium is-light">
+                <div className="container">
+                    <Waypoint>
+                        <div>
+                            <h1 className="title is-1">Keep in touch</h1>
+                            <p className="content">
+                                <ul>
+                                    <li>Twitter: @oni_vim</li>
+                                    <li>Chat: Gitter</li>
+                                    <li>Reddit: r/onivim</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </Waypoint>
+                </div>
+            </section>
     </div>;
 };

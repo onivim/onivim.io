@@ -8,13 +8,49 @@ html, body {
 }
 
 .navbar {
-    /* box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2); */
+    box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.oni-brand-logo {
+    margin-top: 8px;
 }
 
 .oni-flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.oni-header.hero.is-dark {
+    background-color: rgb(60, 59, 66);
+}
+
+.oni-hero-video {
+    box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+.oni-dark-section {
+    background-color: rgb(40, 44, 52);
+    color: white;
+}
+
+.oni-dark-section .title {
+    color: white;
+}
+
+.oni-header-background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right:0px;
+    bottom:0px;
+}
+
+.oni-hero-image {
+    width: 50%;
+    text-align: center;
+    margin-bottom: 10%;
 }
 
 .oni-button {
