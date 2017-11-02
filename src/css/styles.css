@@ -23,7 +23,11 @@ html, body {
 }
 
 .oni-header.hero.is-dark {
-    background-color: rgb(60, 59, 66);
+    background-color: rgba(40, 44, 52, 0.75);
+}
+
+.oni-footer.is-dark {
+    background-color: rgba(40, 44, 52, 1);
 }
 
 .oni-hero-video {

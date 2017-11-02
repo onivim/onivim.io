@@ -46,6 +46,7 @@ module.exports = (props: HtmlProps) => {
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/cd8d2a72ac.js" />
+        <script async src="https://platform.twitter.com/widgets.js" charSet="utf8"></script>
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
