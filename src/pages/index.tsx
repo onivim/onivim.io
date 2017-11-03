@@ -3,7 +3,7 @@ import Link from "gatsby-link";
 import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 // import { menuItems } from "../layouts";
 
-const Waypoint = require("react-waypoint")
+const Waypoint = require("react-waypoint");
 
 interface IndexPageProps {
     location: {
@@ -50,12 +50,11 @@ const RedditIconLarge = () => {
         <i className="fa fa-lg fa-reddit">
         </i>
     </span>;
-}
-
+};
 
 const LargeCircleIcon = (props: { iconName: string, color: string }) => {
 
-    const iconClass = `fa fa-5x fa-${props.iconName}`
+    const iconClass = `fa fa-5x fa-${props.iconName}`;
 
     const style = {
         width: "8rem",
@@ -63,13 +62,13 @@ const LargeCircleIcon = (props: { iconName: string, color: string }) => {
         borderRadius: "4rem",
         backgroundColor: props.color,
         color: "white",
-    }
+    };
 
     return <span className="icon" style={style}>
         <i className={iconClass}>
         </i>
     </span>;
-}
+};
 
 const NavBarItem = createAnchorItem("navbar-item");
 const NavBarItemHiddenOnDesktop = createAnchorItem("navbar-item is-hidden-desktop");
@@ -93,7 +92,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     public render(): JSX.Element {
 
-        return <video className="oni-hero-video" src={heroVideo} autoPlay={true} />
+        return <video className="oni-hero-video" src={heroVideo} autoPlay={true} />;
 
     }
 }
@@ -114,9 +113,9 @@ const NavBarMenu = () => {
                 </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support</a>
+                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</a>
                 <div className="navbar-dropdown">
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Configuration"}>BountySource</NavBarItem>
+                    <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
                     <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
                     <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>BitCoin</NavBarItem>
                 </div>
@@ -152,9 +151,13 @@ const FeatureCard = (title: string, description: string) => {
 
 };
 
+const Link = (props: { text: string, href: string }) => {
+    return <a href={props.href}>{props.text}</a>;
+};
+
 // Other ones:
 // - No VimL
-// - 
+// -
 
 // License
 // Code of Conduct
@@ -168,7 +171,7 @@ export default (props: IndexPageProps) => {
 
     const bodyStyle = {
         backgroundImage: "url('" + background + "')",
-    }
+    };
 
     return <div style={bodyStyle}>
         {/* Master head */}
@@ -206,6 +209,7 @@ export default (props: IndexPageProps) => {
                             <ul>
                                 <li>Open-source</li>
                                 <li>Cross-platform</li>
+                                <li>Powered by <a href="https://neovim.io">neovim</a></li>
                             </ul>
                         </p>
                     </div>
@@ -224,7 +228,7 @@ export default (props: IndexPageProps) => {
                     <div className="column">
                         <h1 className="title">Modern UX</h1>
                         <p className="content">
-                        Break free of terminal UI limitations and experience modal editing like never before. Oni uses neovim under-the-hood - no emulation. Built with Electron and web technologies, Oni combines fast modal editing with the features you expect from a modern code editor.
+                        Break free of terminal UI limitations and experience modal editing in a new way. Built with neovim, electron and web technology, Oni combines fast modal editing with the features of a modern code editor.
                         </p>
                     </div>
                     <div className="column">
@@ -236,7 +240,7 @@ export default (props: IndexPageProps) => {
                     <div className="column">
                         <h1 className="title">Extensible</h1>
                         <p className="content">
-                        Oni is fully configurable and scriptable via JavaScript, or your compile-to-Javascript dialect of choice.
+                        Oni is fully configurable and scriptable via JavaScript, or your compile-to-Javascript dialect of choice. Oni is compatible with most VimL plugins, too!
                         </p>
                     </div>
                 </div>
@@ -244,8 +248,16 @@ export default (props: IndexPageProps) => {
         </section>
         <section className="section hero oni-header is-dark">
             <div className="container">
+                <h1 className="title is-1 is-spaced">Why?</h1>
+                <p className="content">
+                    Our <strong>goal</strong> is build the <em>fastest way to go from thought to code</em>, enabling a new level of developer productivity - by combining old-school modal editing with deep language integration, wrapped up in a modern package. Oni leverages <a href="https://neovim.io">neovim</a> for a complete vim package (no emulation!), and is built on <a href="https://electron.atom.io">Electron</a>. It shares much in common with <a href="https://code.visualstudio.com">VSCode</a> and <a href="https://atom.io">Atom</a>, however, it features a unique architecture with <a href="https://neovim.io">neovim</a> as the text-editing engine, a high-performance canvas renderer, and a powerful extensibility model.
+                </p>
+            </div>
+        </section>
+        <section className="section hero oni-header is-dark">
+            <div className="container">
                 <h1 className="title is-1 is-spaced">Contribute</h1>
-                <p className="content">Oni is free and open-source, and has an [ambitious roadmap] - help us on our mission to reimagine development productivity. Oni would not be possible without our [backers] and [contributors].</p>
+                <p className="content">Oni is free and open-source, but has a very ambitious <a href="https://github.com/onivim/oni/wiki/roadmpa">roadmap</a> - help us on our mission to <strong>reimagine developer productivity</strong>. Oni would not be possible without our <a href="https://github.com/onivim/oni/blob/master/BACKERS.md">backers</a> and <a href="https://github.com/onivim/oni/graphs/contributors">contributors</a>.</p>
             </div>
         </section>
         <section className="section hero oni-header is-dark">
@@ -259,8 +271,8 @@ export default (props: IndexPageProps) => {
                         <p className="content">
                             <ul>
                                 <li><b>Coming Soon</b> - Become a backer or sponsor via OpenCollective</li>
-                                <li>Become a backer or sponsor via BountySource</li>
-                                <li>Make a one-time donation via PayPal</li>
+                                <li>Become a <a href="https://www.bountysource.com/teams/oni">backer</a> via BountySource</li>
+                                <li>Make a one-time donation via <a href="https://paypal.me/bryphe/25">PayPal</a></li>
                                 <li>Make a one-time donation via BitCoin</li>
                             </ul>
                         </p>
@@ -278,9 +290,10 @@ export default (props: IndexPageProps) => {
                         <h2 className="subtitle is-2">Build</h2>
                         <p className="content">
                             <ul>
-                                <li>Find & report a bug</li>
-                                <li>Fix an issue and submit a PR</li>
-                                <li>Suggest a feature</li>
+                                <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug</li>
+                                <li><a href="https://github.com/onivim/oni/issues/new">Suggest</a> a feature</li>
+                                <li>Set up your <a href="https://github.com/onivim/oni/wiki/Development">development environment</a></li>
+                                <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
                             </ul>
                         </p>
                     </div>
@@ -297,9 +310,9 @@ export default (props: IndexPageProps) => {
                         <h2 className="subtitle is-2">Evangelize</h2>
                         <p className="content">
                             <ul>
-                                <li>Review our documentation</li>
-                                <li>Contribute to our website</li>
-                                <li>Fix an issue and submit a PR</li>
+                                <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
+                                <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
+                                <li>Follow us on <a href="https://twitter.com/oni_vim">twitter</a></li>
                             </ul>
                         </p>
                     </div>
@@ -314,7 +327,16 @@ export default (props: IndexPageProps) => {
                         </div>
                         <div className="column">
                             <p className="content">
-                                <p>Website made with:</p>
+                                <p><strong>Brought to you by:</strong></p>
+                                <ul>
+                                    <li><a href="https://github.com/onivim/oni/blob/master/BACKERS.md">Backers</a></li>
+                                    <li><a href="https://github.com/onivim/oni/graphs/contributors">Contributors</a></li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div className="column">
+                            <p className="content">
+                                <p><strong>Website built with::</strong></p>
                                 <ul>
                                     <li>Bulma</li>
                                     <li>Gatsby</li>
@@ -324,10 +346,10 @@ export default (props: IndexPageProps) => {
                             </p>
                         </div>
                         <div className="column">
-                            <a href="https://twitter.com/onivim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @onivim</a>
-                        </div>
-                        <div className="column">
-                        <iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                            <p className="content">
+                            <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @onivim</a></p>
+                            <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
+                            </p>
                         </div>
                     </div>
                 </div>

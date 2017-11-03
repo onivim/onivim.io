@@ -26,6 +26,14 @@ html, body {
     background-color: rgba(40, 44, 52, 0.75);
 }
 
+.oni-header.hero.is-dark a {
+    color: #00d1b2;
+}
+
+.oni-header.hero.is-dark a.oni-button {
+    color: white;
+}
+
 .oni-footer.is-dark {
     background-color: rgba(40, 44, 52, 1);
 }
