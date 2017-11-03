@@ -20,6 +20,9 @@ interface HtmlProps {
   headComponents: any;
 }
 
+const favicon = require("./favicon.ico");
+
+
 // Use `module.exports` to be compliante with `webpack-require` import method
 module.exports = (props: HtmlProps) => {
   const head = Helmet.rewind();
@@ -42,6 +45,7 @@ module.exports = (props: HtmlProps) => {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
+        <link rel="shortcut icon" type="image/x-icon" href={favicon} />
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet" />
