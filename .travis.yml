@@ -16,6 +16,7 @@ deploy:
     secure: vVfW3msuLmM5oJol/FjbdmqXuJ9AEpuoYnu4tHA/YJoES2VAXKtP2GCTc1MpqJXl43oOdfVO4+9i/K/nJZwbWI1eSxHwme/jywrumm6AIu9ViGAB7pFJCUL9sTLTd/ttxIVis2DrOwRnRFg4+QVvwoQMonJV9qkvnsxTYyIlC+uVjqxlGfeVnIOnof1G3fpAPuWTkfVgxvkVG+QHyEjSA8k9g+hOuPIzAQn4BJc/KJR+bat8n8LB/PPMQRShQB59NZ3TLKD3bd7py/Rg9GoeEv8JA3qCNTKf8GEgP+csqFCU8BDW5SLUFsesKYu/bg6GuCfvrQ8HOF0aeeNoPciiwcn7uTt2woAmRfZ0GS0pJ3HfYXh3i+dg1JXBC3K09RJBc8R7BocK+3AmDU3kDf0AFgS5XYI4f2UE6+P9Dvne1Ky4McV1YUz4blWTuxBuR9H5mk/8wUbW0TASazK3oKP8FRAfIqYyvyUNrRwRWh+UYczhGbYS+mPBeBfdzHVOE6V1PcT6pPf4YZ00Yj3fkR8nkYeZTL2ruRbHm/gPAfWf3EVyKsv7p4la5Z8Qb6cwXWH1zoQn0RNgiOuNx4UOL3EBQUf2cMknL64sQRaW8zmG6PZVj3XZmcCfOIQ2tqSgj92xtstfvDXBU6fJ5Tn5wN+lFC8xWLaFmKKGoDv5s66EdPk=
   bucket: onivim.io
   skip_cleanup: true
+  local_dir: public
   region: us-west-2
   acl: public_read
   on:
