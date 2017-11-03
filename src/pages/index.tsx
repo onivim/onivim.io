@@ -12,8 +12,9 @@ interface IndexPageProps {
 }
 
 const logo = require("./logo-256x256.png");
-const header = require("./oni-header.png");
+const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
+const heroVideo = require("./hero-video.webm");
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -31,18 +32,25 @@ const createAnchorItem = (className: string) => {
     };
 };
 const GitHubIconLarge = () => {
-                        return <span className="icon" style={{color: "#333" }}>
+    return <span className="icon" style={{color: "#333" }}>
         <i className="fa fa-lg fa-github">
         </i>
     </span>;
 };
 
 const TwitterIconLarge = () => {
-                        return <span className="icon" style={{color: "#55acee" }}>
+    return <span className="icon" style={{color: "#55acee" }}>
         <i className="fa fa-lg fa-twitter">
         </i>
     </span>;
 };
+
+const RedditIconLarge = () => {
+    return <span className="icon" style={{color: "orange" }}>
+        <i className="fa fa-lg fa-reddit">
+        </i>
+    </span>;
+}
 
 
 const LargeCircleIcon = (props: { iconName: string, color: string }) => {
@@ -85,7 +93,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     public render(): JSX.Element {
 
-        return <video className="oni-hero-video" src="webm-test2.webm" autoPlay={true} />
+        return <video className="oni-hero-video" src={heroVideo} autoPlay={true} />
 
     }
 }
@@ -94,24 +102,35 @@ const NavBarMenu = () => {
 
     return <div className="navbar-menu" id="navMenuDocumentation">
         <div className="navbar-start">
+            <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
             <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/bryphe/wiki"}>Docs</a>
+                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Docs</a>
                 <div className="navbar-dropdown">
-                    <NavBarItem href={"https://github.com/bryphe/oni/wiki/Configuration"}>Configuration</NavBarItem>
-                    <NavBarItem href={"https://github.com/bryphe/oni/wiki/FAQ"}>FAQ</NavBarItem>
-                    <NavBarItem href={"https://github.com/bryphe/oni/wiki/Language-Support"}>Language Support</NavBarItem>
-                    <NavBarItem href={"https://github.com/bryphe/oni/wiki/Plugins"}>Plugins</NavBarItem>
-                    <NavBarItem href={"https://github.com/bryphe/oni/wiki/API"}>API</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Configuration"}>Configuration</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/FAQ"}>FAQ</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>Language Support</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Plugins"}>Plugins</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/API"}>API</NavBarItem>
                 </div>
             </div>
-            <NavBarItem href={"https://github.com/bryphe/releases"}>Download</NavBarItem>
+            <div className="navbar-item has-dropdown is-hoverable">
+                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support</a>
+                <div className="navbar-dropdown">
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Configuration"}>BountySource</NavBarItem>
+                    <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
+                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>BitCoin</NavBarItem>
+                </div>
+            </div>
         </div>
         <div className="navbar-end">
-            <NavBarItemDesktopOnly href={"https://github.com/bryphe/oni"}>
+            <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
                 <GitHubIconLarge />
             </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://twitter.com/oni_vim"}>
                 <TwitterIconLarge />
+            </NavBarItemDesktopOnly>
+            <NavBarItemDesktopOnly href={"https://reddit.com/r/onivim"}>
+                <RedditIconLarge />
             </NavBarItemDesktopOnly>
         </div>
     </div>;
@@ -157,11 +176,11 @@ export default (props: IndexPageProps) => {
             <div className="container">
             <div className="navbar-brand">
                 <div className="navbar-item">
-                    <a className="oni-brand-logo" href="https://github.com/bryphe/oni">
+                    <a className="oni-brand-logo" href="https://github.com/onivim/oni">
                     <img src={logo} alt="Oni Logo" />
                     </a>
                 </div>
-                <NavBarItemHiddenOnDesktop href={"https://github.com/bryphe/oni"}>
+                <NavBarItemHiddenOnDesktop href={"https://github.com/onivim/oni"}>
                     <GitHubIconLarge />
                 </NavBarItemHiddenOnDesktop>
                 <NavBarItemHiddenOnDesktop href={"https://twitter.com/oni_vim"}>
@@ -181,13 +200,16 @@ export default (props: IndexPageProps) => {
             <div className="hero-body">
                 <div className="columns">
                     <div className="column oni-flex-center">
-                        <img src="oni-headline-small.png" style={{height: "128px"}} />
+                        <img src={header} style={{height: "128px"}} />
                         <h5 className="title is-5">Modal editing from the future.</h5>
                         <p className="content">
-                        Open-source, cross-platform
+                            <ul>
+                                <li>Open-source</li>
+                                <li>Cross-platform</li>
+                            </ul>
                         </p>
                     </div>
-                    <div className="column oni-flex-center">
+                    <div className="column oni-flex-center" style={{minWidth: "640px", minHeight: "480px"}}>
                         <HeroImageSlider />
                     </div>
                     <div className="column oni-flex-center">
@@ -302,10 +324,10 @@ export default (props: IndexPageProps) => {
                             </p>
                         </div>
                         <div className="column">
-                            <a href="https://twitter.com/onivim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-show-count="false">Follow @onivim</a>
+                            <a href="https://twitter.com/onivim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @onivim</a>
                         </div>
                         <div className="column">
-                        <iframe src="https://ghbtns.com/github-btn.html?user=bryphe&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
+                        <iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
                         </div>
                     </div>
                 </div>
