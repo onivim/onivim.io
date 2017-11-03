@@ -233,7 +233,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                     <div className="columns">
                         <div className="column oni-flex-center">
                             <img src={header} style={{height: "128px"}} />
-                            <h5 className="title is-5">Modal editing from the future.</h5>
+                            <h5 className="title is-5">Modal editing for the future</h5>
                             <p className="content">
                                 <ul>
                                     <li>Open-source</li>
