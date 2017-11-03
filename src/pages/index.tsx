@@ -14,7 +14,8 @@ interface IndexPageProps {
 const logo = require("./logo-256x256.png");
 const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
-const heroVideo = require("./hero-video.webm");
+const heroVideoWebm = require("./hero-video.webm");
+const heroVideoMp4 = require("./hero-video.mp4");
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -64,10 +65,20 @@ const LargeCircleIcon = (props: { iconName: string, color: string }) => {
         color: "white",
     };
 
-    return <span className="icon" style={style}>
+    const wrapperStyle = {
+        display: "flex",
+        width: "100%",
+        height: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+    }
+
+    return <div style={wrapperStyle}>
+    <span className="icon" style={style}>
         <i className={iconClass}>
         </i>
-    </span>;
+    </span>
+    </div>
 };
 
 const NavBarItem = createAnchorItem("navbar-item");
@@ -92,14 +103,17 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     public render(): JSX.Element {
 
-        return <video className="oni-hero-video" src={heroVideo} autoPlay={true} loop={true}/>;
+        return <video className="oni-hero-video" autoPlay={true} loop={true} style={{width: "100%"}}>
+            <source src={heroVideoWebm} type="video/webm" />
+            <source src={heroVideoMp4} type="video/mp4" />
+        </video>;
 
     }
 }
 
 const NavBarMenu = (props: { isActive: boolean }) => {
 
-    const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu"
+    const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu";
 
     return <div className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
@@ -170,20 +184,20 @@ const Link = (props: { text: string, href: string }) => {
 // import logo from "./oni-header.png"
 
 export interface INavBarState {
-    isActive: boolean
+    isActive: boolean;
 }
 
 export class NavBar extends React.PureComponent<{}, INavBarState> {
     constructor(props: any) {
-        super(props)
+        super(props);
         this.state = {
             isActive: false,
-        }
+        };
     }
 
     public render(): JSX.Element {
 
-            const burgerClass = this.state.isActive ? "navbar-burger burger is-active" : "navbar-burger burger"
+            const burgerClass = this.state.isActive ? "navbar-burger burger is-active" : "navbar-burger burger";
 
             return <nav className="navbar is-light">
                 <div className="container">
@@ -207,13 +221,13 @@ export class NavBar extends React.PureComponent<{}, INavBarState> {
                 </div>
                 <NavBarMenu isActive={this.state.isActive} />
                 </div>
-            </nav>
+            </nav>;
     }
 
     private _toggleActive(): void {
         this.setState({
             isActive: !this.state.isActive,
-        })
+        });
     }
 }
 
@@ -232,8 +246,8 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                 <div className="hero-body">
                     <div className="columns">
                         <div className="column oni-flex-center">
-                            <img src={header} style={{height: "128px"}} />
-                            <h5 className="title is-5">Modal editing for the future</h5>
+                            <img src={header} style={{width: "65%"}} />
+                            <h5 className="title is-5 has-text-centered">Modal editing for the future</h5>
                             <p className="content">
                                 <ul>
                                     <li>Open-source</li>
@@ -242,7 +256,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                                 </ul>
                             </p>
                         </div>
-                        <div className="column oni-flex-center" style={{minWidth: "640px", minHeight: "480px"}}>
+                        <div className="column oni-flex-center">
                             <HeroImageSlider />
                         </div>
                         <div className="column oni-flex-center">
@@ -292,10 +306,10 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             <section className="section hero oni-header is-dark">
                 <div className="container">
                     <div className="columns is-centered">
-                        <div className="column is-2">
+                        <div className="column is-one-quarter">
                             <LargeCircleIcon iconName={"usd"} color={"#23d160"} />
                         </div>
-                        <div className="column is-8">
+                        <div className="column is-one-quarter">
                             <h2 className="subtitle is-2">Finance</h2>
                             <p className="content">
                                 <ul>
@@ -306,16 +320,17 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                                 </ul>
                             </p>
                         </div>
+                        <div className="column is-one-quarter"></div>
                     </div>
                 </div>
             </section>
             <section className="section hero oni-header is-dark">
                 <div className="container">
                     <div className="columns is-centered">
-                        <div className="column is-2">
+                        <div className="column is-one-quarter">
                             <LargeCircleIcon iconName={"wrench"} color={"orange"} />
                         </div>
-                        <div className="column is-8">
+                        <div className="column is-one-quarter">
                             <h2 className="subtitle is-2">Build</h2>
                             <p className="content">
                                 <ul>
@@ -326,18 +341,19 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                                 </ul>
                             </p>
                         </div>
+                        <div className="column is-one-quarter"></div>
                     </div>
                 </div>
             </section>
                 <section className="section hero oni-header is-dark">
                     <div className="container">
                     <div className="columns is-centered">
-                        <div className="column is-2">
+                        <div className="column is-one-quarter">
                             <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
                         </div>
-                        <div className="column is-8">
+                        <div className="column is-one-quarter">
                             <h2 className="subtitle is-2">Community</h2>
-                            <p className="content">
+                            <p className="content has-text-left">
                                 <ul>
                                     <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
                                     <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
@@ -345,6 +361,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                                 </ul>
                             </p>
                         </div>
+                        <div className="column is-one-quarter"></div>
                     </div>
                 </div>
             </section>
