@@ -262,11 +262,11 @@ export default (props: IndexPageProps) => {
         </section>
         <section className="section hero oni-header is-dark">
             <div className="container">
-                <div className="columns">
+                <div className="columns is-centered">
                     <div className="column is-2">
                         <LargeCircleIcon iconName={"usd"} color={"#23d160"} />
                     </div>
-                    <div className="column">
+                    <div className="column is-8">
                         <h2 className="subtitle is-2">Finance</h2>
                         <p className="content">
                             <ul>
@@ -282,11 +282,11 @@ export default (props: IndexPageProps) => {
         </section>
         <section className="section hero oni-header is-dark">
             <div className="container">
-                <div className="columns">
+                <div className="columns is-centered">
                     <div className="column is-2">
                         <LargeCircleIcon iconName={"wrench"} color={"orange"} />
                     </div>
-                    <div className="column">
+                    <div className="column is-8">
                         <h2 className="subtitle is-2">Build</h2>
                         <p className="content">
                             <ul>
@@ -302,11 +302,11 @@ export default (props: IndexPageProps) => {
         </section>
             <section className="section hero oni-header is-dark">
                 <div className="container">
-                <div className="columns">
+                <div className="columns is-centered">
                     <div className="column is-2">
                         <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
                     </div>
-                    <div className="column">
+                    <div className="column is-8">
                         <h2 className="subtitle is-2">Evangelize</h2>
                         <p className="content">
                             <ul>
@@ -347,7 +347,7 @@ export default (props: IndexPageProps) => {
                         </div>
                         <div className="column">
                             <p className="content">
-                            <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @onivim</a></p>
+                            <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @on_ivim</a></p>
                             <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
                             </p>
                         </div>
