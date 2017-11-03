@@ -38,8 +38,33 @@ html, body {
     background-color: rgba(40, 44, 52, 1);
 }
 
-.oni-hero-video {
+
+.oni-hero-loading {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    bottom: 8px;
+    right: 8px;
+    background-color: rgb(40, 44, 52);
+    color: whitesmoke;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.oni-hero-container {
     box-shadow:  0 8px 20px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.oni-hero-video {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
 }
 
 .oni-dark-section {

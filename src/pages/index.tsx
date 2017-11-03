@@ -103,10 +103,15 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     public render(): JSX.Element {
 
-        return <video className="oni-hero-video" autoPlay={true} loop={true} style={{width: "100%"}}>
-            <source src={heroVideoWebm} type="video/webm" />
-            <source src={heroVideoMp4} type="video/mp4" />
-        </video>;
+        return <figure className="oni-hero-container image is-4by3" style={{width: "100%"}}>
+            <div className="oni-hero-loading">
+                <i className="fa fa-circle-o-notch fa-3x fa-spin" aria-hidden="true"></i>
+            </div>
+            <video className="oni-hero-video" autoPlay={true} loop={true}>
+                <source src={heroVideoWebm} type="video/webm" />
+                <source src={heroVideoMp4} type="video/mp4" />
+            </video>
+        </figure>
 
     }
 }
@@ -260,7 +265,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                             <HeroImageSlider />
                         </div>
                         <div className="column oni-flex-center">
-                            <a className="oni-button button is-primary is-large">Download</a>
+                            <a className="oni-button button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download</a>
                         </div>
                     </div>
                 </div>
@@ -393,7 +398,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                             </div>
                             <div className="column">
                                 <p className="content">
-                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @on_ivim</a></p>
+                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_ivim</a></p>
                                 <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
                                 </p>
                             </div>
