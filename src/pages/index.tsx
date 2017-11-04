@@ -432,7 +432,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             </div>
                             <div className="column">
                                 <p className="content">
-                                    <p><strong>Brought to you by:</strong></p>
+                                    <p><strong>Oni brought to you by:</strong></p>
                                     <ul>
                                         <li><a href="https://github.com/onivim/oni/blob/master/BACKERS.md">Backers</a></li>
                                         <li><a href="https://github.com/onivim/oni/graphs/contributors">Contributors</a></li>
@@ -441,12 +441,12 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             </div>
                             <div className="column">
                                 <p className="content">
-                                    <p><strong>Website built with::</strong></p>
+                                    <p><strong>Website built with:</strong></p>
                                     <ul>
-                                        <li>Bulma</li>
-                                        <li>Gatsby</li>
-                                        <li>FontAwesome</li>
-                                        <li>SubtlePatterns</li>
+                                        <li><a href="https://bulma.io">Bulma</a></li>
+                                        <li><a href="https://www.gatsbyjs.org">Gatsby</a></li>
+                                        <li><a href="http://fontawesome.io">Font Awesome</a></li>
+                                        <li><a href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</a></li>
                                     </ul>
                                 </p>
                             </div>
