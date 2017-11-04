@@ -73,14 +73,14 @@ const LargeCircleIcon = (props: { iconName: string, color: string }) => {
         height: "100%",
         justifyContent: "center",
         alignItems: "center",
-    }
+    };
 
     return <div style={wrapperStyle}>
     <span className="icon" style={style}>
         <i className={iconClass}>
         </i>
     </span>
-    </div>
+    </div>;
 };
 
 const NavBarItem = createAnchorItem("navbar-item");
@@ -96,7 +96,7 @@ export interface IHeroState {
 
 const BitcoinModal = (props: { visible: boolean, onClose: () => void }) => {
 
-    const className = props.visible ? "modal is-active" : "modal"
+    const className = props.visible ? "modal is-active" : "modal";
 
     return <div className={className}>
             <div className="modal-background"> </div>
@@ -119,8 +119,8 @@ const BitcoinModal = (props: { visible: boolean, onClose: () => void }) => {
                 </footer>
             </div>
             <button className="modal-close is-large" aria-label="close" onClick={props.onClose}></button>
-            </div>
-}
+            </div>;
+};
 
 export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
@@ -144,7 +144,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
                 <source src={heroVideoMp4} type="video/mp4" />
             </video>
             */}
-        </figure>
+        </figure>;
 
     }
 }
@@ -274,25 +274,25 @@ export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
 }
 
 export class IndexPageState {
-    isBitcoinModalVisible: boolean
+    isBitcoinModalVisible: boolean;
 }
 
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
     constructor(props: IndexPageProps) {
-        super(props)
+        super(props);
 
         this.state = {
-            isBitcoinModalVisible: false
-        }
+            isBitcoinModalVisible: false,
+        };
     }
 
     private _openBitcoinModal(): void {
-        this.setState({ isBitcoinModalVisible: true })
+        this.setState({ isBitcoinModalVisible: true });
     }
 
     private _closeBitcoinModal(): void {
-        this.setState({ isBitcoinModalVisible: false })
+        this.setState({ isBitcoinModalVisible: false });
     }
 
     public render(): JSX.Element {
