@@ -415,12 +415,13 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
                         </div>
                         <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Community</h2>
+                            <h2 className="subtitle is-2">Join our Community</h2>
                             <p className="content has-text-left">
                                 <ul>
                                     <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
                                     <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
                                     <li>Follow us on <a href="https://twitter.com/oni_vim">twitter</a></li>
+                                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
                                 </ul>
                             </p>
                         </div>
@@ -436,7 +437,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             </div>
                             <div className="column">
                                 <p className="content">
-                                    <p><strong>Brought to you by:</strong></p>
+                                    <p><strong>Oni brought to you by:</strong></p>
                                     <ul>
                                         <li><a href="https://github.com/onivim/oni/blob/master/BACKERS.md">Backers</a></li>
                                         <li><a href="https://github.com/onivim/oni/graphs/contributors">Contributors</a></li>
@@ -445,18 +446,18 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             </div>
                             <div className="column">
                                 <p className="content">
-                                    <p><strong>Website built with::</strong></p>
+                                    <p><strong>Website built with:</strong></p>
                                     <ul>
-                                        <li>Bulma</li>
-                                        <li>Gatsby</li>
-                                        <li>FontAwesome</li>
-                                        <li>SubtlePatterns</li>
+                                        <li><a href="https://bulma.io">Bulma</a></li>
+                                        <li><a href="https://www.gatsbyjs.org">Gatsby</a></li>
+                                        <li><a href="http://fontawesome.io">Font Awesome</a></li>
+                                        <li><a href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</a></li>
                                     </ul>
                                 </p>
                             </div>
                             <div className="column">
                                 <p className="content">
-                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_ivim</a></p>
+                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_vim</a></p>
                                 <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
                                 </p>
                             </div>
