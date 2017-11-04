@@ -411,12 +411,13 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
                         </div>
                         <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Community</h2>
+                            <h2 className="subtitle is-2">Join our Community</h2>
                             <p className="content has-text-left">
                                 <ul>
                                     <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
                                     <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
                                     <li>Follow us on <a href="https://twitter.com/oni_vim">twitter</a></li>
+                                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
                                 </ul>
                             </p>
                         </div>
