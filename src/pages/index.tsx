@@ -17,6 +17,7 @@ const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
 const heroVideoWebm = require("./hero-video.webm");
 const heroVideoMp4 = require("./hero-video.mp4");
+const heroImage = require("./hero-screenshot.png");
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -136,10 +137,13 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
             <div className="oni-hero-loading">
                 <i className="fa fa-circle-o-notch fa-3x fa-spin" aria-hidden="true"></i>
             </div>
+            <img src={heroImage} style={{width: "100%"}}/>
+            {/* TODO: Bring back once the video isn't broken
             <video className="oni-hero-video" autoPlay={true} loop={true}>
                 <source src={heroVideoWebm} type="video/webm" />
                 <source src={heroVideoMp4} type="video/mp4" />
             </video>
+            */}
         </figure>
 
     }
