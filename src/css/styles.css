@@ -15,6 +15,10 @@ html, body {
     margin-top: 8px;
 }
 
+.oni-padding-top {
+    padding-top: 8px;
+}
+
 .oni-flex-center {
     display: flex;
     justify-content: center;

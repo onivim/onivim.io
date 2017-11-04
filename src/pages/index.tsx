@@ -11,6 +11,7 @@ interface IndexPageProps {
     };
 }
 
+const bitcoinAddress = require("./bitcoin-address.png");
 const logo = require("./logo-256x256.png");
 const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
@@ -92,6 +93,34 @@ export interface IHeroState {
     isRendered: boolean;
 }
 
+const BitcoinModal = (props: { visible: boolean, onClose: () => void }) => {
+
+    const className = props.visible ? "modal is-active" : "modal"
+
+    return <div className={className}>
+            <div className="modal-background"> </div>
+            <div className="modal-card">
+                <header className="modal-card-head">
+                   <p className="modal-card-title">Donate Bitcoin</p>
+                  <button className="delete" aria-label="close" onClick={props.onClose}></button>
+                </header>
+                <section className="modal-card-body">
+
+                    <p className="content has-text-centered">
+                    <img src={bitcoinAddress} />
+                    <p className="oni-padding-top"><input className="input is-medium oni-padding-top" value="1HdTteoJZCkkAuesyxA3vmLxmpGGk995PG" type="text" readOnly={true}/></p>
+
+                    <p className="has-text-left is-small oni-padding-top"><strong>NOTE:</strong> Bitcoin donations are anonymous, so please hit me up on <a href="mailto:bryphe@outlook.com">e-mail</a> or <a href="http://www.twitter.com/oni_vim">twitter</a> if you'd like to be recognized for your donation.</p>
+                    </p>
+                </section>
+                <footer className="modal-card-foot">
+                    <button className="button is-success" onClick={props.onClose}>Close</button>
+                </footer>
+            </div>
+            <button className="modal-close is-large" aria-label="close" onClick={props.onClose}></button>
+            </div>
+}
+
 export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
     constructor() {
@@ -116,7 +145,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
     }
 }
 
-const NavBarMenu = (props: { isActive: boolean }) => {
+const NavBarMenu = (props: { isActive: boolean, openBitcoinModal: () => void }) => {
 
     const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu";
 
@@ -138,7 +167,7 @@ const NavBarMenu = (props: { isActive: boolean }) => {
                 <div className="navbar-dropdown">
                     <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
                     <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>BitCoin</NavBarItem>
+                    <NavBarItem href={"javascript:;"}><span onClick={() => props.openBitcoinModal()} style={{width: "100%"}}>BitCoin</span></NavBarItem>
                 </div>
             </div>
         </div>
@@ -188,11 +217,15 @@ const Link = (props: { text: string, href: string }) => {
 
 // import logo from "./oni-header.png"
 
+export interface INavBarProps {
+    openBitcoinModal: () => void;
+}
+
 export interface INavBarState {
     isActive: boolean;
 }
 
-export class NavBar extends React.PureComponent<{}, INavBarState> {
+export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -224,7 +257,7 @@ export class NavBar extends React.PureComponent<{}, INavBarState> {
                         <span></span>
                     </div>
                 </div>
-                <NavBarMenu isActive={this.state.isActive} />
+                <NavBarMenu isActive={this.state.isActive} openBitcoinModal={this.props.openBitcoinModal} />
                 </div>
             </nav>;
     }
@@ -236,7 +269,27 @@ export class NavBar extends React.PureComponent<{}, INavBarState> {
     }
 }
 
-export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
+export class IndexPageState {
+    isBitcoinModalVisible: boolean
+}
+
+export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
+
+    constructor(props: IndexPageProps) {
+        super(props)
+
+        this.state = {
+            isBitcoinModalVisible: false
+        }
+    }
+
+    private _openBitcoinModal(): void {
+        this.setState({ isBitcoinModalVisible: true })
+    }
+
+    private _closeBitcoinModal(): void {
+        this.setState({ isBitcoinModalVisible: false })
+    }
 
     public render(): JSX.Element {
         const bodyStyle = {
@@ -246,7 +299,8 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
         return <div style={bodyStyle}>
             {/* Master head */}
 
-            <NavBar />
+            <NavBar openBitcoinModal={() => this._openBitcoinModal()}/>
+            <BitcoinModal visible={this.state.isBitcoinModalVisible} onClose={() => this._closeBitcoinModal()} />
             <section className="oni-header hero is-medium is-dark">
                 <div className="hero-body">
                     <div className="columns">
@@ -321,7 +375,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                                     <li><b>Coming Soon</b> - Become a backer or sponsor via OpenCollective</li>
                                     <li>Become a <a href="https://www.bountysource.com/teams/oni">backer</a> via BountySource</li>
                                     <li>Make a one-time donation via <a href="https://paypal.me/bryphe/25">PayPal</a></li>
-                                    <li>Make a one-time donation via BitCoin</li>
+                                    <li>Make a one-time donation via <a href="javascript:;" onClick={() => this._openBitcoinModal()}>BitCoin</a></li>
                                 </ul>
                             </p>
                         </div>
