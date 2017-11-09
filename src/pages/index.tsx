@@ -165,9 +165,10 @@ const NavBarMenu = (props: { isActive: boolean, openBitcoinModal: () => void }) 
             <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</a>
                 <div className="navbar-dropdown">
+                    <NavBarItem href={"https://opencollective.com/oni"}>OpenCollective</NavBarItem>
                     <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
                     <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
-                    <NavBarItem href={"javascript:;"}><span onClick={() => props.openBitcoinModal()} style={{width: "100%"}}>BitCoin</span></NavBarItem>
+                    <NavBarItem href={"javascript:;"}><span onClick={() => props.openBitcoinModal()} style={{width: "100%"}}>Bitcoin</span></NavBarItem>
                 </div>
             </div>
         </div>
@@ -350,9 +351,17 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
             </section>
             <section className="section hero oni-header is-dark">
                 <div className="container">
-                    <h1 className="title is-1 is-spaced">Why?</h1>
+                    <h1 className="title is-2 is-spaced has-text-centered">Sponsors</h1>
+                    <h2 className="subtitle is-3 has-text-centered">Gold Sponsors via OpenCollective</h2>
+                    <p className="content has-text-centered">Be the first gold sponsor to support Oni - get your logo + link here.</p>
+                    <p className="content has-text-centered"><a href="https://opencollective.com/oni/order/2473"><img src="https://camo.githubusercontent.com/1bd819afce2961fe5a7038adb4e11b481d0a56ee/68747470733a2f2f6f70656e636f6c6c6563746976652e636f6d2f6f6e692f73706f6e736f722f312f6176617461722e737667" /></a></p>
+                </div>
+            </section>
+            <section className="section oni-dark-section is-medium is-light">
+                <div className="container">
+                    <h1 className="title is-1 is-spaced">Goal</h1>
                     <p className="content">
-                        Our <strong>goal</strong> is build the <em>fastest way to go from thought to code</em>, enabling a new level of developer productivity - by combining old-school modal editing with deep language integration, wrapped up in a modern package. Oni leverages <a href="https://neovim.io">neovim</a> for a complete vim package (no emulation!), and is built on <a href="https://electron.atom.io">Electron</a>. It shares much in common with <a href="https://code.visualstudio.com">VSCode</a> and <a href="https://atom.io">Atom</a>, however, it features a unique architecture with <a href="https://neovim.io">neovim</a> as the text-editing engine, a high-performance canvas renderer, and a powerful extensibility model.
+                        Our goal is to build the <em>fastest way to go from thought to code</em>, enabling a new level of developer productivity - by combining old-school modal editing with deep language integration, wrapped up in a modern package. Oni leverages <a href="https://neovim.io">neovim</a> for a complete vim package (no emulation!), and is built on <a href="https://electron.atom.io">Electron</a>. It shares much in common with <a href="https://code.visualstudio.com">VSCode</a> and <a href="https://atom.io">Atom</a>, however, it features a unique architecture with <a href="https://neovim.io">neovim</a> as the text-editing engine, a high-performance canvas renderer, and a powerful extensibility model.
                     </p>
                 </div>
             </section>
@@ -372,7 +381,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                             <h2 className="subtitle is-2">Finance</h2>
                             <p className="content">
                                 <ul>
-                                    <li><b>Coming Soon</b> - Become a backer or sponsor via OpenCollective</li>
+                                    <li>Become a backer or sponsor via <a href="https://opencollective.com/oni">OpenCollective</a></li>
                                     <li>Become a <a href="https://www.bountysource.com/teams/oni">backer</a> via BountySource</li>
                                     <li>Make a one-time donation via <a href="https://paypal.me/bryphe/25">PayPal</a></li>
                                     <li>Make a one-time donation via <a href="javascript:;" onClick={() => this._openBitcoinModal()}>BitCoin</a></li>
