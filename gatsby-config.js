@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `My website`
+    title: `Oni - Modal Editing for the Future`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': `AuthorJson`
