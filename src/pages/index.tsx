@@ -276,6 +276,10 @@ export class IndexPageState {
     isBitcoinModalVisible: boolean;
 }
 
+export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
+    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>
+}
+
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
     constructor(props: IndexPageProps) {
@@ -355,8 +359,18 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                 <div className="container">
                     <h1 className="title is-2 is-spaced has-text-centered">Sponsors</h1>
                     <h2 className="subtitle is-3 has-text-centered">Gold Sponsors via OpenCollective</h2>
-                    <p className="content has-text-centered">Be the first gold sponsor to support Oni - get your logo + link here.</p>
-                    <p className="content has-text-centered"><a href="https://opencollective.com/oni/order/2473"><img src="https://camo.githubusercontent.com/1bd819afce2961fe5a7038adb4e11b481d0a56ee/68747470733a2f2f6f70656e636f6c6c6563746976652e636f6d2f6f6e692f73706f6e736f722f312f6176617461722e737667" /></a></p>
+                    <p className="content has-text-centered">
+                        <Sponsor tier={"gold-sponsor"} index={0} />
+                        <Sponsor tier={"gold-sponsor"} index={1} />
+                        <Sponsor tier={"gold-sponsor"} index={2} />
+                        <Sponsor tier={"gold-sponsor"} index={3} />
+                        <Sponsor tier={"gold-sponsor"} index={4} />
+                        <Sponsor tier={"gold-sponsor"} index={5} />
+                        <Sponsor tier={"gold-sponsor"} index={6} />
+                        <Sponsor tier={"gold-sponsor"} index={7} />
+                        <Sponsor tier={"gold-sponsor"} index={8} />
+                        <Sponsor tier={"gold-sponsor"} index={9} />
+                    </p>
                 </div>
             </section>
             <section className="section oni-dark-section is-medium is-light">
