@@ -47,7 +47,7 @@ module.exports = (props: HtmlProps) => {
         <link rel="shortcut icon" type="image/x-icon" href={favicon} />
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/cd8d2a72ac.js" />
         {head.title.toComponent()}
         {head.meta.toComponent()}
