@@ -3,7 +3,7 @@ import * as React from "react";
 
 const Waypoint = require("react-waypoint");
 
-import HeroSection from "./../components/HeroSection"
+import HeroSection from "./../components/HeroSection";
 
 interface IndexPageProps {
     location: {
@@ -103,7 +103,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
     }
 
     public render(): JSX.Element {
-            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{width: "100%"}}/>
+            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{width: "100%"}}/>;
 /*
         return <figure className="oni-hero-container image is-4by3" style={{width: "100%"}}>
             <div className="oni-hero-loading">
@@ -243,8 +243,8 @@ export class IndexPageState {
 }
 
 export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
-    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>
-}
+    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
+};
 
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
