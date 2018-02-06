@@ -144,16 +144,8 @@ const DownIcon = () => {
 
 const SponsorsContents = () => {
                 return <p className="content has-text-centered">
-        <Sponsor tier={"gold-sponsor"} index={0} />
-                        <Sponsor tier={"gold-sponsor"} index={1} />
-                        <Sponsor tier={"gold-sponsor"} index={2} />
-                        <Sponsor tier={"gold-sponsor"} index={3} />
-                        <Sponsor tier={"gold-sponsor"} index={4} />
-                        <Sponsor tier={"gold-sponsor"} index={5} />
-                        <Sponsor tier={"gold-sponsor"} index={6} />
-                        <Sponsor tier={"gold-sponsor"} index={7} />
-                        <Sponsor tier={"gold-sponsor"} index={8} />
-                        <Sponsor tier={"gold-sponsor"} index={9} />
+                        <p><Sponsor tier={"gold-sponsor"} index={0} /></p>
+                        <p><Sponsor tier={"gold-sponsor"} index={1} /></p>
                     </p>
 }
 

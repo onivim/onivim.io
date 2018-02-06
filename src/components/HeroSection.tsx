@@ -34,6 +34,8 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     justify-content: center;
     align-items: center;
 
+overflow: hidden;
+
 
     opacity: ${props => props.active ? "1.0": "0.5"};
 
@@ -45,17 +47,8 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
         }
     }};
 
-    // transform: translateX(${props => props.active ? 0 : 100}px);
-
     transition: all 0.5s ease-in;
 `;
-
-const SectionBodyWrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    width: 100%;
-`
 
 const Title = styled.div`
     font-family: Sintony;
@@ -68,27 +61,20 @@ const Description = styled.div`
     padding: 32px;
 `
 
-const SectionImageWrapper = styled.div`
-flex: 1 1 auto;
-width: 100%;
-`
-
 const Spacer = styled.div`
 flex: 1 1 auto;
 width: 100%;
 `
 
 const SectionContentsWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
-    display: flex;
-    flex-direction: ${props => props.reverse ? "row-reverse" : "row"};
-    justify-content: center;
-    align-items: center;
     max-width: 1000px;
     min-height: 75vh;
+    overflow: hidden;
 
     transform: translateX(${props => props.active ? 0 : (props.reverse ? 250 : -250)}px);
-
     transition: all 0.25s ease-in;
+
+    flex-direction: ${props => props.reverse ? "row-reverse" : "row"};
 `
 
 const CursorFrames = keyframes`
@@ -127,23 +113,22 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
             active: false,
         }
     }
-
     public render(): JSX.Element {
       return <Waypoint
         onEnter={() => this.setState({active: true})} 
         onLeave={() => this.setState({active: false})}
         onPositionChange={(props) => console.log(props)}
-        bottomOffset={"25%%"}
+        bottomOffset={"25%"}
         topOffset={"25%"}>
               <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
-                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active}>
-                    <SectionBodyWrapper>
+                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered">
+                    <div className="column">
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
                         <Description>{this.props.description}</Description>
-                    </SectionBodyWrapper>
-                    <SectionImageWrapper>
+                    </div>
+                    <div className="column">
                         { this.props.image ? this.props.image : <div style={{maxWidth:"640px", maxHeight: "640px"}} />}
-                    </SectionImageWrapper>
+                    </div>
                 </SectionContentsWrapper>
               </SectionWrapper>
           </Waypoint>
