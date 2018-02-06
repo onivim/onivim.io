@@ -3,7 +3,7 @@ import * as React from "react";
 
 const Waypoint = require("react-waypoint");
 
-import HeroSection from "./../components/HeroSection";
+import { HeroSection } from "./../components/HeroSection";
 import { NavBar } from "./../components/NavBar"
 
 interface IndexPageProps {
@@ -147,6 +147,25 @@ export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
     return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
 };
 
+const Sections = {
+    ModernUX: {
+        title: "Modern UX",
+        description: "Break free of terminal limitations. Experience modal editing in a new way. Oni is a Vim GUI that brings together the best of Neovim and modern editors like Atom and VSCode."
+    },
+    BatteriesIncluded: {
+        title: "Batteries Included",
+        description: "Spend less time configuring and more time creating. Oni comes with a set of IDE-like functionality, like a fuzzy finder, an explorer sidebar, and a fuzzy finder. In addition, there's out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
+    },
+    Extensible: {
+        title: "Extensible to the Max",
+        description: "Oni is hackable via JavaScript, and a common JavaScript plugin API powers configuration and plugins. Oni also supports Vim plugins!",
+    },
+    Productivity: {
+        title: "Maximum Productivity",
+        description: "Oni is designed to enable a new level of developer productivity - from configuration, to editing, to seeing your code changes live. Oni can help speed up your 'inner loop' - your code/test/debug/run cycle.",
+    }
+}
+
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
     constructor(props: IndexPageProps) {
@@ -173,31 +192,8 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                     <a className="oni-button button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download</a>
             </div>
             </section>
-            <HeroSection />
-            <section className="section oni-dark-section is-medium is-light">
-                <div className="container">
-                    <div className="columns is-8">
-                        <div className="column">
-                            <h1 className="title">Modern UX</h1>
-                            <p className="content">
-                            Break free of terminal UI limitations and experience modal editing in a new way. Built with neovim, electron and web technology, Oni combines fast modal editing with the features of a modern code editor.
-                            </p>
-                        </div>
-                        <div className="column">
-                            <h1 className="title">Batteries Included</h1>
-                            <p className="content">
-                            Spend less time configuring and more time creating. Oni works great with language servers, and comes with out-of-the-box support for JavaScript, TypeScript, and Reason.
-                            </p>
-                        </div>
-                        <div className="column">
-                            <h1 className="title">Extensible</h1>
-                            <p className="content">
-                            Oni is fully configurable and scriptable via JavaScript, or your compile-to-Javascript dialect of choice. Oni is compatible with most VimL plugins, too!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <HeroSection title={Sections.ModernUX.title} description={Sections.ModernUX.description} />
+            <HeroSection title={Sections.BatteriesIncluded.title} description={Sections.BatteriesIncluded.description} reverse={true} />
             <section className="section hero oni-header is-dark">
                 <div className="container">
                     <h1 className="title is-2 is-spaced has-text-centered">Sponsors</h1>
@@ -216,83 +212,8 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                     </p>
                 </div>
             </section>
-            <section className="section oni-dark-section is-medium is-light">
-                <div className="container">
-                    <h1 className="title is-1 is-spaced">Goal</h1>
-                    <p className="content">
-                        Our goal is to build the <em>fastest way to go from thought to code</em>, enabling a new level of developer productivity - by combining old-school modal editing with deep language integration, wrapped up in a modern package. Oni leverages <a href="https://neovim.io">neovim</a> for a complete vim package (no emulation!), and is built on <a href="https://electron.atom.io">Electron</a>. It shares much in common with <a href="https://code.visualstudio.com">VSCode</a> and <a href="https://atom.io">Atom</a>, however, it features a unique architecture with <a href="https://neovim.io">neovim</a> as the text-editing engine, a high-performance canvas renderer, and a powerful extensibility model.
-                    </p>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <h1 className="title is-1 is-spaced">Contribute</h1>
-                    <p className="content">Oni is free and open-source, but has a very ambitious <a href="https://github.com/onivim/oni/wiki/roadmap">roadmap</a> - help us on our mission to <strong>reimagine developer productivity</strong>. Oni would not be possible without our <a href="https://github.com/onivim/oni/blob/master/BACKERS.md">backers</a> and <a href="https://github.com/onivim/oni/graphs/contributors">contributors</a>.</p>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"usd"} color={"#23d160"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Finance</h2>
-                            <p className="content">
-                                <ul>
-                                    <li>Become a backer or sponsor via <a href="https://opencollective.com/oni">OpenCollective</a></li>
-                                    <li>Become a <a href="https://www.bountysource.com/teams/oni">backer</a> via BountySource</li>
-                                    <li>Make a one-time donation via <a href="https://paypal.me/bryphe/25">PayPal</a></li>
-                                    <li>Make a one-time donation via <a href="javascript:;" onClick={() => this._openBitcoinModal()}>BitCoin</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"wrench"} color={"orange"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Build</h2>
-                            <p className="content">
-                                <ul>
-                                    <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug</li>
-                                    <li><a href="https://github.com/onivim/oni/issues/new">Suggest</a> a feature</li>
-                                    <li>Set up your <a href="https://github.com/onivim/oni/wiki/Development">development environment</a></li>
-                                    <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
-                <section className="section hero oni-header is-dark">
-                    <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Join our Community</h2>
-                            <p className="content has-text-left">
-                                <ul>
-                                    <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
-                                    <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
-                                    <li>Follow us on <a href="https://twitter.com/oni_vim">twitter</a></li>
-                                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
+            <HeroSection title={Sections.Extensible.title} description={Sections.Extensible.description} />
+            <HeroSection title={Sections.Productivity.title} description={Sections.Productivity.description} reverse={true}/>
                 <section className="section hero oni-footer is-dark">
                     <div className="container">
                         <div className="columns">

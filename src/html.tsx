@@ -45,6 +45,7 @@ module.exports = (props: HtmlProps) => {
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
         />
         <link rel="shortcut icon" type="image/x-icon" href={favicon} />
+          <link href="https://fonts.googleapis.com/css?family=Poppins|Sintony" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" rel="stylesheet" />
