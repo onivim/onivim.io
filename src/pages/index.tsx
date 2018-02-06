@@ -27,58 +27,6 @@ const createDivItem = (className: string) => {
     };
 };
 
-const GitHubIconLarge = () => {
-    return <span className="icon" style={{color: "#333" }}>
-        <i className="fa fa-lg fa-github">
-        </i>
-    </span>;
-};
-
-const TwitterIconLarge = () => {
-    return <span className="icon" style={{color: "#55acee" }}>
-        <i className="fa fa-lg fa-twitter">
-        </i>
-    </span>;
-};
-
-const RedditIconLarge = () => {
-    return <span className="icon" style={{color: "orange" }}>
-        <i className="fa fa-lg fa-reddit">
-        </i>
-    </span>;
-};
-
-const LargeCircleIcon = (props: { iconName: string, color: string }) => {
-
-    const iconClass = `fa fa-5x fa-${props.iconName}`;
-
-    const style = {
-        width: "8rem",
-        height: "8rem",
-        borderRadius: "4rem",
-        backgroundColor: props.color,
-        color: "white",
-    };
-
-    const wrapperStyle = {
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-    };
-
-    return <div style={wrapperStyle}>
-    <span className="icon" style={style}>
-        <i className={iconClass}>
-        </i>
-    </span>
-    </div>;
-};
-
-import { Carousel } from "react-responsive-carousel";
-const styles = require("react-responsive-carousel/lib/styles/carousel.min.css");
-
 export interface IHeroState {
     isRendered: boolean;
 }
@@ -93,21 +41,7 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
     }
 
     public render(): JSX.Element {
-            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{width: "100%"}}/>;
-/*
-        return <figure className="oni-hero-container image is-4by3" style={{width: "100%"}}>
-            <div className="oni-hero-loading">
-                <i className="fa fa-circle-o-notch fa-3x fa-spin" aria-hidden="true"></i>
-            </div>
-            <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{width: "100%"}}/>
-            { TODO: Bring back once the video isn't broken
-            <video className="oni-hero-video" autoPlay={true} loop={true}>
-                <source src={heroVideoWebm} type="video/webm" />
-                <source src={heroVideoMp4} type="video/mp4" />
-            </video>
-            }
-        </figure>;
-*/
+            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{maxWidth: "1280px", width: "100%"}}/>;
     }
 }
 
@@ -166,6 +100,50 @@ const Sections = {
     }
 }
 
+import styled from "styled-components"
+const HeroSectionWrapper = styled.section`
+
+    text-align: center;
+    max-height: 100vh;
+
+    & .hero-header {
+        margin-top: 7rem;
+        margin-bottom: 3rem;
+    }
+
+    & .hero-body {
+        margin-top: 5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    & .hero-footer {
+        margin: 2rem;
+
+        .icon {
+            padding: 1.5rem;
+        }
+
+        display: flex;
+        flex-direction: column;
+    }
+`
+
+const HeroInnerSectionWrapper = styled.div`
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const DownIcon = () => {
+    return <span className="icon" style={{color: "#61AFEF" }}>
+        <i className="fa fa-4x fa-chevron-circle-down">
+        </i>
+    </span>;
+};
+
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
     constructor(props: IndexPageProps) {
@@ -181,17 +159,14 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
             {/* Master head */}
 
             <NavBar logo={logo}/>
-            <section className="oni-header hero is-fullheight is-dark">
-                <div className="hero-header">
-                    <h1>Oni: Modern Modal Editing</h1>
-                </div>
+            <HeroSectionWrapper className="oni-header hero is-fullheight is-dark">
                 <div className="hero-body">
                     <HeroImageSlider />
                 </div>
-            <div className="hero-footer">
-                    <a className="oni-button button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download</a>
-            </div>
-            </section>
+                <HeroInnerSectionWrapper className="hero-footer">
+                    <DownIcon />
+                </HeroInnerSectionWrapper>
+            </HeroSectionWrapper>
             <HeroSection title={Sections.ModernUX.title} description={Sections.ModernUX.description} />
             <HeroSection title={Sections.BatteriesIncluded.title} description={Sections.BatteriesIncluded.description} reverse={true} />
             <section className="section hero oni-header is-dark">

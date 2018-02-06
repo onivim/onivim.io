@@ -63,16 +63,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
     return <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
-            <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Docs</a>
-                <div className="navbar-dropdown">
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Configuration"}>Configuration</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/FAQ"}>FAQ</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>Language Support</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Plugins"}>Plugins</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/API"}>API</NavBarItem>
-                </div>
-            </div>
+            <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <div className="navbar-item has-dropdown is-hoverable">
                 <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</a>
                 <div className="navbar-dropdown">
