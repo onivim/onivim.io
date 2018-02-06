@@ -46,7 +46,6 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 }
 
 const FeatureCard = (title: string, description: string) => {
-
     return <div className="card">
         <div className="card-header">
             <div className="card-header-title">
@@ -57,7 +56,6 @@ const FeatureCard = (title: string, description: string) => {
             Break free of terminal limitations and experience Vim in a new way.
         </div>
     </div>;
-
 };
 
 const Link = (props: { text: string, href: string }) => {
