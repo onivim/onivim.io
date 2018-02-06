@@ -82,19 +82,19 @@ export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
 const Sections = {
     ModernUX: {
         title: "Modern UX",
-        description: "Break free of terminal limitations. Experience modal editing in a new way. Oni is a Vim GUI that brings together the best of Neovim and modern editors like Atom and VSCode."
+        description: "Break free of terminal limitations. Oni is a Vim GUI that brings together the best of Vim, IDEs, and modern editors."
     },
     BatteriesIncluded: {
         title: "Batteries Included",
-        description: "Spend less time configuring and more time creating. Oni comes with a set of IDE-like functionality, like a fuzzy finder, an explorer sidebar, and a fuzzy finder. In addition, there's out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
+        description: "Spend less time configuring and more time creating. Sane defaults plus out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
     },
     Extensible: {
-        title: "Extensible to the Max",
+        title: "Hassle-free Extensibility",
         description: "Oni is hackable via JavaScript, and a common JavaScript plugin API powers configuration and plugins. Oni also supports Vim plugins!",
     },
     Productivity: {
         title: "Maximum Productivity",
-        description: "Oni is designed to enable a new level of developer productivity - from configuration, to editing, to seeing your code changes live. Oni can help speed up your 'inner loop' - your code/test/debug/run cycle.",
+        description: "The ultimate goal of Oni is to make you more productive. Oni can help speed up your 'inner loop' - your code/test/debug/run cycle.",
     }
 }
 
@@ -142,6 +142,21 @@ const DownIcon = () => {
     </span>;
 };
 
+const SponsorsContents = () => {
+                return <p className="content has-text-centered">
+        <Sponsor tier={"gold-sponsor"} index={0} />
+                        <Sponsor tier={"gold-sponsor"} index={1} />
+                        <Sponsor tier={"gold-sponsor"} index={2} />
+                        <Sponsor tier={"gold-sponsor"} index={3} />
+                        <Sponsor tier={"gold-sponsor"} index={4} />
+                        <Sponsor tier={"gold-sponsor"} index={5} />
+                        <Sponsor tier={"gold-sponsor"} index={6} />
+                        <Sponsor tier={"gold-sponsor"} index={7} />
+                        <Sponsor tier={"gold-sponsor"} index={8} />
+                        <Sponsor tier={"gold-sponsor"} index={9} />
+                    </p>
+}
+
 export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
 
     constructor(props: IndexPageProps) {
@@ -165,26 +180,9 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
                     <DownIcon />
                 </HeroInnerSectionWrapper>
             </HeroSectionWrapper>
+            <HeroSection title={"Brought to you by our sponsors"} description={"Oni is free and open-source... but needs your help! Consider becoming a backer or sponsor if you find the project useful."} image={<SponsorsContents />} reverse={true}/>
             <HeroSection title={Sections.ModernUX.title} description={Sections.ModernUX.description} />
             <HeroSection title={Sections.BatteriesIncluded.title} description={Sections.BatteriesIncluded.description} reverse={true} />
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <h1 className="title is-2 is-spaced has-text-centered">Sponsors</h1>
-                    <h2 className="subtitle is-3 has-text-centered">Gold Sponsors via OpenCollective</h2>
-                    <p className="content has-text-centered">
-                        <Sponsor tier={"gold-sponsor"} index={0} />
-                        <Sponsor tier={"gold-sponsor"} index={1} />
-                        <Sponsor tier={"gold-sponsor"} index={2} />
-                        <Sponsor tier={"gold-sponsor"} index={3} />
-                        <Sponsor tier={"gold-sponsor"} index={4} />
-                        <Sponsor tier={"gold-sponsor"} index={5} />
-                        <Sponsor tier={"gold-sponsor"} index={6} />
-                        <Sponsor tier={"gold-sponsor"} index={7} />
-                        <Sponsor tier={"gold-sponsor"} index={8} />
-                        <Sponsor tier={"gold-sponsor"} index={9} />
-                    </p>
-                </div>
-            </section>
             <HeroSection title={Sections.Extensible.title} description={Sections.Extensible.description} />
             <HeroSection title={Sections.Productivity.title} description={Sections.Productivity.description} reverse={true}/>
                 <section className="section hero oni-footer is-dark">

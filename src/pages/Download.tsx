@@ -47,48 +47,13 @@ const Sections = {
 }
 
 import styled from "styled-components"
-const HeroSectionWrapper = styled.section`
 
-    text-align: center;
-    max-height: 100vh;
-
-    & .hero-header {
-        margin-top: 7rem;
-        margin-bottom: 3rem;
-    }
-
-    & .hero-body {
-        margin-top: 5rem;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-
-    & .hero-footer {
-        margin: 2rem;
-
-        .icon {
-            padding: 1.5rem;
-        }
-
-        display: flex;
-        flex-direction: column;
-    }
+const DownloadSectionWrapper = styled.div`
 `
 
-const HeroInnerSectionWrapper = styled.div`
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-`
-
-const DownIcon = () => {
-    return <span className="icon" style={{color: "#61AFEF" }}>
-        <i className="fa fa-4x fa-chevron-circle-down">
-        </i>
-    </span>;
-};
+// TODO: 
+// - Check if backer, if not, show 'Locked' experience (sign-in with github / twitter)
+// - Otherwise, show 'stable' and 'latest' builds
 
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
@@ -103,10 +68,16 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
         return <div style={bodyStyle}>
             <NavBar logo={logo}/>
-            <HeroSectionWrapper className="oni-header hero is-fullheight is-dark">
-                <div className="hero-body">
+            <DownloadSectionWrapper>
+                <div>
+                    Backers Builds
                 </div>
-            </HeroSectionWrapper>
+            </DownloadSectionWrapper>
+            <DownloadSectionWrapper>
+                <div>
+                    Previous Builds
+                </div>
+            </DownloadSectionWrapper>
         </div>
     }
 }
