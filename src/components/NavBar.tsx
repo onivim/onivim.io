@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import styled from "styled-components";
+import styled, { keyframes }  from "styled-components";
 
 import { logo } from "./../pages/logo-256x256.png"
 
@@ -16,10 +16,24 @@ export interface INavBarState {
     isActive: boolean;
 }
 
+const NavBarItemContainer = styled.a`
+    &.navbar-item:hover, &.navbar-link:hover {
+        background-color: ${Colors.Background} !important;
+        border-bottom: 2px solid ${Colors.Accent};
+        box-shadow:  -9px 0px 20px 0 rgba(0,0,0,0.2), 9px 0px 20px 0 rgba(0, 0, 0, 0.2);
+        transform: translateY(-1px);
+
+        z-index: 1;
+    }
+
+    color: ${Colors.Foreground} !important;
+    border-bottom: 2px solid transparent;
+`
+
 const createAnchorItem = (className: string) => {
     return class HOC extends React.PureComponent<{href: string }, {}> {
         public render(): JSX.Element {
-            return <a className={className} href={this.props.href}>{this.props.children}</a>;
+            return <NavBarItemContainer className={className} href={this.props.href}>{this.props.children}</NavBarItemContainer>;
         }
     };
 };
@@ -49,8 +63,6 @@ const NavBarItem = createAnchorItem("navbar-item");
 const NavBarItemHiddenOnDesktop = createAnchorItem("navbar-item is-hidden-desktop");
 const NavBarItemDesktopOnly = createAnchorItem("navbar-item is-hidden-desktop-only");
 
-import styled from "styled-components"
-
 const NavigationMenuWrapper = styled.nav`
     background-color: ${Colors.Background};
     color: ${Colors.Foreground};
@@ -65,7 +77,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</a>
+                <NavBarItemContainer className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</NavBarItemContainer>
                 <div className="navbar-dropdown">
                     <NavBarItem href={"https://opencollective.com/oni"}>OpenCollective</NavBarItem>
                     <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
@@ -98,6 +110,15 @@ const NavBarWrapper = styled.nav`
     }
 `
 
+const BrandEntranceKeyframes = keyframes`
+    0% { transform: scale(0.8); opacity: 0.8; }
+    100%% { transform: scale(1); opacity: 1; }
+`
+
+export const NavBarBrandWrapper = styled.div`
+    animation: ${BrandEntranceKeyframes} 0.25s ease-in forwards;
+`
+
 export interface INavBarProps {
     logo: string
 }
@@ -117,11 +138,11 @@ export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
             return <NavBarWrapper className="navbar is-dark is-fixed-top">
                 <div className="container">
                 <div className="navbar-brand">
-                    <div className="navbar-item">
+                    <NavBarBrandWrapper className="navbar-item">
                         <a className="oni-brand-logo" href="https://github.com/onivim/oni">
                         <img src={this.props.logo} alt="Oni Logo" />
                         </a>
-                    </div>
+                    </NavBarBrandWrapper>
                     <NavBarItemHiddenOnDesktop href={"https://github.com/onivim/oni"}>
                         <GitHubIconLarge />
                     </NavBarItemHiddenOnDesktop>

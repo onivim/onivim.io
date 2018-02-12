@@ -46,36 +46,6 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
     }
 }
 
-const FeatureCard = (title: string, description: string) => {
-    return <div className="card">
-        <div className="card-header">
-            <div className="card-header-title">
-                Modern UX
-            </div>
-        </div>
-        <div className="card-content">
-            Break free of terminal limitations and experience Vim in a new way.
-        </div>
-    </div>;
-};
-
-const Link = (props: { text: string, href: string }) => {
-    return <a href={props.href}>{props.text}</a>;
-};
-
-// Other ones:
-// - No VimL
-// -
-
-// License
-// Code of Conduct
-// FOoter
-// FAQ
-// Github
-
-export class IndexPageState {
-}
-
 export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
     return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
 };
@@ -150,7 +120,7 @@ const SponsorsContents = () => {
                     </p>
 }
 
-export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
+export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {
         super(props);
