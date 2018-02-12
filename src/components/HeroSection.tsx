@@ -37,7 +37,7 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
 overflow: hidden;
 
 
-    opacity: ${props => props.active ? "1.0": "0.5"};
+    opacity: ${props => props.active ? "1.0": "0.2"};
 
     ${props => {
         if (props.active) {
@@ -68,7 +68,7 @@ width: 100%;
 
 const SectionContentsWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     max-width: 1000px;
-    min-height: 75vh;
+    min-height: 80vh;
     overflow: hidden;
 
     transform: translateX(${props => props.active ? 0 : (props.reverse ? 250 : -250)}px);
@@ -114,23 +114,22 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
         }
     }
     public render(): JSX.Element {
-      return <Waypoint
+      return <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
+                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered">
+            <Waypoint
         onEnter={() => this.setState({active: true})} 
         onLeave={() => this.setState({active: false})}
-        onPositionChange={(props) => console.log(props)}
-        bottomOffset={"25%"}
-        topOffset={"25%"}>
-              <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
-                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered">
+        bottomOffset={"10%"}
+        topOffset={"10%"}>
                     <div className="column">
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
                         <Description>{this.props.description}</Description>
                     </div>
+          </Waypoint>
                     <div className="column">
                         { this.props.image ? this.props.image : <div style={{maxWidth:"640px", maxHeight: "640px"}} />}
                     </div>
                 </SectionContentsWrapper>
               </SectionWrapper>
-          </Waypoint>
     }
 }

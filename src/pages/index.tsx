@@ -4,6 +4,7 @@ import * as React from "react";
 const Waypoint = require("react-waypoint");
 
 import { HeroSection } from "./../components/HeroSection";
+import { HeroFooter } from "./../components/HeroFooter"
 import { NavBar } from "./../components/NavBar"
 
 interface IndexPageProps {
@@ -177,41 +178,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
             <HeroSection title={Sections.BatteriesIncluded.title} description={Sections.BatteriesIncluded.description} reverse={true} />
             <HeroSection title={Sections.Extensible.title} description={Sections.Extensible.description} />
             <HeroSection title={Sections.Productivity.title} description={Sections.Productivity.description} reverse={true}/>
-                <section className="section hero oni-footer is-dark">
-                    <div className="container">
-                        <div className="columns">
-                            <div className="column">
-                                Copyright 2017 Bryan Phelps
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                    <p><strong>Oni brought to you by:</strong></p>
-                                    <ul>
-                                        <li><a href="https://github.com/onivim/oni/blob/master/BACKERS.md">Backers</a></li>
-                                        <li><a href="https://github.com/onivim/oni/graphs/contributors">Contributors</a></li>
-                                    </ul>
-                                </p>
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                    <p><strong>Website built with:</strong></p>
-                                    <ul>
-                                        <li><a href="https://bulma.io">Bulma</a></li>
-                                        <li><a href="https://www.gatsbyjs.org">Gatsby</a></li>
-                                        <li><a href="http://fontawesome.io">Font Awesome</a></li>
-                                        <li><a href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</a></li>
-                                    </ul>
-                                </p>
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_vim</a></p>
-                                <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <HeroFooter />
         </div>;
     }
 }
