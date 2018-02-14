@@ -85,6 +85,12 @@ const HeroSectionImage = styled.img`
     padding: 2em;
 `
 
+const Centered = styled.div`
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+`
 
 const Sections = {
     ModernUX: {
@@ -113,7 +119,7 @@ const Sections = {
         title: "Batteries Included",
         subtitle: "...but still hackable to the core.",
         description:[
-            <div>
+            <Centered>
                 <MiniHeader>Included:</MiniHeader>
                 <p className="content">
                     <ul>
@@ -132,10 +138,11 @@ const Sections = {
                         <li>Debugger</li>
                     </ul>
                 </p>
-            </div>
+            </Centered>
         ],
         content: [
             <HighlightContainer>
+                <Centered>
                 <MiniHeader>Extensible:</MiniHeader>
                 <p className="content">
                     <ul>
@@ -145,6 +152,7 @@ const Sections = {
                         <li>...and most <a href="http://langserver.org/">language servers</a></li>
                     </ul>
                 </p>
+                </Centered>
             </HighlightContainer>
         ]
     },
@@ -170,12 +178,14 @@ const Sections = {
         subtitle: "Download + Contribute",
         contents: [
             <HighlightContainer>
-                <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
-                <ButtonContainer><a className="button is-warning is-large" href="https://onivim.github.io/oni-docs/#/">Documentation</a></ButtonContainer>
+                <Centered>
+                    <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
+                    <ButtonContainer><a className="button is-warning is-large" href="https://onivim.github.io/oni-docs/#/">Documentation</a></ButtonContainer>
+                </Centered>
             </HighlightContainer>
         ],
         description: [
-            <div>
+            <Centered>
                 <MiniHeader>Contribute</MiniHeader>
                 <p className="content">
                 <ul>
@@ -186,7 +196,7 @@ const Sections = {
                     <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
                 </ul>
                 </p>
-            </div>
+            </Centered>
         ]
     },
     BroughtToYouBy: {
