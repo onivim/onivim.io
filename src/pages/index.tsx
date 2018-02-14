@@ -2,6 +2,11 @@ import * as React from "react";
 // import { menuItems } from "../layouts";
 
 const Waypoint = require("react-waypoint");
+import styled, { keyframes }  from "styled-components"
+
+import { HeroSection } from "./../components/HeroSection";
+import { HeroFooter } from "./../components/HeroFooter"
+import { NavBar } from "./../components/NavBar"
 
 interface IndexPageProps {
     location: {
@@ -9,13 +14,20 @@ interface IndexPageProps {
     };
 }
 
-const bitcoinAddress = require("./bitcoin-address.png");
 const logo = require("./logo-256x256.png");
 const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
 const heroVideoWebm = require("./hero-video.webm");
 const heroVideoMp4 = require("./hero-video.mp4");
 // const heroImage = require("./hero-screenshot.png");
+
+const SponsorsContents = () => {
+                return <p className="content has-text-centered">
+                        <p><Sponsor tier={"gold-sponsor"} index={0} /></p>
+                        <p><Sponsor tier={"gold-sponsor"} index={1} /></p>
+                    </p>
+}
+
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -25,100 +37,9 @@ const createDivItem = (className: string) => {
     };
 };
 
-const createAnchorItem = (className: string) => {
-    return class HOC extends React.PureComponent<{href: string }, {}> {
-        public render(): JSX.Element {
-            return <a className={className} href={this.props.href}>{this.props.children}</a>;
-        }
-    };
-};
-const GitHubIconLarge = () => {
-    return <span className="icon" style={{color: "#333" }}>
-        <i className="fa fa-lg fa-github">
-        </i>
-    </span>;
-};
-
-const TwitterIconLarge = () => {
-    return <span className="icon" style={{color: "#55acee" }}>
-        <i className="fa fa-lg fa-twitter">
-        </i>
-    </span>;
-};
-
-const RedditIconLarge = () => {
-    return <span className="icon" style={{color: "orange" }}>
-        <i className="fa fa-lg fa-reddit">
-        </i>
-    </span>;
-};
-
-const LargeCircleIcon = (props: { iconName: string, color: string }) => {
-
-    const iconClass = `fa fa-5x fa-${props.iconName}`;
-
-    const style = {
-        width: "8rem",
-        height: "8rem",
-        borderRadius: "4rem",
-        backgroundColor: props.color,
-        color: "white",
-    };
-
-    const wrapperStyle = {
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-    };
-
-    return <div style={wrapperStyle}>
-    <span className="icon" style={style}>
-        <i className={iconClass}>
-        </i>
-    </span>
-    </div>;
-};
-
-const NavBarItem = createAnchorItem("navbar-item");
-const NavBarItemHiddenOnDesktop = createAnchorItem("navbar-item is-hidden-desktop");
-const NavBarItemDesktopOnly = createAnchorItem("navbar-item is-hidden-desktop-only");
-
-import { Carousel } from "react-responsive-carousel";
-const styles = require("react-responsive-carousel/lib/styles/carousel.min.css");
-
 export interface IHeroState {
     isRendered: boolean;
 }
-
-const BitcoinModal = (props: { visible: boolean, onClose: () => void }) => {
-
-    const className = props.visible ? "modal is-active" : "modal";
-
-    return <div className={className}>
-            <div className="modal-background"> </div>
-            <div className="modal-card">
-                <header className="modal-card-head">
-                   <p className="modal-card-title">Donate Bitcoin</p>
-                  <button className="delete" aria-label="close" onClick={props.onClose}></button>
-                </header>
-                <section className="modal-card-body">
-
-                    <p className="content has-text-centered">
-                    <img src={bitcoinAddress} />
-                    <p className="oni-padding-top"><input className="input is-medium oni-padding-top" value="1HdTteoJZCkkAuesyxA3vmLxmpGGk995PG" type="text" readOnly={true}/></p>
-
-                    <p className="has-text-left is-small oni-padding-top"><strong>NOTE:</strong> Bitcoin donations are anonymous, so please hit me up on <a href="mailto:bryphe@outlook.com">e-mail</a> or <a href="http://www.twitter.com/oni_vim">twitter</a> if you'd like to be recognized for your donation.</p>
-                    </p>
-                </section>
-                <footer className="modal-card-foot">
-                    <button className="button is-success" onClick={props.onClose}>Close</button>
-                </footer>
-            </div>
-            <button className="modal-close is-large" aria-label="close" onClick={props.onClose}></button>
-            </div>;
-};
 
 export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
 
@@ -130,172 +51,207 @@ export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
     }
 
     public render(): JSX.Element {
-
-        return <figure className="oni-hero-container image is-4by3" style={{width: "100%"}}>
-            <div className="oni-hero-loading">
-                <i className="fa fa-circle-o-notch fa-3x fa-spin" aria-hidden="true"></i>
-            </div>
-            <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{width: "100%"}}/>
-            {/* TODO: Bring back once the video isn't broken
-            <video className="oni-hero-video" autoPlay={true} loop={true}>
-                <source src={heroVideoWebm} type="video/webm" />
-                <source src={heroVideoMp4} type="video/mp4" />
-            </video>
-            */}
-        </figure>;
-
+            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{maxWidth: "1280px", width: "100%"}}/>;
     }
-}
-
-const NavBarMenu = (props: { isActive: boolean, openBitcoinModal: () => void }) => {
-
-    const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu";
-
-    return <div className={menuClass} id="navMenuDocumentation">
-        <div className="navbar-start">
-            <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
-            <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Docs</a>
-                <div className="navbar-dropdown">
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Configuration"}>Configuration</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/FAQ"}>FAQ</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Language-Support"}>Language Support</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/Plugins"}>Plugins</NavBarItem>
-                    <NavBarItem href={"https://github.com/onivim/oni/wiki/API"}>API</NavBarItem>
-                </div>
-            </div>
-            <div className="navbar-item has-dropdown is-hoverable">
-                <a className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</a>
-                <div className="navbar-dropdown">
-                    <NavBarItem href={"https://opencollective.com/oni"}>OpenCollective</NavBarItem>
-                    <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
-                    <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
-                    <NavBarItem href={"javascript:;"}><span onClick={() => props.openBitcoinModal()} style={{width: "100%"}}>Bitcoin</span></NavBarItem>
-                </div>
-            </div>
-        </div>
-        <div className="navbar-end">
-            <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
-                <GitHubIconLarge />
-            </NavBarItemDesktopOnly>
-            <NavBarItemDesktopOnly href={"https://twitter.com/oni_vim"}>
-                <TwitterIconLarge />
-            </NavBarItemDesktopOnly>
-            <NavBarItemDesktopOnly href={"https://reddit.com/r/onivim"}>
-                <RedditIconLarge />
-            </NavBarItemDesktopOnly>
-        </div>
-    </div>;
-
-};
-
-const FeatureCard = (title: string, description: string) => {
-
-    return <div className="card">
-        <div className="card-header">
-            <div className="card-header-title">
-                Modern UX
-            </div>
-        </div>
-        <div className="card-content">
-            Break free of terminal limitations and experience Vim in a new way.
-        </div>
-    </div>;
-
-};
-
-const Link = (props: { text: string, href: string }) => {
-    return <a href={props.href}>{props.text}</a>;
-};
-
-// Other ones:
-// - No VimL
-// -
-
-// License
-// Code of Conduct
-// FOoter
-// FAQ
-// Github
-
-// import logo from "./oni-header.png"
-
-export interface INavBarProps {
-    openBitcoinModal: () => void;
-}
-
-export interface INavBarState {
-    isActive: boolean;
-}
-
-export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            isActive: false,
-        };
-    }
-
-    public render(): JSX.Element {
-
-            const burgerClass = this.state.isActive ? "navbar-burger burger is-active" : "navbar-burger burger";
-
-            return <nav className="navbar is-light">
-                <div className="container">
-                <div className="navbar-brand">
-                    <div className="navbar-item">
-                        <a className="oni-brand-logo" href="https://github.com/onivim/oni">
-                        <img src={logo} alt="Oni Logo" />
-                        </a>
-                    </div>
-                    <NavBarItemHiddenOnDesktop href={"https://github.com/onivim/oni"}>
-                        <GitHubIconLarge />
-                    </NavBarItemHiddenOnDesktop>
-                    <NavBarItemHiddenOnDesktop href={"https://twitter.com/oni_vim"}>
-                        <TwitterIconLarge />
-                    </NavBarItemHiddenOnDesktop>
-                    <div className={burgerClass} data-target="navMenuDocumentation" onClick={() => this._toggleActive()}>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-                <NavBarMenu isActive={this.state.isActive} openBitcoinModal={this.props.openBitcoinModal} />
-                </div>
-            </nav>;
-    }
-
-    private _toggleActive(): void {
-        this.setState({
-            isActive: !this.state.isActive,
-        });
-    }
-}
-
-export class IndexPageState {
-    isBitcoinModalVisible: boolean;
 }
 
 export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
-    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>
+    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
+};
+
+const MiniHeader = styled.div`
+    font-weight: bold;
+    font-size: 1.1em;
+    text-align: center;
+    padding: 2em;
+`
+
+const ButtonContainer = styled.div`
+    padding: 2em;
+`
+
+const HighlightContainer = styled.div`
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.1);
+`
+
+const HeroSectionImage = styled.img`
+    padding: 2em;
+`
+
+const Sections = {
+    ModernUX: {
+        title: "Modern UX",
+        subtitle: "Modal Editing + Modern Editing",
+        // description: "Oni merges aesthetics and functionality by harnessing the power of modal editing in a beautiful package."
+        description:[
+            <p className="content">
+            <ul>
+                <li>Bringing together the best of Atom, VSCode, and Vim.</li>
+                <li>Experience mouse-free productivity with Vim-style modal editing...</li>
+                <li>...in a beautiful, modern package.</li>
+            </ul>
+            </p>
+        ],
+        contents: <img src="https://user-images.githubusercontent.com/13532591/36127305-9c7b6b80-1011-11e8-85dd-0345788c0b56.png" />
+    },
+    BatteriesIncluded: {
+        title: "Batteries Included",
+        subtitle: "...but still hackable to the core.",
+        description:[
+            <div>
+                <MiniHeader>Included:</MiniHeader>
+                <p className="content">
+                    <ul>
+                        <li>Code completion</li>
+                        <li>Hover info</li>
+                        <li>Font ligature support</li>
+                        <li>Fuzzy file finder</li>
+                        <li>Language server support</li>
+                    </ul>
+                </p>
+            </div>
+        ],
+        content: [
+            <HighlightContainer>
+                <MiniHeader>Extensible:</MiniHeader>
+                <p className="content">
+                    <ul>
+                        <li>Prefer front-end? Use our <a href="https://onivim.github.io/oni-api/">javascript API</a></li>
+                        <li>Coming from Vim? No problem - bring your <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">`init.vim`!</a></li>
+                        <li>Compatible with most <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">Vim plugins</a></li>
+                        <li>...and most <a href="http://langserver.org/">language servers</a></li>
+                    </ul>
+                </p>
+            </HighlightContainer>
+        ]
+    },
+    Productivity: {
+        title: "Maximize Productivity",
+        subtitle: "Live Preview (Coming Soon)",
+        description:[
+            <HighlightContainer>
+                <p className="content">
+                    See the results of your code as you work.
+                </p>
+                <p className="content">
+                    Tighten your inner loop, and become more productive.
+                </p>
+            </HighlightContainer>
+        ],
+        content: [
+            <HeroSectionImage src="https://user-images.githubusercontent.com/13532591/35305852-e7bf8f6c-004f-11e8-9614-cfe5ced35515.gif" />
+        ]
+    },
+    GetStarted: {
+        title: "Get started!",
+        subtitle: "Download + Contribute",
+        contents: [
+            <HighlightContainer>
+                <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
+                <ButtonContainer><a className="button is-warning is-large" href="https://onivim.github.io/oni-docs/#/">Documentation</a></ButtonContainer>
+            </HighlightContainer>
+        ],
+        description: [
+            <div>
+                <MiniHeader>Contribute</MiniHeader>
+                <p className="content">
+                <ul>
+                    <li>Become a backer via <a href="https://opencollective.com/oni">OpenCollective</a></li>
+                    <li>Become a backer via <a href="https://www.bountysource.com/teams/oni">BountySource</a></li>
+                    <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug or <a href="https://github.com/onivim/oni/issues/new">suggest a feature</a></li>
+                    <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
+                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
+                </ul>
+                </p>
+            </div>
+        ]
+    },
+    BroughtToYouBy: {
+        title: "Brought to you by...",
+        subtitle: "...our backers, sponsors, and contributors!",
+        description: [
+            <div>
+               <MiniHeader>Contributors</MiniHeader>
+               <a href="https://github.com/onivim/oni/graphs/contributors"><img src="https://opencollective.com/oni/contributors.svg?width=890" /></a> 
+            </div>
+        ],
+        contents: [
+            <div>
+                <MiniHeader>Sponsors</MiniHeader>
+                <SponsorsContents />
+            </div>
+        ],
+    }
 }
 
-export default class HomePage extends React.PureComponent<IndexPageProps, IndexPageState> {
+const HeroSectionWrapper = styled.section`
+
+    text-align: center;
+    height: 100vh;
+
+    & .hero-header {
+        margin-top: 7rem;
+        margin-bottom: 3rem;
+    }
+
+    & .hero-body {
+        margin-top: 5rem;
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    & .hero-footer {
+        margin: 2rem;
+
+        .icon {
+            padding: 1.5rem;
+        }
+
+        display: flex;
+        flex-direction: column;
+    }
+`
+
+const HeroInnerSectionWrapper = styled.div`
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+const DownIconKeyFrames = keyframes`
+    0% { transform: translateY(-5px) scale(0.9); opacity: 1; }
+    50% { transform: translateY(0px) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-5px) scale(0.9); opacity: 1; }
+`
+
+const DownIconWrapper = styled.a`
+    animation: ${DownIconKeyFrames} 2s ease-in-out infinite;
+    color: rgba(0, 255, 200, 0.8);
+
+    &:hover {
+        animation: ${DownIconKeyFrames} 1s ease-in-out infinite;
+        color: rgba(0, 255, 200, 1);
+    }
+`
+
+const scrollDown = () => {
+    window.scrollBy(0, window.innerHeight)
+}
+
+const DownIcon = () => {
+    return <DownIconWrapper className="icon" onClick={scrollDown}>
+        <i className="fa fa-4x fa-chevron-circle-down">
+        </i>
+    </DownIconWrapper>;
+};
+
+export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {
         super(props);
-
-        this.state = {
-            isBitcoinModalVisible: false,
-        };
-    }
-
-    private _openBitcoinModal(): void {
-        this.setState({ isBitcoinModalVisible: true });
-    }
-
-    private _closeBitcoinModal(): void {
-        this.setState({ isBitcoinModalVisible: false });
     }
 
     public render(): JSX.Element {
@@ -306,185 +262,22 @@ export default class HomePage extends React.PureComponent<IndexPageProps, IndexP
         return <div style={bodyStyle}>
             {/* Master head */}
 
-            <NavBar openBitcoinModal={() => this._openBitcoinModal()}/>
-            <BitcoinModal visible={this.state.isBitcoinModalVisible} onClose={() => this._closeBitcoinModal()} />
-            <section className="oni-header hero is-medium is-dark">
+            <NavBar logo={logo}/>
+            <HeroSectionWrapper className="oni-header hero is-fullheight is-dark">
                 <div className="hero-body">
-                    <div className="columns">
-                        <div className="column oni-flex-center">
-                            <img src={header} style={{width: "65%"}} />
-                            <h5 className="title is-5 has-text-centered">Modal editing for the future</h5>
-                            <p className="content">
-                                <ul>
-                                    <li>Open-source</li>
-                                    <li>Cross-platform</li>
-                                    <li>Powered by <a href="https://neovim.io">neovim</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column oni-flex-center">
-                            <HeroImageSlider />
-                        </div>
-                        <div className="column oni-flex-center">
-                            <a className="oni-button button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download</a>
-                        </div>
-                    </div>
+                    <HeroImageSlider />
                 </div>
-            </section>
-            <section className="section oni-dark-section is-medium is-light">
-                <div className="container">
-                    <div className="columns is-8">
-                        <div className="column">
-                            <h1 className="title">Modern UX</h1>
-                            <p className="content">
-                            Break free of terminal UI limitations and experience modal editing in a new way. Built with neovim, electron and web technology, Oni combines fast modal editing with the features of a modern code editor.
-                            </p>
-                        </div>
-                        <div className="column">
-                            <h1 className="title">Batteries Included</h1>
-                            <p className="content">
-                            Spend less time configuring and more time creating. Oni works great with language servers, and comes with out-of-the-box support for JavaScript, TypeScript, and Reason.
-                            </p>
-                        </div>
-                        <div className="column">
-                            <h1 className="title">Extensible</h1>
-                            <p className="content">
-                            Oni is fully configurable and scriptable via JavaScript, or your compile-to-Javascript dialect of choice. Oni is compatible with most VimL plugins, too!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <h1 className="title is-2 is-spaced has-text-centered">Sponsors</h1>
-                    <h2 className="subtitle is-3 has-text-centered">Gold Sponsors via OpenCollective</h2>
-                    <p className="content has-text-centered">
-                        <Sponsor tier={"gold-sponsor"} index={0} />
-                        <Sponsor tier={"gold-sponsor"} index={1} />
-                        <Sponsor tier={"gold-sponsor"} index={2} />
-                        <Sponsor tier={"gold-sponsor"} index={3} />
-                        <Sponsor tier={"gold-sponsor"} index={4} />
-                        <Sponsor tier={"gold-sponsor"} index={5} />
-                        <Sponsor tier={"gold-sponsor"} index={6} />
-                        <Sponsor tier={"gold-sponsor"} index={7} />
-                        <Sponsor tier={"gold-sponsor"} index={8} />
-                        <Sponsor tier={"gold-sponsor"} index={9} />
-                    </p>
-                </div>
-            </section>
-            <section className="section oni-dark-section is-medium is-light">
-                <div className="container">
-                    <h1 className="title is-1 is-spaced">Goal</h1>
-                    <p className="content">
-                        Our goal is to build the <em>fastest way to go from thought to code</em>, enabling a new level of developer productivity - by combining old-school modal editing with deep language integration, wrapped up in a modern package. Oni leverages <a href="https://neovim.io">neovim</a> for a complete vim package (no emulation!), and is built on <a href="https://electron.atom.io">Electron</a>. It shares much in common with <a href="https://code.visualstudio.com">VSCode</a> and <a href="https://atom.io">Atom</a>, however, it features a unique architecture with <a href="https://neovim.io">neovim</a> as the text-editing engine, a high-performance canvas renderer, and a powerful extensibility model.
-                    </p>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <h1 className="title is-1 is-spaced">Contribute</h1>
-                    <p className="content">Oni is free and open-source, but has a very ambitious <a href="https://github.com/onivim/oni/wiki/roadmap">roadmap</a> - help us on our mission to <strong>reimagine developer productivity</strong>. Oni would not be possible without our <a href="https://github.com/onivim/oni/blob/master/BACKERS.md">backers</a> and <a href="https://github.com/onivim/oni/graphs/contributors">contributors</a>.</p>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"usd"} color={"#23d160"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Finance</h2>
-                            <p className="content">
-                                <ul>
-                                    <li>Become a backer or sponsor via <a href="https://opencollective.com/oni">OpenCollective</a></li>
-                                    <li>Become a <a href="https://www.bountysource.com/teams/oni">backer</a> via BountySource</li>
-                                    <li>Make a one-time donation via <a href="https://paypal.me/bryphe/25">PayPal</a></li>
-                                    <li>Make a one-time donation via <a href="javascript:;" onClick={() => this._openBitcoinModal()}>BitCoin</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
-            <section className="section hero oni-header is-dark">
-                <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"wrench"} color={"orange"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Build</h2>
-                            <p className="content">
-                                <ul>
-                                    <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug</li>
-                                    <li><a href="https://github.com/onivim/oni/issues/new">Suggest</a> a feature</li>
-                                    <li>Set up your <a href="https://github.com/onivim/oni/wiki/Development">development environment</a></li>
-                                    <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
-                <section className="section hero oni-header is-dark">
-                    <div className="container">
-                    <div className="columns is-centered">
-                        <div className="column is-one-quarter">
-                            <LargeCircleIcon iconName={"handshake-o"} color={"#209cee"} />
-                        </div>
-                        <div className="column is-one-quarter">
-                            <h2 className="subtitle is-2">Join our Community</h2>
-                            <p className="content has-text-left">
-                                <ul>
-                                    <li>Review our <a href="https://github.com/onivim/oni/wiki">documentation</a></li>
-                                    <li>Contribute to our <a href="https://github.com/onivim/onivim.io">website</a></li>
-                                    <li>Follow us on <a href="https://twitter.com/oni_vim">twitter</a></li>
-                                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
-                                </ul>
-                            </p>
-                        </div>
-                        <div className="column is-one-quarter"></div>
-                    </div>
-                </div>
-            </section>
-                <section className="section hero oni-footer is-dark">
-                    <div className="container">
-                        <div className="columns">
-                            <div className="column">
-                                Copyright 2017 Bryan Phelps
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                    <p><strong>Oni brought to you by:</strong></p>
-                                    <ul>
-                                        <li><a href="https://github.com/onivim/oni/blob/master/BACKERS.md">Backers</a></li>
-                                        <li><a href="https://github.com/onivim/oni/graphs/contributors">Contributors</a></li>
-                                    </ul>
-                                </p>
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                    <p><strong>Website built with:</strong></p>
-                                    <ul>
-                                        <li><a href="https://bulma.io">Bulma</a></li>
-                                        <li><a href="https://www.gatsbyjs.org">Gatsby</a></li>
-                                        <li><a href="http://fontawesome.io">Font Awesome</a></li>
-                                        <li><a href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</a></li>
-                                    </ul>
-                                </p>
-                            </div>
-                            <div className="column">
-                                <p className="content">
-                                <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_vim</a></p>
-                                <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+                <HeroInnerSectionWrapper className="hero-footer">
+                    <DownIcon />
+                </HeroInnerSectionWrapper>
+            </HeroSectionWrapper>
+            <HeroSection title={Sections.ModernUX.title} subtitle={Sections.ModernUX.subtitle} description={Sections.ModernUX.description} image={Sections.ModernUX.contents} reverse={true} />
+            <HeroSection title={Sections.BatteriesIncluded.title} subtitle={"Less time configuring, more time creating"} description={Sections.BatteriesIncluded.description} image={Sections.BatteriesIncluded.content} reverse={false} />
+            <HeroSection title={Sections.Productivity.title} subtitle={Sections.Productivity.subtitle} description={Sections.Productivity.description} image={Sections.Productivity.content} reverse={true}/>
+            <HeroSection title={Sections.BroughtToYouBy.title} subtitle={Sections.BroughtToYouBy.subtitle} description={Sections.BroughtToYouBy.description} image={Sections.BroughtToYouBy.contents} reverse={false}/>
+            <HeroSection title={Sections.GetStarted.title} subtitle={Sections.GetStarted.subtitle} description={Sections.GetStarted.description} image={Sections.GetStarted.contents} reverse={true}/>
+            <HeroFooter />
         </div>;
     }
 }
+            // <HeroSection title={"Free and open-source"} subtitle={"...brought to you by our sponsors!"} description={"Thanks to our sponsors and backers for your support!"} image={<SponsorsContents />}/>

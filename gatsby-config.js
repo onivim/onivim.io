@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Oni - Modal Editing for the Future`
+    title: `Oni - Modern Modal Editing`
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': `AuthorJson`
@@ -51,8 +51,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby website`,
-        short_name: `Gatsby website`,
+        name: `Oni`,
+        short_name: `Oni`,
         start_url: `/`,
         background_color: `#f7f7f7`,
         theme_color: `#191919`,

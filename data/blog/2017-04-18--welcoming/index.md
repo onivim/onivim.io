@@ -3,16 +3,12 @@ title: Welcoming
 createdDate: '2017-04-18'
 updatedDate: '2017-10-16'
 author: Fabien BERNARD
-tags:
-  - starter
-  - gatsby
-image: pexels-photo-253092.jpeg
 draft: false
 ---
 
-Welcome to gatsby-starter!
+# Welcome to gatsby-starter!
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique lacus vitae diam posuere faucibus. In hac habitasse platea dictumst. Ut id arcu non risus tincidunt commodo. Sed felis leo, pharetra non porttitor sodales, sodales dictum tortor. Vivamus vel neque interdum, egestas urna ac, finibus tellus. Morbi et rhoncus ligula, nec volutpat dolor. Cras efficitur ipsum a facilisis laoreet. Duis ut libero eget mi convallis maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque blandit sit amet erat vel semper.
+Lorem2 ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique lacus vitae diam posuere faucibus. In hac habitasse platea dictumst. Ut id arcu non risus tincidunt commodo. Sed felis leo, pharetra non porttitor sodales, sodales dictum tortor. Vivamus vel neque interdum, egestas urna ac, finibus tellus. Morbi et rhoncus ligula, nec volutpat dolor. Cras efficitur ipsum a facilisis laoreet. Duis ut libero eget mi convallis maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque blandit sit amet erat vel semper.
 
 Ut egestas nisl in nunc accumsan, et interdum erat finibus. Fusce commodo ex nec imperdiet fermentum. Suspendisse non nulla eu eros rutrum vestibulum. Curabitur sit amet tortor venenatis, efficitur felis non, commodo urna. Aliquam ut auctor risus. Nullam nec felis pellentesque, tincidunt erat ut, aliquam neque. Ut elementum aliquam leo.
 
