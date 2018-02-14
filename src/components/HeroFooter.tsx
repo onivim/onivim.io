@@ -49,7 +49,7 @@ const SocialLinksContainer = styled.div`
 const SectionContainer = withProps<{isActive: boolean}>(styled.section)`
     transition: all 0.25s ease-in;
 
-    transform: translateY(${props => props.isActive ? 0 : -10}px);
+    transform: translateY(${props => props.isActive ? 0 : 25}px);
 
     opacity: ${props => props.isActive ? "1.0": "0.2"};
     border-bottom: 4px solid ${Colors.Accent};

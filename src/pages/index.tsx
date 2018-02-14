@@ -2,6 +2,7 @@ import * as React from "react";
 // import { menuItems } from "../layouts";
 
 const Waypoint = require("react-waypoint");
+import styled from "styled-components"
 
 import { HeroSection } from "./../components/HeroSection";
 import { HeroFooter } from "./../components/HeroFooter"
@@ -19,6 +20,14 @@ const background = require("./diagmonds.png");
 const heroVideoWebm = require("./hero-video.webm");
 const heroVideoMp4 = require("./hero-video.mp4");
 // const heroImage = require("./hero-screenshot.png");
+
+const SponsorsContents = () => {
+                return <p className="content has-text-centered">
+                        <p><Sponsor tier={"gold-sponsor"} index={0} /></p>
+                        <p><Sponsor tier={"gold-sponsor"} index={1} /></p>
+                    </p>
+}
+
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -50,30 +59,114 @@ export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
     return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
 };
 
+const MiniHeader = styled.div`
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+`
+
 const Sections = {
     ModernUX: {
         title: "Modern UX",
-        description: "Break free of terminal limitations. Oni is a Vim GUI that brings together the best of Vim, IDEs, and modern editors."
+        subtitle: "Modal Editing + Modern Editing",
+        // description: "Oni merges aesthetics and functionality by harnessing the power of modal editing in a beautiful package."
+        description:[
+            <p className="content">
+            <ul>
+                <li>Bringing together the best of Atom, VSCode, and Vim.</li>
+                <li>Experience mouse-free productivity with Vim-style modal editing...</li>
+                <li>...in a beautiful, modern package.</li>
+            </ul>
+            </p>
+        ],
+        contents: <img src="https://user-images.githubusercontent.com/13532591/36127305-9c7b6b80-1011-11e8-85dd-0345788c0b56.png" />
     },
     BatteriesIncluded: {
         title: "Batteries Included",
-        description: "Spend less time configuring and more time creating. Sane defaults plus out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
-    },
-    Extensible: {
-        title: "Hassle-free Extensibility",
-        description: "Oni is hackable via JavaScript, and a common JavaScript plugin API powers configuration and plugins. Oni also supports Vim plugins!",
+        subtitle: "...but still hackacble to the core.",
+        description:[
+            <div>
+            <MiniHeader>Out-of-box functionality:</MiniHeader>
+            <p className="content">
+            <ul>
+                <li>Code completion</li>
+                <li>Hover info</li>
+                <li>Font ligature support</li>
+                <li>Fuzzy finder</li>
+                <li>Language server support:</li>
+                <ul>
+                    <li>CSS</li>
+                    <li>LESS</li>
+                    <li>JavaScript</li>
+                    <li>Reason</li>
+                    <li>SASS</li>
+                    <li>TypeScript</li>
+                    <li>Or bring your own!</li>
+                </ul>
+            </ul>
+            </p>
+            </div>
+        ],
+        content: [
+            <div>
+            <MiniHeader>Extensible</MiniHeader>
+            <p className="content">
+            <ul>
+                <li>Prefer front-end? Use our javascript API</li>
+                <li>Coming from Vim? No problem - bring your `init.vim`!</li>
+                <li>Compatible with most Vim plugins</li>
+            </ul>
+            </div>
+        ]
+        // description: "Spend less time configuring and more time creating. Sane defaults plus out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
     },
     Productivity: {
-        title: "Maximum Productivity",
-        description: "The ultimate goal of Oni is to make you more productive. Oni can help speed up your 'inner loop' - your code/test/debug/run cycle.",
+        title: "Maximize Productivity",
+        subtitle: "Live Preview (Coming Soon)",
+        description:[
+            <p className="content">
+            <ul>
+                <li>See the results of your code as you work.</li>
+                <li>Minimize your 'inner loop' and experience live preview.</li>
+            </ul>
+            </p>
+        ],
+        content: [
+            <img src="https://user-images.githubusercontent.com/13532591/35305852-e7bf8f6c-004f-11e8-9614-cfe5ced35515.gif" />
+        ]
+    },
+    GetStarted: {
+        title: "Get started!",
+        subtitle: "Download + Contribute",
+        description: [
+            <div>
+                <a className="button is-primary">Download</a>
+                <a className="button is-warning">Documentation</a>
+            </div>
+        ],
+    },
+    BroughtToYouBy: {
+        title: "Brought to you by...",
+        subtitle: "...our backers, sponsors, and contributors!",
+        description: [
+            <div>
+               <MiniHeader>Contributors</MiniHeader>
+               <a href="https://github.com/onivim/oni/graphs/contributors"><img src="https://opencollective.com/oni/contributors.svg?width=890" /></a> 
+            </div>
+        ],
+        contents: [
+            <div>
+                <MiniHeader>Sponsors</MiniHeader>
+                <SponsorsContents />
+            </div>
+        ],
     }
 }
 
-import styled from "styled-components"
 const HeroSectionWrapper = styled.section`
 
     text-align: center;
-    max-height: 100vh;
+    height: 100vh;
 
     & .hero-header {
         margin-top: 7rem;
@@ -99,7 +192,7 @@ const HeroSectionWrapper = styled.section`
 `
 
 const HeroInnerSectionWrapper = styled.div`
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -112,13 +205,6 @@ const DownIcon = () => {
         </i>
     </span>;
 };
-
-const SponsorsContents = () => {
-                return <p className="content has-text-centered">
-                        <p><Sponsor tier={"gold-sponsor"} index={0} /></p>
-                        <p><Sponsor tier={"gold-sponsor"} index={1} /></p>
-                    </p>
-}
 
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
@@ -143,12 +229,13 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                     <DownIcon />
                 </HeroInnerSectionWrapper>
             </HeroSectionWrapper>
-            <HeroSection title={"Brought to you by our sponsors"} description={"Oni is free and open-source... but needs your help! Consider becoming a backer or sponsor if you find the project useful."} image={<SponsorsContents />} reverse={true}/>
-            <HeroSection title={Sections.ModernUX.title} description={Sections.ModernUX.description} />
-            <HeroSection title={Sections.BatteriesIncluded.title} description={Sections.BatteriesIncluded.description} reverse={true} />
-            <HeroSection title={Sections.Extensible.title} description={Sections.Extensible.description} />
-            <HeroSection title={Sections.Productivity.title} description={Sections.Productivity.description} reverse={true}/>
+            <HeroSection title={Sections.ModernUX.title} subtitle={Sections.ModernUX.subtitle} description={Sections.ModernUX.description} image={Sections.ModernUX.contents} reverse={true} />
+            <HeroSection title={Sections.BatteriesIncluded.title} subtitle={"Less time configuring, more time creating"} description={Sections.BatteriesIncluded.description} reverse={false} />
+            <HeroSection title={Sections.Productivity.title} subtitle={Sections.Productivity.subtitle} description={Sections.Productivity.description} image={Sections.Productivity.content} reverse={false}/>
+            <HeroSection title={Sections.BroughtToYouBy.title} subtitle={Sections.BroughtToYouBy.subtitle} description={Sections.BroughtToYouBy.description} image={Sections.BroughtToYouBy.contents} reverse={true}/>
+            <HeroSection title={Sections.GetStarted.title} subtitle={Sections.GetStarted.subtitle} description={Sections.GetStarted.description} reverse={false}/>
             <HeroFooter />
         </div>;
     }
 }
+            // <HeroSection title={"Free and open-source"} subtitle={"...brought to you by our sponsors!"} description={"Thanks to our sponsors and backers for your support!"} image={<SponsorsContents />}/>
