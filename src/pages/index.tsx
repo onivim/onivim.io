@@ -4,6 +4,8 @@ import * as React from "react";
 const Waypoint = require("react-waypoint");
 import styled, { keyframes }  from "styled-components"
 
+const animateScrollTo = require("animated-scroll-to")
+
 import { HeroSection } from "./../components/HeroSection";
 import { HeroFooter } from "./../components/HeroFooter"
 import { NavBar } from "./../components/NavBar"
@@ -17,8 +19,8 @@ interface IndexPageProps {
 const logo = require("./logo-256x256.png");
 const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
-const heroVideoWebm = require("./hero-video.webm");
-const heroVideoMp4 = require("./hero-video.mp4");
+// const heroVideoWebm = require("./hero-video.webm");
+// const heroVideoMp4 = require("./hero-video.mp4");
 // const heroImage = require("./hero-screenshot.png");
 
 const SponsorsContents = () => {
@@ -65,7 +67,7 @@ export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
 
 const MiniHeader = styled.div`
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 0.9em;
     text-align: center;
     padding: 2em;
 `
@@ -83,19 +85,27 @@ const HeroSectionImage = styled.img`
     padding: 2em;
 `
 
+
 const Sections = {
     ModernUX: {
         title: "Modern UX",
         subtitle: "Modal Editing + Modern Editing",
         // description: "Oni merges aesthetics and functionality by harnessing the power of modal editing in a beautiful package."
         description:[
-            <p className="content">
-            <ul>
-                <li>Bringing together the best of Atom, VSCode, and Vim.</li>
-                <li>Experience mouse-free productivity with Vim-style modal editing...</li>
-                <li>...in a beautiful, modern package.</li>
-            </ul>
-            </p>
+            <div style={{textAlign: "center", margin: "2em"}}>
+                <HighlightContainer>
+                <MiniHeader>Coming from Atom/VSCode?</MiniHeader>
+                <div>Unlike other Electron editors, Oni features a <b>high-performance canvas renderer</b>, along with <a href="https://neovim.io/">neovim</a> at the core, resulting in a complete vim experience without emulation.</div>
+                </HighlightContainer>
+                <HighlightContainer>
+                <MiniHeader>Coming from vim/neovim?</MiniHeader>
+                <div>Keep your workflow while enjoying the perks of new code editors, like out-of-box completion & fuzzy find - in a modern, beautiful package.</div>
+                </HighlightContainer>
+                <HighlightContainer>
+                <MiniHeader>New to modal editing?</MiniHeader>
+                <div>Oni makes it easy to learn and get started!</div>
+                </HighlightContainer>
+            </div>
         ],
         contents: <img src="https://user-images.githubusercontent.com/13532591/36127305-9c7b6b80-1011-11e8-85dd-0345788c0b56.png" />
     },
@@ -112,6 +122,14 @@ const Sections = {
                         <li>Font ligature support</li>
                         <li>Fuzzy file finder</li>
                         <li>Language server support</li>
+                    </ul>
+                </p>
+                <MiniHeader>Coming Soon:</MiniHeader>
+                <p className="content">
+                    <ul>
+                        <li>Snippets</li>
+                        <li>Integrated Browser</li>
+                        <li>Debugger</li>
                     </ul>
                 </p>
             </div>
@@ -247,7 +265,7 @@ const DownIconWrapper = styled.a`
 `
 
 const scrollDown = () => {
-    window.scrollBy(0, window.innerHeight)
+    animateScrollTo(window.innerHeight)
 }
 
 const DownIcon = () => {
@@ -257,6 +275,22 @@ const DownIcon = () => {
     </DownIconWrapper>;
 };
 
+const VideoWrapper = styled.div`
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+
+    & iframe {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+    }
+`
+
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {
@@ -265,6 +299,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     public render(): JSX.Element {
         const bodyStyle = {
+            // backgroundColor: "black"
             backgroundImage: "url('" + background + "')",
         };
 
@@ -272,9 +307,11 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             {/* Master head */}
 
             <NavBar logo={logo}/>
-            <HeroSectionWrapper className="oni-header hero is-dark">
+            <HeroSectionWrapper className="oni-header hero is-dark" style={{backgroundColor: "black"}}>
                 <HeroVideoSectionWrapper>
-                    <video src="https://s3-us-west-2.amazonaws.com/oni-media/oni-hero-video.mp4" id="video" autoPlay={true} muted={true} width="100%" style={{width: "100%", height: "100%"}}/>
+            <VideoWrapper>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rf-lG8NuaU0?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;modestBranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </VideoWrapper>
                 </HeroVideoSectionWrapper>
                 <HeroInnerSectionWrapper>
                     <DownloadNow />
