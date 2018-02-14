@@ -51,6 +51,18 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     }};
 
     transition: all 0.5s ease-in;
+
+    & a {
+        color: ${Colors.Accent};
+        opacity: 0.9;
+        transition: all 0.25s ease-in;
+    }
+
+    & a:hover {
+       opacity: 1; 
+       transform: translateY(-1px);
+       text-decoration: underline;
+    }
 `;
 
 const Title = styled.div`

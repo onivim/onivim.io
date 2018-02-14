@@ -154,7 +154,10 @@ const Sections = {
         description:[
             <HighlightContainer>
                 <p className="content">
-                    Oni is about more than just modal editing - its about improving your workflow from start to finish. View changes live as you code, minimizing the time spent on the 'inner loop' of code/build/test, and maximizing your productivity.
+                    Oni is about more than just modal editing - its about improving your workflow from start to finish. 
+                </p>
+                <p className="content">
+                    View changes live as you code, minimizing the time spent on the 'inner loop' of code/build/test, and maximizing your productivity.
                 </p>
             </HighlightContainer>
         ],
