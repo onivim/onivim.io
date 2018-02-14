@@ -57,13 +57,13 @@ const Title = styled.div`
     font-family: Sintony;
     font-size: 1.5rem;
     font-weight: bold;
-    padding: 1em 0em;
+    padding: 1em 3rem;
 `
 const Subtitle = styled.div`
     font-family: Sintony;
     font-size: 1.1rem;
     font-weight: bold;
-    padding: 0.5em 0em;
+    padding: 0.5em 3rem;
 `
 
 const Description = styled.div`

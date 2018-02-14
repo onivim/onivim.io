@@ -28,6 +28,10 @@ const SponsorsContents = () => {
                     </p>
 }
 
+const DownloadNow = () => {
+                    return <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
+}
+
 
 const createDivItem = (className: string) => {
     return class SingleClassItem extends React.PureComponent<{}, {}> {
@@ -190,33 +194,37 @@ const HeroSectionWrapper = styled.section`
     text-align: center;
     height: 100vh;
 
-    & .hero-header {
-        margin-top: 7rem;
-        margin-bottom: 3rem;
-    }
-
-    & .hero-body {
-        margin-top: 5rem;
-        justify-content: center;
-        margin-bottom: 1rem;
-    }
-
-    & .hero-footer {
-        margin: 2rem;
-
-        .icon {
-            padding: 1.5rem;
-        }
-
-        display: flex;
-        flex-direction: column;
-    }
+    position: relative;
 `
 
 const HeroInnerSectionWrapper = styled.div`
-    flex: 0 0 auto;
+
+    position: absolute;
+    bottom: 0px;
+    height: 12em;
+    left: 0px;
+    right: 0px;
+
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    a {
+        color: white !important;
+    }
+`
+
+const HeroVideoSectionWrapper = styled.div`
+
+    position: absolute;
+    top: 6em;
+    bottom: 12em;
+    left: 0px;
+    right: 0px;
+
+    display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 `
@@ -230,6 +238,7 @@ const DownIconKeyFrames = keyframes`
 const DownIconWrapper = styled.a`
     animation: ${DownIconKeyFrames} 2s ease-in-out infinite;
     color: rgba(0, 255, 200, 0.8);
+    padding: 2em;
 
     &:hover {
         animation: ${DownIconKeyFrames} 1s ease-in-out infinite;
@@ -263,11 +272,12 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             {/* Master head */}
 
             <NavBar logo={logo}/>
-            <HeroSectionWrapper className="oni-header hero is-fullheight is-dark">
-                <div className="hero-body">
-                    <HeroImageSlider />
-                </div>
-                <HeroInnerSectionWrapper className="hero-footer">
+            <HeroSectionWrapper className="oni-header hero is-dark">
+                <HeroVideoSectionWrapper>
+                    <video src="https://s3-us-west-2.amazonaws.com/oni-media/oni-hero-video.webm" id="video" autoPlay={true} muted={true} width="100%" style={{width: "100%", height: "100%"}}/>
+                </HeroVideoSectionWrapper>
+                <HeroInnerSectionWrapper>
+                    <DownloadNow />
                     <DownIcon />
                 </HeroInnerSectionWrapper>
             </HeroSectionWrapper>
