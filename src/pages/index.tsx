@@ -274,7 +274,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             <NavBar logo={logo}/>
             <HeroSectionWrapper className="oni-header hero is-dark">
                 <HeroVideoSectionWrapper>
-                    <video src="https://s3-us-west-2.amazonaws.com/oni-media/oni-hero-video.webm" id="video" autoPlay={true} muted={true} width="100%" style={{width: "100%", height: "100%"}}/>
+                    <video src="https://s3-us-west-2.amazonaws.com/oni-media/oni-hero-video.mp4" id="video" autoPlay={true} muted={true} width="100%" style={{width: "100%", height: "100%"}}/>
                 </HeroVideoSectionWrapper>
                 <HeroInnerSectionWrapper>
                     <DownloadNow />
