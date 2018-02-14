@@ -60,6 +60,7 @@
     "redux-devtools-extension": "^2.13.2",
     "semantic-ui-react": "^0.74.2",
     "slash": "1.0.0",
+    "styled-components": "^3.1.6",
     "ts-loader": "^2.3.7",
     "typescript": "2.5.3"
   },
@@ -96,7 +97,6 @@
     "remark-cli": "^3.0.1",
     "remark-preset-lint-recommended": "^2.0.0",
     "storybook-readme": "^3.0.6",
-    "styled-components": "^3.1.6",
     "stylelint": "^7.10.1",
     "stylelint-config-standard": "^16.0.0",
     "ts-jest": "19.0.8",
