@@ -27,12 +27,6 @@ export default (props: BlogPostProps) => {
         <Comment.Group>
           <Comment>
             <Comment.Content>
-              <Comment.Author style={{ fontWeight: 400 }}>
-                {node.frontmatter.author.id}
-              </Comment.Author>
-              <Comment.Metadata style={{ margin: 0 }}>
-                {node.timeToRead} min read
-              </Comment.Metadata>
             </Comment.Content>
           </Comment>
         </Comment.Group>
