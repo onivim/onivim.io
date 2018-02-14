@@ -2,7 +2,7 @@ import * as React from "react";
 // import { menuItems } from "../layouts";
 
 const Waypoint = require("react-waypoint");
-import styled from "styled-components"
+import styled, { keyframes }  from "styled-components"
 
 import { HeroSection } from "./../components/HeroSection";
 import { HeroFooter } from "./../components/HeroFooter"
@@ -61,8 +61,22 @@ export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
 
 const MiniHeader = styled.div`
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
     text-align: center;
+    padding: 2em;
+`
+
+const ButtonContainer = styled.div`
+    padding: 2em;
+`
+
+const HighlightContainer = styled.div`
+    padding: 2em;
+    background-color: rgba(0, 0, 0, 0.1);
+`
+
+const HeroSectionImage = styled.img`
+    padding: 2em;
 `
 
 const Sections = {
@@ -83,67 +97,75 @@ const Sections = {
     },
     BatteriesIncluded: {
         title: "Batteries Included",
-        subtitle: "...but still hackacble to the core.",
+        subtitle: "...but still hackable to the core.",
         description:[
             <div>
-            <MiniHeader>Out-of-box functionality:</MiniHeader>
-            <p className="content">
-            <ul>
-                <li>Code completion</li>
-                <li>Hover info</li>
-                <li>Font ligature support</li>
-                <li>Fuzzy finder</li>
-                <li>Language server support:</li>
-                <ul>
-                    <li>CSS</li>
-                    <li>LESS</li>
-                    <li>JavaScript</li>
-                    <li>Reason</li>
-                    <li>SASS</li>
-                    <li>TypeScript</li>
-                    <li>Or bring your own!</li>
-                </ul>
-            </ul>
-            </p>
+                <MiniHeader>Included:</MiniHeader>
+                <p className="content">
+                    <ul>
+                        <li>Code completion</li>
+                        <li>Hover info</li>
+                        <li>Font ligature support</li>
+                        <li>Fuzzy file finder</li>
+                        <li>Language server support</li>
+                    </ul>
+                </p>
             </div>
         ],
         content: [
-            <div>
-            <MiniHeader>Extensible</MiniHeader>
-            <p className="content">
-            <ul>
-                <li>Prefer front-end? Use our javascript API</li>
-                <li>Coming from Vim? No problem - bring your `init.vim`!</li>
-                <li>Compatible with most Vim plugins</li>
-            </ul>
-            </div>
+            <HighlightContainer>
+                <MiniHeader>Extensible:</MiniHeader>
+                <p className="content">
+                    <ul>
+                        <li>Prefer front-end? Use our <a href="https://onivim.github.io/oni-api/">javascript API</a></li>
+                        <li>Coming from Vim? No problem - bring your <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">`init.vim`!</a></li>
+                        <li>Compatible with most <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">Vim plugins</a></li>
+                        <li>...and most <a href="http://langserver.org/">language servers</a></li>
+                    </ul>
+                </p>
+            </HighlightContainer>
         ]
-        // description: "Spend less time configuring and more time creating. Sane defaults plus out-of-the-box support for JavaScript, TypeScript, CSS, and Reason."
     },
     Productivity: {
         title: "Maximize Productivity",
         subtitle: "Live Preview (Coming Soon)",
         description:[
-            <p className="content">
-            <ul>
-                <li>See the results of your code as you work.</li>
-                <li>Minimize your 'inner loop' and experience live preview.</li>
-            </ul>
-            </p>
+            <HighlightContainer>
+                <p className="content">
+                    See the results of your code as you work.
+                </p>
+                <p className="content">
+                    Tighten your inner loop, and become more productive.
+                </p>
+            </HighlightContainer>
         ],
         content: [
-            <img src="https://user-images.githubusercontent.com/13532591/35305852-e7bf8f6c-004f-11e8-9614-cfe5ced35515.gif" />
+            <HeroSectionImage src="https://user-images.githubusercontent.com/13532591/35305852-e7bf8f6c-004f-11e8-9614-cfe5ced35515.gif" />
         ]
     },
     GetStarted: {
         title: "Get started!",
         subtitle: "Download + Contribute",
+        contents: [
+            <HighlightContainer>
+                <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
+                <ButtonContainer><a className="button is-warning is-large" href="https://onivim.github.io/oni-docs/#/">Documentation</a></ButtonContainer>
+            </HighlightContainer>
+        ],
         description: [
             <div>
-                <a className="button is-primary">Download</a>
-                <a className="button is-warning">Documentation</a>
+                <MiniHeader>Contribute</MiniHeader>
+                <p className="content">
+                <ul>
+                    <li>Become a backer via <a href="https://opencollective.com/oni">OpenCollective</a></li>
+                    <li>Become a backer via <a href="https://www.bountysource.com/teams/oni">BountySource</a></li>
+                    <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug or <a href="https://github.com/onivim/oni/issues/new">suggest a feature</a></li>
+                    <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
+                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
+                </ul>
+                </p>
             </div>
-        ],
+        ]
     },
     BroughtToYouBy: {
         title: "Brought to you by...",
@@ -199,11 +221,31 @@ const HeroInnerSectionWrapper = styled.div`
     align-items: center;
 `
 
+const DownIconKeyFrames = keyframes`
+    0% { transform: translateY(-5px) scale(0.9); opacity: 1; }
+    50% { transform: translateY(0px) scale(1); opacity: 0.8; }
+    100% { transform: translateY(-5px) scale(0.9); opacity: 1; }
+`
+
+const DownIconWrapper = styled.a`
+    animation: ${DownIconKeyFrames} 2s ease-in-out infinite;
+    color: rgba(0, 255, 200, 0.8);
+
+    &:hover {
+        animation: ${DownIconKeyFrames} 1s ease-in-out infinite;
+        color: rgba(0, 255, 200, 1);
+    }
+`
+
+const scrollDown = () => {
+    window.scrollBy(0, window.innerHeight)
+}
+
 const DownIcon = () => {
-    return <span className="icon" style={{color: "#61AFEF" }}>
+    return <DownIconWrapper className="icon" onClick={scrollDown}>
         <i className="fa fa-4x fa-chevron-circle-down">
         </i>
-    </span>;
+    </DownIconWrapper>;
 };
 
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
@@ -230,10 +272,10 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                 </HeroInnerSectionWrapper>
             </HeroSectionWrapper>
             <HeroSection title={Sections.ModernUX.title} subtitle={Sections.ModernUX.subtitle} description={Sections.ModernUX.description} image={Sections.ModernUX.contents} reverse={true} />
-            <HeroSection title={Sections.BatteriesIncluded.title} subtitle={"Less time configuring, more time creating"} description={Sections.BatteriesIncluded.description} reverse={false} />
-            <HeroSection title={Sections.Productivity.title} subtitle={Sections.Productivity.subtitle} description={Sections.Productivity.description} image={Sections.Productivity.content} reverse={false}/>
-            <HeroSection title={Sections.BroughtToYouBy.title} subtitle={Sections.BroughtToYouBy.subtitle} description={Sections.BroughtToYouBy.description} image={Sections.BroughtToYouBy.contents} reverse={true}/>
-            <HeroSection title={Sections.GetStarted.title} subtitle={Sections.GetStarted.subtitle} description={Sections.GetStarted.description} reverse={false}/>
+            <HeroSection title={Sections.BatteriesIncluded.title} subtitle={"Less time configuring, more time creating"} description={Sections.BatteriesIncluded.description} image={Sections.BatteriesIncluded.content} reverse={false} />
+            <HeroSection title={Sections.Productivity.title} subtitle={Sections.Productivity.subtitle} description={Sections.Productivity.description} image={Sections.Productivity.content} reverse={true}/>
+            <HeroSection title={Sections.BroughtToYouBy.title} subtitle={Sections.BroughtToYouBy.subtitle} description={Sections.BroughtToYouBy.description} image={Sections.BroughtToYouBy.contents} reverse={false}/>
+            <HeroSection title={Sections.GetStarted.title} subtitle={Sections.GetStarted.subtitle} description={Sections.GetStarted.description} image={Sections.GetStarted.contents} reverse={true}/>
             <HeroFooter />
         </div>;
     }
