@@ -15,21 +15,17 @@ interface BlogPostProps {
 
 export default (props: BlogPostProps) => {
   const { frontmatter, html, timeToRead } = props.data.post;
-  const avatar = frontmatter.author.avatar.children[0] as ImageSharp;
+  // const avatar = frontmatter.author.avatar.children[0] as ImageSharp;
 
   // const tags = props.data.post.frontmatter.tags
   //   .map((tag) => <Label key={tag}><Link to={`/blog/tags/${tag}/`}>{tag}</Link></Label>);
 
   const recents = props.data.recents.edges
     .map(({ node }) => {
-      const recentAvatar = node.frontmatter.author.avatar.children[0] as ImageSharp;
+      // const recentAvatar = node.frontmatter.author.avatar.children[0] as ImageSharp;
       const extra = (
         <Comment.Group>
           <Comment>
-            <Comment.Avatar
-              src={recentAvatar.responsiveResolution.src}
-              srcSet={recentAvatar.responsiveResolution.srcSet}
-            />
             <Comment.Content>
               <Comment.Author style={{ fontWeight: 400 }}>
                 {node.frontmatter.author.id}
