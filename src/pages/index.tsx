@@ -95,7 +95,7 @@ const Sections = {
             <div style={{textAlign: "center", margin: "2em"}}>
                 <HighlightContainer>
                 <MiniHeader>Coming from Atom/VSCode?</MiniHeader>
-                <div>Unlike other Electron editors, Oni features a <b>high-performance canvas renderer</b>, along with <a href="https://neovim.io/">neovim</a> at the core, resulting in a complete vim experience without emulation.</div>
+                <div>Unlike most Electron-based editors, Oni features a <b>high-performance canvas renderer</b>, along with <a href="https://neovim.io/">neovim</a> at the core - providing a complete vim experience without emulation.</div>
                 </HighlightContainer>
                 <HighlightContainer>
                 <MiniHeader>Coming from vim/neovim?</MiniHeader>
@@ -139,7 +139,7 @@ const Sections = {
                 <MiniHeader>Extensible:</MiniHeader>
                 <p className="content">
                     <ul>
-                        <li>Prefer front-end? Use our <a href="https://onivim.github.io/oni-api/">javascript API</a></li>
+                        <li>Prefer front-end languages? Use our <a href="https://onivim.github.io/oni-api/">javascript API</a></li>
                         <li>Coming from Vim? No problem - bring your <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">`init.vim`!</a></li>
                         <li>Compatible with most <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">Vim plugins</a></li>
                         <li>...and most <a href="http://langserver.org/">language servers</a></li>
@@ -154,10 +154,7 @@ const Sections = {
         description:[
             <HighlightContainer>
                 <p className="content">
-                    See the results of your code as you work.
-                </p>
-                <p className="content">
-                    Tighten your inner loop, and become more productive.
+                    Oni is about more than just modal editing - its about improving your workflow from start to finish. View changes live as you code, minimizing the time spent on the 'inner loop' of code/build/test, and maximizing your productivity.
                 </p>
             </HighlightContainer>
         ],
@@ -310,7 +307,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             <HeroSectionWrapper className="oni-header hero is-dark" style={{backgroundColor: "black"}}>
                 <HeroVideoSectionWrapper>
             <VideoWrapper>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rf-lG8NuaU0?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;modestBranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rf-lG8NuaU0?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;modestBranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </VideoWrapper>
                 </HeroVideoSectionWrapper>
                 <HeroInnerSectionWrapper>
