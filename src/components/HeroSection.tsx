@@ -59,6 +59,7 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     }
 
     & a:hover {
+       color: ${Colors.Accent};
        opacity: 1; 
        transform: translateY(-1px);
        text-decoration: underline;
