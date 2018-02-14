@@ -40,6 +40,7 @@
     "gatsby-plugin-manifest": "latest",
     "gatsby-plugin-offline": "latest",
     "gatsby-plugin-sharp": "latest",
+    "gatsby-plugin-styled-components": "^2.0.6",
     "gatsby-plugin-typescript": "latest",
     "gatsby-remark-autolink-headers": "latest",
     "gatsby-remark-copy-linked-files": "latest",
