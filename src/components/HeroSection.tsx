@@ -10,8 +10,6 @@ export function withProps<T, U extends HTMLElement = HTMLElement>(
     return styledFunction
 }
 
-import * as Waypoint from "react-waypoint"
-
 const Colors = {
     DarkBackground: "#212733",
     DarkForeground: "#ECEFF4",
@@ -41,14 +39,6 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
 
 
     opacity: ${props => props.active ? "1.0": "0.8"};
-
-    ${props => {
-        if (props.active) {
-            return props.reverse ? "border-right: 4px solid " + Colors.Accent: "border-left: 4px solid " + Colors.Accent
-        } else {
-            return "border: 0px";
-        }
-    }};
 
     transition: all 0.5s ease-in;
 
@@ -94,7 +84,7 @@ const TitleWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     transition: all 0.2s ease-in;
     width: 100%;
     
-    border-bottom: 1px solid ${Colors.Accent};
+    border-bottom: 2px solid ${Colors.Accent};
 `
 
 const SectionContentsWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
@@ -150,21 +140,15 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
         super(props)
 
         this.state = {
-            active: false,
+            active: true,
         }
     }
     public render(): JSX.Element {
-      return <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
-            <Waypoint
-        onEnter={() => this.setState({active: true})} 
-        onLeave={() => this.setState({active: false})}
-        bottomOffset={"0%"}
-        topOffset={"0%"}>
+            return <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
             <TitleWrapper active={this.state.active} reverse={this.props.reverse}>
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
                         <Subtitle>{this.props.subtitle}</Subtitle>
             </TitleWrapper>
-          </Waypoint>
                 <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered">
                     <InnerWrapper className="column">
                         <Description>{this.props.description}</Description>
