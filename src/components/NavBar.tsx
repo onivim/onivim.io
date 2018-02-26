@@ -40,21 +40,28 @@ const createAnchorItem = (className: string) => {
 
 const GitHubIconLarge = () => {
     return <span className="icon" style={{color: "#EEE" }}>
-        <i className="fa fa-lg fa-github">
+        <i className="fab fa-lg fa-github">
         </i>
     </span>;
 };
 
+const DiscordIconLarge = () => {
+    return <span className="icon" style={{color: "#7289DA" }}>
+        <i className="fab fa-lg fa-discord">
+        </i>
+    </span>;
+}
+
 const TwitterIconLarge = () => {
     return <span className="icon" style={{color: "#55acee" }}>
-        <i className="fa fa-lg fa-twitter">
+        <i className="fab fa-lg fa-twitter">
         </i>
     </span>;
 };
 
 const RedditIconLarge = () => {
     return <span className="icon" style={{color: "orange" }}>
-        <i className="fa fa-lg fa-reddit">
+        <i className="fab fa-lg fa-reddit">
         </i>
     </span>;
 };
@@ -88,6 +95,9 @@ const NavBarMenu = (props: { isActive: boolean}) => {
         <div className="navbar-end">
             <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
                 <GitHubIconLarge />
+            </NavBarItemDesktopOnly>
+            <NavBarItemDesktopOnly href={"https://discord.gg/7maEAxV"}>
+                <DiscordIconLarge />
             </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://twitter.com/oni_vim"}>
                 <TwitterIconLarge />

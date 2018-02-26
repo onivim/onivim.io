@@ -49,7 +49,7 @@ module.exports = (props: HtmlProps) => {
         <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" rel="stylesheet" />
-        <script src="https://use.fontawesome.com/cd8d2a72ac.js" />
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         {head.title.toComponent()}
         {head.meta.toComponent()}
         {head.link.toComponent()}
@@ -69,12 +69,6 @@ module.exports = (props: HtmlProps) => {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
-        <script type="text/javascript" dangerouslySetInnerHTML={{__html: `
-  ((window.gitter = {}).chat = {}).options = {
-    room: 'onivim/lobby'
-  };
-            `}}></script>
-        <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
         <script async src="https://platform.twitter.com/widgets.js" charSet="utf8"></script>
       </body>
     </html>

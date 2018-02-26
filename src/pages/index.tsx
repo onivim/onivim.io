@@ -193,7 +193,7 @@ const Sections = {
                     <li>Become a backer via <a href="https://www.bountysource.com/teams/oni">BountySource</a></li>
                     <li><a href="https://github.com/onivim/oni/issues/new">Report</a> a bug or <a href="https://github.com/onivim/oni/issues/new">suggest a feature</a></li>
                     <li>Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and submit a <a href="https://github.com/onivim/oni/compare">pull request</a></li>
-                    <li>Chat with us on <a href="https://gitter.im/onivim">gitter</a></li>
+                    <li>Chat with us on <a href="https://discord.gg/7maEAxV">discord</a></li>
                 </ul>
                 </p>
             </Centered>
