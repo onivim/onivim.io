@@ -148,48 +148,48 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                             <i className="fab fa-windows fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary">
+                            <a className="button is-primary" href={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe"}>
                                 <span className="icon">
                                     <i className="fas fa-download" />
                                 </span>
                                 <span>Windows</span>
                             </a>
                         </BuildItemButtonStrip>
-                        <a className="additional-download" href="">.zip</a>
+                        <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe">.zip</a>
                     </BuildItem>
                     <BuildItem className="column">
                         <PlatformIconWrapper>
                             <i className="fab fa-linux fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary">
+                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-amd64-linux.deb">
                                 <span className="icon">
                                     <i className="fas fa-download" />
                                 </span>
                                 <span>.deb</span>
                             </a>
-                            <a className="button is-primary">
+                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x86_64-linux.rpm">
                                 <span className="icon">
                                     <i className="fas fa-download" />
                                 </span>
                                 <span>.rpm</span>
                             </a>
                         </BuildItemButtonStrip>
-                        <a className="additional-download" href="">.tar.gz</a>
+                        <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x64-linux.tar.gz">.tar.gz</a>
                     </BuildItem>
                     <BuildItem className="column">
                         <PlatformIconWrapper>
                             <i className="fab fa-apple fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary">
+                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg">
                                 <span className="icon">
                                     <i className="fas fa-download" />
                                 </span>
                                 <span>Mac</span>
                             </a>
                         </BuildItemButtonStrip>
-                        <a className="additional-download" href="">.dmg</a>
+                        <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg">.dmg</a>
                     </BuildItem>
                 </div>
             </DownloadSectionWrapper>
