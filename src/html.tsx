@@ -63,7 +63,7 @@ module.exports = (props: HtmlProps) => {
            gtag('config', 'UA-113896624-1');
         `}}></script>
       </head>
-      <body>
+      <body style={{backgroundColor: "#2F3440"}}>
         <div
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}

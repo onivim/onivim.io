@@ -19,8 +19,7 @@ const Colors = {
 };
 
 const FooterLink = styled.a`
-    text-decoration: underline;
-    font-size: 0.9em;
+    font-size: 0.8em;
 
     .oni-footer.is-dark &:hover {
         color: ${Colors.Accent} !important;
