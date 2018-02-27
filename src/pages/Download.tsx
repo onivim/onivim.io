@@ -1,8 +1,6 @@
 import * as React from "react";
 // import { menuItems } from "../layouts";
 
-const Waypoint = require("react-waypoint");
-
 import { HeroSection } from "./../components/HeroSection";
 import { NavBar } from "./../components/NavBar"
 

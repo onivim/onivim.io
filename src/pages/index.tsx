@@ -1,7 +1,6 @@
 import * as React from "react";
 // import { menuItems } from "../layouts";
 
-const Waypoint = require("react-waypoint");
 import styled, { keyframes }  from "styled-components"
 
 const animateScrollTo = require("animated-scroll-to")

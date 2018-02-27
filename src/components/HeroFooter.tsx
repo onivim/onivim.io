@@ -10,8 +10,6 @@ export function withProps<T, U extends HTMLElement = HTMLElement>(
     return styledFunction
 }
 
-import * as Waypoint from "react-waypoint"
-
 const Colors = {
     DarkBackground: "#212733",
     DarkForeground: "#ECEFF4",
@@ -66,7 +64,7 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
         super(props)
 
         this.state = {
-            isActive: false,
+            isActive: true,
         }
     }
 
@@ -75,9 +73,6 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
                     <div className="container">
                         <div className="columns">
                             <div className="column">
-            <Waypoint
-        onEnter={() => this.setState({isActive: true})} 
-        onLeave={() => this.setState({isActive: false})}>
                                 <p className="content">
                                     <p><strong>Oni brought to you by:</strong></p>
                                     <FooterList>
@@ -85,7 +80,6 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
                                         <li><FooterLink href="https://github.com/onivim/oni/graphs/contributors">Contributors</FooterLink></li>
                                     </FooterList>
                                 </p>
-            </Waypoint>
                                 <CopyrightText>Copyright 2018 Bryan Phelps</CopyrightText>
                             </div>
                             <div className="column">
