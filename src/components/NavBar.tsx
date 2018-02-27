@@ -33,7 +33,7 @@ const NavBarItemContainer = styled.a`
 const createAnchorItem = (className: string) => {
     return class HOC extends React.PureComponent<{href: string }, {}> {
         public render(): JSX.Element {
-            return <NavBarItemContainer className={className} href={this.props.href}>{this.props.children}</NavBarItemContainer>;
+            return <NavBarItemContainer className={className} href={this.props.href} onClick={() => sendEvent("navbar", "click", this.props.href)}>{this.props.children}</NavBarItemContainer>;
         }
     };
 };
@@ -75,6 +75,8 @@ const NavigationMenuWrapper = styled.nav`
     color: ${Colors.Foreground};
 `
 
+import { sendEvent } from "./../Telemetry"
+
 const NavBarMenu = (props: { isActive: boolean}) => {
 
     const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu";
@@ -82,7 +84,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
     return <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
-            <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
+            <NavBarItem href={"https://onivim.github.io/oni-docs/#/"} onClick={}>Documentation</NavBarItem>
             <div className="navbar-item has-dropdown is-hoverable">
                 <NavBarItemContainer className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</NavBarItemContainer>
                 <div className="navbar-dropdown">
