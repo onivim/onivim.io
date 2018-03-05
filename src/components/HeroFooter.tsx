@@ -71,6 +71,7 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
                                     <FooterList>
                                         <li><FooterLink href="https://github.com/onivim/oni/blob/master/BACKERS.md">Sponsors & Backers</FooterLink></li>
                                         <li><FooterLink href="https://github.com/onivim/oni/graphs/contributors">Contributors</FooterLink></li>
+                                        <li><FooterLink href="https://neovim.io">Neovim</FooterLink></li>
                                     </FooterList>
                                 </p>
                                 <CopyrightText>Copyright 2018 Bryan Phelps</CopyrightText>
