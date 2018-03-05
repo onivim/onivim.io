@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import styled, { keyframes }  from "styled-components";
+import { withProps } from "./withProps"
 
 import { logo } from "./../pages/logo-256x256.png"
 
@@ -11,6 +12,10 @@ const Colors = {
     Foreground: "#DCDCDC",
     Accent: "#61AFEF",
 };
+
+export interface INavBarProps {
+    backgroundColor?: string
+}
 
 export interface INavBarState {
     isActive: boolean;
@@ -78,7 +83,6 @@ const NavBarItemHiddenOnDesktop = createAnchorItem("navbar-item is-hidden-deskto
 const NavBarItemDesktopOnly = createAnchorItem("navbar-item is-hidden-desktop-only");
 
 const NavigationMenuWrapper = styled.nav`
-    background-color: ${Colors.Background};
     color: ${Colors.Foreground};
 `
 
@@ -92,24 +96,17 @@ const NavBarMenu = (props: { isActive: boolean}) => {
         <div className="navbar-start">
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
-            <div className="navbar-item has-dropdown is-hoverable">
-                <NavBarItemContainer className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</NavBarItemContainer>
-                <div className="navbar-dropdown">
-                    <NavBarItem href={"https://opencollective.com/oni"}>OpenCollective</NavBarItem>
-                    <NavBarItem href={"https://www.bountysource.com/teams/oni"}>BountySource</NavBarItem>
-                    <NavBarItem href={"https://paypal.me/bryphe/25"}>PayPal</NavBarItem>
-                </div>
-            </div>
+            <NavBarItem href={"https://opencollective.com/oni"}>Support Oni</NavBarItem>
         </div>
         <div className="navbar-end">
             <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
                 <GitHubIconLarge />
             </NavBarItemDesktopOnly>
-            <NavBarItemDesktopOnly href={"https://discord.gg/7maEAxV"}>
-                <DiscordIconLarge />
-            </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://twitter.com/oni_vim"}>
                 <TwitterIconLarge />
+            </NavBarItemDesktopOnly>
+            <NavBarItemDesktopOnly href={"https://discord.gg/7maEAxV"}>
+                <DiscordIconLarge />
             </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://www.youtube.com/channel/UC0L_Wk0G_VShg8fJTBNIlpw"}>
                 <YoutubeIconLarge />
@@ -122,12 +119,12 @@ const NavBarMenu = (props: { isActive: boolean}) => {
 
 };
 
-const NavBarWrapper = styled.nav`
+const NavBarWrapper = withProps<INavBarProps>(styled.nav)`
     &.navbar.is-dark.is-fixed-top,
     & .navbar-dropdown,
     & .navbar-item, 
     & .navbar-link {
-        background-color: ${Colors.Background};
+        background-color: ${p => p.backgroundColor ? p.backgroundColor : Colors.Background};
         color: ${Colors.Foreground};
     }
 `
@@ -157,7 +154,7 @@ export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
 
             const burgerClass = this.state.isActive ? "navbar-burger burger is-active" : "navbar-burger burger";
 
-            return <NavBarWrapper className="navbar is-dark is-fixed-top">
+            return <NavBarWrapper className="navbar is-dark is-fixed-top" backgroundColor={this.props.backgroundColor}>
                 <div className="container">
                 <div className="navbar-brand">
                     <NavBarBrandWrapper className="navbar-item">
