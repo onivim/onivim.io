@@ -45,6 +45,13 @@ const GitHubIconLarge = () => {
     </span>;
 };
 
+const YoutubeIconLarge = () => {
+    return <span className="icon" style={{color: "#F00" }}>
+        <i className="fab fa-lg fa-youtube">
+        </i>
+    </span>;
+};
+
 const DiscordIconLarge = () => {
     return <span className="icon" style={{color: "#7289DA" }}>
         <i className="fab fa-lg fa-discord">
@@ -84,7 +91,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
     return <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
-            <NavBarItem href={"https://onivim.github.io/oni-docs/#/"} onClick={}>Documentation</NavBarItem>
+            <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <div className="navbar-item has-dropdown is-hoverable">
                 <NavBarItemContainer className="navbar-link" href={"https://github.com/onivim/oni/wiki"}>Support Oni</NavBarItemContainer>
                 <div className="navbar-dropdown">
@@ -103,6 +110,9 @@ const NavBarMenu = (props: { isActive: boolean}) => {
             </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://twitter.com/oni_vim"}>
                 <TwitterIconLarge />
+            </NavBarItemDesktopOnly>
+            <NavBarItemDesktopOnly href={"https://www.youtube.com/channel/UC0L_Wk0G_VShg8fJTBNIlpw"}>
+                <YoutubeIconLarge />
             </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://reddit.com/r/onivim"}>
                 <RedditIconLarge />
