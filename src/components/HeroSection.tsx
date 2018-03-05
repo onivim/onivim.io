@@ -117,7 +117,7 @@ export class ScrollMonitor extends React.PureComponent<ScrollMonitorProps, Scrol
 
 const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     padding: 3rem 1.5rem;
-    background-color: ${Colors.Background};
+    background-color: black;
     color: ${Colors.Foreground};
 
     display: flex;
@@ -176,7 +176,8 @@ const TitleWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
 const SectionContentsWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     max-width: 1000px;
     min-width: 75%;
-    min-height: 50vh;
+    padding-top: 4em;
+    padding-bottom: 4em;
     overflow: hidden;
 
     justify-content: center;
@@ -234,7 +235,7 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
                         <Subtitle>{this.props.subtitle}</Subtitle>
             </TitleWrapper>
-                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered" style={{opacity: percent * percent, "transform": "translateY(" + ((1-percent) * DeltaMotion) + "px)"}}>
+                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered" style={{alignItems: "flex-start", opacity: percent * percent, "transform": "translateY(" + ((1-percent) * DeltaMotion) + "px)"}}>
                     <InnerWrapper className="column">
                         <Description>{this.props.description}</Description>
                     </InnerWrapper>

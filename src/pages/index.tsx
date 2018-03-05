@@ -30,53 +30,8 @@ const createDivItem = (className: string) => {
     };
 };
 
-export interface IHeroState {
-    isRendered: boolean;
-}
-
-export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
-
-    constructor() {
-        super();
-    }
-
-    public componentDidMount(): void {
-    }
-
-    public render(): JSX.Element {
-            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{maxWidth: "1280px", width: "100%"}}/>;
-    }
-}
-
-export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
-    return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
-};
-
-const MiniHeader = styled.div`
-    font-weight: bold;
-    font-size: 0.9em;
-    text-align: center;
-    padding: 2em;
-`
-
 const ButtonContainer = styled.div`
-    padding: 2em;
-`
-
-const HighlightContainer = styled.div`
-    padding: 2em;
-    background-color: rgba(0, 0, 0, 0.1);
-`
-
-const HeroSectionImage = styled.img`
-    padding: 2em;
-`
-
-const Centered = styled.div`
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
+    padding: 4em;
 `
 
 const HeroSectionWrapper = styled.section`
@@ -84,18 +39,15 @@ const HeroSectionWrapper = styled.section`
     text-align: center;
     height: 100vh;
 
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 const HeroInnerSectionWrapper = styled.div`
-
-    position: absolute;
-    bottom: 0px;
-    height: 12em;
-    left: 0px;
-    right: 0px;
-
     display: flex;
+    flex: 0 1 auto;
+    width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -107,11 +59,9 @@ const HeroInnerSectionWrapper = styled.div`
 
 const HeroVideoSectionWrapper = styled.div`
 
-    position: absolute;
-    top: 6em;
-    bottom: 12em;
-    left: 0px;
-    right: 0px;
+    flex: 1 1 auto;
+    height: 100%;
+    width: 100%;
 
     display: flex;
     flex-direction: row;
@@ -119,29 +69,10 @@ const HeroVideoSectionWrapper = styled.div`
     align-items: center;
 `
 
-const DownIconKeyFrames = keyframes`
-    0% { transform: translateY(-5px) scale(0.9); opacity: 1; }
-    50% { transform: translateY(0px) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-5px) scale(0.9); opacity: 1; }
-`
-
-const DownIconWrapper = styled.a`
-    animation: ${DownIconKeyFrames} 2s ease-in-out infinite;
-    color: rgba(0, 255, 200, 0.8);
-    padding: 2em;
-
-    &:hover {
-        animation: ${DownIconKeyFrames} 1s ease-in-out infinite;
-        color: rgba(0, 255, 200, 1);
-    }
-`
-
 const VideoWrapper = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
     & iframe {
         position: absolute;
@@ -150,6 +81,19 @@ const VideoWrapper = styled.div`
         width: 100%;
         height: 100%;
     }
+`
+
+const HeadingWrapper = styled.div`
+    padding-top: 7em;
+    padding-bottom: 4em;
+    max-width: 1280px;
+    width: 100%;
+    text-align: left;
+`
+
+const HeadingTitle = styled.div`
+    font-size: 1.2em;
+    font-weight: 600;
 `
 
 const VIDEO_ID="xkFsYO4AGzo"
@@ -171,9 +115,12 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
             <NavBar logo={logo} backgroundColor={"#000"}/>
             <HeroSectionWrapper className="oni-header hero is-dark" style={{backgroundColor: "black"}}>
-                <div>
-                    HELLO WORLD
-                </div>
+                <HeroInnerSectionWrapper>
+                    <HeadingWrapper>
+                        <HeadingTitle>Meet Oni</HeadingTitle>
+                        <div>Mouse-free productivity with the perks of modern code editors. Open-source, cross-platform, and easy to learn.</div>
+                    </HeadingWrapper>
+                </HeroInnerSectionWrapper>
                 <HeroVideoSectionWrapper>
                     <VideoWrapper>
                             <iframe width="1280" height="720" src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;modestBranding=1&playlist=${VIDEO_ID}`} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

@@ -37,7 +37,7 @@ module.exports = (props: HtmlProps) => {
     <html lang="en">
       <head>
         {props.headComponents}
-        <title>Oni - Modern IDE for (neo)vim</title>
+        <title>Oni - Modern Modal Editing</title>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta

@@ -42,24 +42,6 @@ const createDivItem = (className: string) => {
     };
 };
 
-export interface IHeroState {
-    isRendered: boolean;
-}
-
-export class HeroImageSlider extends React.PureComponent<{}, IHeroState> {
-
-    constructor() {
-        super();
-    }
-
-    public componentDidMount(): void {
-    }
-
-    public render(): JSX.Element {
-            return <img src={"https://s3-us-west-2.amazonaws.com/oni-media/screenshot-darwin.png"} style={{maxWidth: "1280px", width: "100%"}}/>;
-    }
-}
-
 export const Sponsor = (props: {tier: string, index: number}): JSX.Element => {
     return <a href={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/website`}><img src={`https://opencollective.com/oni/tiers/${props.tier}/${props.index}/avatar.png`} /></a>;
 };
@@ -91,6 +73,10 @@ const Centered = styled.div`
     align-items: center;
 `
 
+const ContentsWrapper = styled.div`
+    text-align: left;
+`
+
 const Sections = {
     ModernUX: {
         title: "Modern UX",
@@ -98,18 +84,12 @@ const Sections = {
         // description: "Oni merges aesthetics and functionality by harnessing the power of modal editing in a beautiful package."
         description:[
             <div style={{textAlign: "center", margin: "2em"}}>
-                <HighlightContainer>
                 <MiniHeader>Coming from Atom/VSCode?</MiniHeader>
-                <div>Unlike most Electron-based editors, Oni features a <b>high-performance canvas renderer</b>, along with <a href="https://neovim.io/">neovim</a> at the core - providing a complete vim experience without emulation.</div>
-                </HighlightContainer>
-                <HighlightContainer>
+                <ContentsWrapper>Unlike most Electron-based editors, Oni features a <b>high-performance canvas renderer</b>, along with <a href="https://neovim.io/">neovim</a> at the core - providing a complete vim experience without emulation.</ContentsWrapper>
                 <MiniHeader>Coming from vim/neovim?</MiniHeader>
-                <div>Keep your workflow while enjoying the perks of new code editors, like out-of-box completion & fuzzy find - in a modern, beautiful package.</div>
-                </HighlightContainer>
-                <HighlightContainer>
+                <ContentsWrapper>Keep your workflow while enjoying the perks of new code editors, like out-of-box completion & fuzzy find - in a modern, beautiful package.</ContentsWrapper>
                 <MiniHeader>New to modal editing?</MiniHeader>
-                <div>Oni makes it easy to learn and get started!</div>
-                </HighlightContainer>
+                <ContentsWrapper>Oni makes it easy to learn and get started!</ContentsWrapper>
             </div>
         ],
         contents: <img src="https://user-images.githubusercontent.com/13532591/36127305-9c7b6b80-1011-11e8-85dd-0345788c0b56.png" />
@@ -119,7 +99,7 @@ const Sections = {
         subtitle: "...but still hackable to the core.",
         description:[
             <Centered>
-                <MiniHeader>Included:</MiniHeader>
+                <MiniHeader>Comes out of the box with:</MiniHeader>
                 <p className="content">
                     <ul>
                         <li>Code completion</li>
@@ -127,22 +107,14 @@ const Sections = {
                         <li>Font ligature support</li>
                         <li>Fuzzy file finder</li>
                         <li>Language server support</li>
-                    </ul>
-                </p>
-                <MiniHeader>Coming Soon:</MiniHeader>
-                <p className="content">
-                    <ul>
                         <li>Snippets</li>
-                        <li>Integrated Browser</li>
-                        <li>Debugger</li>
                     </ul>
                 </p>
             </Centered>
         ],
         content: [
-            <HighlightContainer>
                 <Centered>
-                <MiniHeader>Extensible:</MiniHeader>
+                <MiniHeader>Customizable your way:</MiniHeader>
                 <p className="content">
                     <ul>
                         <li>Prefer front-end languages? Use our <a href="https://onivim.github.io/oni-api/">javascript API</a></li>
@@ -152,7 +124,6 @@ const Sections = {
                     </ul>
                 </p>
                 </Centered>
-            </HighlightContainer>
         ]
     },
     Productivity: {
@@ -256,50 +227,6 @@ const HeroVideoSectionWrapper = styled.div`
     align-items: center;
 `
 
-const DownIconKeyFrames = keyframes`
-    0% { transform: translateY(-5px) scale(0.9); opacity: 1; }
-    50% { transform: translateY(0px) scale(1); opacity: 0.8; }
-    100% { transform: translateY(-5px) scale(0.9); opacity: 1; }
-`
-
-const DownIconWrapper = styled.a`
-    animation: ${DownIconKeyFrames} 2s ease-in-out infinite;
-    color: rgba(0, 255, 200, 0.8);
-    padding: 2em;
-
-    &:hover {
-        animation: ${DownIconKeyFrames} 1s ease-in-out infinite;
-        color: rgba(0, 255, 200, 1);
-    }
-`
-
-const scrollDown = () => {
-    animateScrollTo(window.innerHeight)
-}
-
-const DownIcon = () => {
-    return <DownIconWrapper className="icon" onClick={scrollDown}>
-        <i className="fa fa-4x fa-chevron-circle-down">
-        </i>
-    </DownIconWrapper>;
-};
-
-const VideoWrapper = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-
-    & iframe {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 100%;
-        height: 100%;
-    }
-`
-
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {
@@ -316,17 +243,6 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             {/* Master head */}
 
             <NavBar logo={logo}/>
-            <HeroSectionWrapper className="oni-header hero is-dark" style={{backgroundColor: "black"}}>
-                <HeroVideoSectionWrapper>
-            <VideoWrapper>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rf-lG8NuaU0?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;modestBranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </VideoWrapper>
-                </HeroVideoSectionWrapper>
-                <HeroInnerSectionWrapper>
-                    <DownloadNow />
-                    <DownIcon />
-                </HeroInnerSectionWrapper>
-            </HeroSectionWrapper>
             <HeroSection title={Sections.ModernUX.title} subtitle={Sections.ModernUX.subtitle} description={Sections.ModernUX.description} image={Sections.ModernUX.contents} reverse={true} />
             <HeroSection title={Sections.BatteriesIncluded.title} subtitle={"Less time configuring, more time creating"} description={Sections.BatteriesIncluded.description} image={Sections.BatteriesIncluded.content} reverse={false} />
             <HeroSection title={Sections.Productivity.title} subtitle={Sections.Productivity.subtitle} description={Sections.Productivity.description} image={Sections.Productivity.content} reverse={true}/>

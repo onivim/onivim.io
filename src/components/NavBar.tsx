@@ -96,6 +96,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
         <div className="navbar-start">
             <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
+            <NavBarItem href={"/Features"}>Features</NavBarItem>
             <NavBarItem href={"https://opencollective.com/oni"}>Support Oni</NavBarItem>
         </div>
         <div className="navbar-end">
@@ -159,7 +160,7 @@ export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
                 <div className="container">
                 <div className="navbar-brand">
                     <NavBarBrandWrapper className="navbar-item">
-                        <a className="oni-brand-logo" href="https://github.com/onivim/oni">
+                        <a className="oni-brand-logo" href="/">
                         <img src={this.props.logo} alt="Oni Logo" />
                         </a>
                     </NavBarBrandWrapper>
