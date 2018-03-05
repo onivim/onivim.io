@@ -126,6 +126,7 @@ const NavBarWrapper = withProps<INavBarProps>(styled.nav)`
     & .navbar-link {
         background-color: ${p => p.backgroundColor ? p.backgroundColor : Colors.Background};
         color: ${Colors.Foreground};
+        font-family: 'Roboto', sans-serif;
     }
 `
 

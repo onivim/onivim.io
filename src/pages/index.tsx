@@ -152,6 +152,8 @@ const VideoWrapper = styled.div`
     }
 `
 
+const VIDEO_ID="xkFsYO4AGzo"
+
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {
@@ -169,10 +171,13 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
             <NavBar logo={logo} backgroundColor={"#000"}/>
             <HeroSectionWrapper className="oni-header hero is-dark" style={{backgroundColor: "black"}}>
+                <div>
+                    HELLO WORLD
+                </div>
                 <HeroVideoSectionWrapper>
-            <VideoWrapper>
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/Rf-lG8NuaU0?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;modestBranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </VideoWrapper>
+                    <VideoWrapper>
+                            <iframe width="1280" height="720" src={`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1&amp;loop=1&amp;modestBranding=1&playlist=${VIDEO_ID}`} frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </VideoWrapper>
                 </HeroVideoSectionWrapper>
                 <HeroInnerSectionWrapper>
                     <DownloadNow />
