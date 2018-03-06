@@ -226,7 +226,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                         <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
                     </div>
                 </HeroSection>
-                <div className="columns is-centered is-vcentered" style={{width: "100%"}}>
+                <div className="columns is-centered is-vcentered" style={{width: "100%", maxWidth: "1000px"}}>
                     <BuildItem className="column">
                         <PlatformIconWrapper>
                             <i className="fab fa-windows fa-5x" />
