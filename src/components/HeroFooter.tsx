@@ -1,16 +1,8 @@
 import * as React from "react";
 
+import { Colors } from "./../components/Colors"
+import { withProps } from "./../components/withProps"
 import styled, { keyframes, ThemedStyledFunction } from "styled-components";
-
-import { withProps } from "./withProps"
-
-const Colors = {
-    DarkBackground: "#212733",
-    DarkForeground: "#ECEFF4",
-    Background: "#2F3440",
-    Foreground: "#DCDCDC",
-    Accent: "#61AFEF",
-};
 
 const FooterLink = styled.a`
     font-size: 0.8em;

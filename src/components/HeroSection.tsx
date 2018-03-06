@@ -1,22 +1,9 @@
 import * as React from "react";
 
+import { Colors } from "./../components/Colors"
+import { withProps } from "./../components/withProps"
+
 import styled, { keyframes, ThemedStyledFunction } from "styled-components";
-
-export type StyledFunction<T> = ThemedStyledFunction<T, any>
-
-export function withProps<T, U extends HTMLElement = HTMLElement>(
-    styledFunction: StyledFunction<React.HTMLProps<U>>,
-): StyledFunction<T & React.HTMLProps<U>> {
-    return styledFunction
-}
-
-const Colors = {
-    DarkBackground: "#212733",
-    DarkForeground: "#ECEFF4",
-    Background: "#2F3440",
-    Foreground: "#DCDCDC",
-    Accent: "#61AFEF",
-};
 
 export interface IHeroSectionWrapperProps {
     reverse?: boolean
