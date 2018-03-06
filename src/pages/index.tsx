@@ -18,7 +18,7 @@ const header = require("./oni-headline-small.png");
 const background = require("./diagmonds.png");
 
 const DownloadNow = () => {
-                    return <ButtonContainer><a className="button is-primary is-large" href="https://github.com/onivim/oni/releases/latest">Download Now</a></ButtonContainer>
+    return <ButtonContainer><a className="button is-primary is-large" href="/Download">Download Now</a></ButtonContainer>
 }
 
 
