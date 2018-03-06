@@ -234,7 +234,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                         <BuildItemButtonStrip>
                             <BuildItemButton url={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe"} title={"Windows"} description={"Windows 7, 8, 10" } />
                         </BuildItemButtonStrip>
-                        <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe">.zip</a>
+                        <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.zip">.zip</a>
                     </BuildItem>
                     <BuildItem className="column">
                         <PlatformIconWrapper>
