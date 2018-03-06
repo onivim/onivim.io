@@ -5,13 +5,7 @@ import { withProps } from "./withProps"
 
 import { logo } from "./../pages/logo-256x256.png"
 
-const Colors = {
-    DarkBackground: "#212733",
-    DarkForeground: "#ECEFF4",
-    Background: "#2F3440",
-    Foreground: "#DCDCDC",
-    Accent: "#61AFEF",
-};
+import { Colors } from "./../components/Colors"
 
 export interface INavBarProps {
     backgroundColor?: string
@@ -94,7 +88,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
 
     return <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
-            <NavBarItem href={"https://github.com/onivim/oni/releases/latest"}>Download</NavBarItem>
+            <NavBarItem href={"/Download"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <NavBarItem href={"/Features"}>Features</NavBarItem>
             <NavBarItem href={"https://opencollective.com/oni"}>Support Oni</NavBarItem>
@@ -124,6 +118,7 @@ const NavBarWrapper = withProps<INavBarProps>(styled.nav)`
     &.navbar.is-dark.is-fixed-top,
     & .navbar-dropdown,
     & .navbar-item, 
+    & .navbar-menu,
     & .navbar-link {
         background-color: ${p => p.backgroundColor ? p.backgroundColor : Colors.Background};
         color: ${Colors.Foreground};

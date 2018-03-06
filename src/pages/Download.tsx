@@ -32,10 +32,13 @@ import styled from "styled-components"
 
 const DownloadSectionWrapper = styled.div`
     margin: 1em;
+    min-height: 80vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    font-family: 'Roboto', sans-serif;
 `
 
 const DownloadSectionTitle = styled.div`
@@ -61,10 +64,7 @@ const BuildItem = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    & span.icon {
-        margin: 1.5rem;
-    }
+    box-shadow: 1px 1px solid black;
 
     & .additional-download {
         color: #DCDCDC;
@@ -74,6 +74,23 @@ const BuildItem = styled.div`
         color: #61AFEF;
     }
 `
+import { Colors } from "./../components/Colors"
+
+const LinkWrapper = styled.a`
+    color: ${Colors.Accent};
+    opacity: 0.8;
+    margin: 8px;
+
+    &:hover {
+        color: ${Colors.Accent};
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+`
+
+const Link = (props: { url: string, title: string}) => {
+    return <LinkWrapper href={props.url}>{props.title}</LinkWrapper>
+}
 
 const BuildItemButtonStrip = styled.div`
     display: flex;
@@ -99,14 +116,81 @@ const PlatformIconWrapper = styled.div`
 
 const HeroSection = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding-top: 5rem;
-    background-color: black;
     justify-content: center;
     align-items: center;
 
     max-height: 50vh;
-    
+`
+
+const Version = styled.div`
+    font-size: 1.2em;
+    font-weight: bold;
+`
+
+const BuildItemButtonWrapper = styled.a`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ${Colors.Accent};
+    color: white;
+    margin: 2em;
+    white-space: nowrap;
+    opacity: 0.9;
+    padding: 1em 2em;
+
+    &:hover {
+        color: white;
+        transform: translateY(-2px);
+        opacity: 1;
+    }
+
+    & .top-row: {
+        font-weight: 600;
+        font-size: 1.1em;
+        opacity: 0.9;
+        display: flex;
+        flex-direction: row;
+
+        .icon {
+            flex: 0 0 auto;
+        }
+
+        .download-title {
+            flex: 1 1 auto;
+        }
+    }
+
+    & .bottom-row {
+        font-size: 0.8em;
+        opacity: 0.7;
+    }
+`
+
+const BuildItemButton = (props: { url: string, title: string, description: string} ) => {
+        return <BuildItemButtonWrapper href={props.url}>
+            <div className="top-row"><span className="icon">
+                <i className="fas fa-download" />
+            </span>
+            <span className="download-title">{props.title}</span></div>
+            <div className="bottom-row">{props.description}</div>
+        </BuildItemButtonWrapper>
+}
+
+const DownloadHeaderWrapper = styled.div`
+    font-size: 2em;
+    font-weight: 500;
+    opacity: 0.9;
+`
+
+const DownloadVersionWrapper = styled.div`
+    font-size: 1.5em;
+    font-weight: 500;
+    opacity: 0.8;
+
+    margin: 8px;
 `
 
 // TODO: 
@@ -121,39 +205,34 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     public render(): JSX.Element {
         const bodyStyle = {
-            backgroundColor: "#2F3440",
+            backgroundColor: "black",
+            // backgroundColor: "#2F3440",
             color: "#DCDCDC",
             height: "100%",
         };
 
         return <div style={bodyStyle}>
             <NavBar logo={logo}/>
-            <HeroSection>
-                <DownloadSectionWrapper>
-                    <DownloadSectionTitle>
-                        Download Oni
-                    </DownloadSectionTitle>
-                    <DownloadSectionSubtitle>
-                       0.3.0 
-                    </DownloadSectionSubtitle>
-                </DownloadSectionWrapper>
-                <HeroImage>
-                    <img src={heroImage} style={{maxHeight: "40vh"}} />
-                </HeroImage>
-            </HeroSection>
             <DownloadSectionWrapper>
+                <HeroSection>
+                    <DownloadHeaderWrapper>
+                        Download Oni
+                    </DownloadHeaderWrapper>
+                    <DownloadVersionWrapper>
+                        v0.3.0
+                    </DownloadVersionWrapper>
+                    <div>
+                        <Link url="https://github.com/onivim/oni/wiki/Whats-New-in-Oni#v030---2122018" title="Release Notes" />
+                        <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
+                    </div>
+                </HeroSection>
                 <div className="columns is-centered is-vcentered">
                     <BuildItem className="column">
                         <PlatformIconWrapper>
                             <i className="fab fa-windows fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary" href={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe"}>
-                                <span className="icon">
-                                    <i className="fas fa-download" />
-                                </span>
-                                <span>Windows</span>
-                            </a>
+                            <BuildItemButton url={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe"} title={"Windows"} description={"Windows 7, 8, 10" } />
                         </BuildItemButtonStrip>
                         <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe">.zip</a>
                     </BuildItem>
@@ -162,18 +241,8 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                             <i className="fab fa-linux fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-amd64-linux.deb">
-                                <span className="icon">
-                                    <i className="fas fa-download" />
-                                </span>
-                                <span>.deb</span>
-                            </a>
-                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x86_64-linux.rpm">
-                                <span className="icon">
-                                    <i className="fas fa-download" />
-                                </span>
-                                <span>.rpm</span>
-                            </a>
+                            <BuildItemButton url={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-amd64-linux.deb"} title={"Linux"} description={"Debian, Ubuntu" } />
+                            <BuildItemButton url={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x86_64-linux.rpm"} title={"Linux"} description={"Red Hat, Fedora, SUSE" } />
                         </BuildItemButtonStrip>
                         <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x64-linux.tar.gz">.tar.gz</a>
                     </BuildItem>
@@ -182,12 +251,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                             <i className="fab fa-apple fa-5x" />
                         </PlatformIconWrapper>
                         <BuildItemButtonStrip>
-                            <a className="button is-primary" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg">
-                                <span className="icon">
-                                    <i className="fas fa-download" />
-                                </span>
-                                <span>Mac</span>
-                            </a>
+                            <BuildItemButton url={"https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg"} title={"Mac"} description={"macOS 10.9" } />
                         </BuildItemButtonStrip>
                         <a className="additional-download" href="https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg">.dmg</a>
                     </BuildItem>
