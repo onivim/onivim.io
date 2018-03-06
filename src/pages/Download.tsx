@@ -1,6 +1,7 @@
 import * as React from "react";
 // import { menuItems } from "../layouts";
 
+import { Colors } from "./../components/Colors"
 import { HeroSection } from "./../components/HeroSection";
 import { NavBar } from "./../components/NavBar"
 
@@ -39,6 +40,7 @@ const DownloadSectionWrapper = styled.div`
     align-items: center;
 
     font-family: 'Roboto', sans-serif;
+    color: ${Colors.Foreground};
 `
 
 const DownloadSectionTitle = styled.div`
@@ -61,7 +63,7 @@ const DownloadSectionSubtitle = styled.div`
 const BuildItem = styled.div`
     margin: 5em;
 
-    display: flex;
+    display: flex !important;
     align-items: center;
     flex-direction: column;
     box-shadow: 1px 1px solid black;
@@ -74,8 +76,6 @@ const BuildItem = styled.div`
         color: #61AFEF;
     }
 `
-import { Colors } from "./../components/Colors"
-
 const LinkWrapper = styled.a`
     color: ${Colors.Accent};
     opacity: 0.8;
@@ -226,7 +226,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
                         <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
                     </div>
                 </HeroSection>
-                <div className="columns is-centered is-vcentered">
+                <div className="columns is-centered is-vcentered" style={{width: "100%"}}>
                     <BuildItem className="column">
                         <PlatformIconWrapper>
                             <i className="fab fa-windows fa-5x" />
