@@ -1,35 +1,110 @@
 import * as React from "react";
 
+import { Colors } from "./../components/Colors"
+import { withProps } from "./../components/withProps"
+
 import styled, { keyframes, ThemedStyledFunction } from "styled-components";
-
-export type StyledFunction<T> = ThemedStyledFunction<T, any>
-
-export function withProps<T, U extends HTMLElement = HTMLElement>(
-    styledFunction: StyledFunction<React.HTMLProps<U>>,
-): StyledFunction<T & React.HTMLProps<U>> {
-    return styledFunction
-}
-
-import * as Waypoint from "react-waypoint"
-
-const Colors = {
-    DarkBackground: "#212733",
-    DarkForeground: "#ECEFF4",
-    Background: "#2F3440",
-    Foreground: "#DCDCDC",
-    Accent: "#61AFEF",
-};
 
 export interface IHeroSectionWrapperProps {
     reverse?: boolean
     active?: boolean
 }
 
-const DeltaMotion = 25
+const DeltaMotion = 250
+
+export type ScrollMonitorRenderFunction = (percentVisible: number) => JSX.Element
+
+export interface ScrollMonitorProps {
+    margin: number
+    renderFunction: ScrollMonitorRenderFunction 
+}
+
+export interface ScrollMonitorState {
+    percentVisible: number
+}
+
+export class ScrollMonitor extends React.PureComponent<ScrollMonitorProps, ScrollMonitorState> {
+
+    private _pendingRaf: number = null
+    private _dispose: Function
+    private _element: HTMLElement
+
+    constructor(props: ScrollMonitorProps) {
+        super(props)
+
+        this.state = {
+            percentVisible: 1
+        }
+    }
+
+    public componentDidMount(): void {
+
+        const onScroll = () => {
+
+            if (this._pendingRaf) {
+                return
+            }
+
+           this._pendingRaf = window.requestAnimationFrame(() => this._update())
+        }
+
+        window.addEventListener("scroll", onScroll)
+
+        this._dispose = () => window.removeEventListener("scroll", onScroll)
+    }
+
+    public componentWillUnmount(): void {
+       if (this._dispose)  {
+            this._dispose()
+           this._dispose = null
+       }
+    }
+
+    private _update(): void {
+        if (this._element) {
+
+            const viewportHeight = window.innerHeight - (this.props.margin * 2)
+
+            const elemRect = this._element.getBoundingClientRect()
+
+            const topY = this.props.margin
+
+            if (elemRect.top < this.props.margin && elemRect.height + elemRect.top > viewportHeight) {
+                this.setState({percentVisible: 1})
+                return
+            }
+
+            let val = 0
+            if (elemRect.top + elemRect.height > this.props.margin && elemRect.top < viewportHeight) {
+
+                if (elemRect.top < this.props.margin) {
+                    val = (elemRect.height + elemRect.top + this.props.margin) / elemRect.height
+                } else {
+                    val = (viewportHeight - elemRect.top + this.props.margin) / elemRect.height
+                }
+            }
+
+            this.setState({percentVisible: val})
+        }
+
+        this._pendingRaf = null
+    }
+   
+   public render(): JSX.Element {
+    return <div ref={(ref) => this._updateRef(ref)}>
+            {this.props.renderFunction(Math.min(Math.abs(1), 1))}
+       </div>
+   } 
+
+    private _updateRef(containerElement: HTMLElement): void {
+       this._element = containerElement 
+        this._update()
+    }
+}
 
 const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     padding: 3rem 1.5rem;
-    background-color: ${Colors.Background};
+    background-color: black;
     color: ${Colors.Foreground};
 
     display: flex;
@@ -41,16 +116,6 @@ const SectionWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
 
 
     opacity: ${props => props.active ? "1.0": "0.8"};
-
-    ${props => {
-        if (props.active) {
-            return props.reverse ? "border-right: 4px solid " + Colors.Accent: "border-left: 4px solid " + Colors.Accent
-        } else {
-            return "border: 0px";
-        }
-    }};
-
-    transition: all 0.5s ease-in;
 
     & a {
         color: ${Colors.Accent};
@@ -89,22 +154,18 @@ width: 100%;
 `
 
 const TitleWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
-    transform: translateX(${props => !props.active ? (props.reverse ? DeltaMotion : -DeltaMotion) : 0}px);
     text-align: ${props => props.reverse ? "right" : "left"};
-    transition: all 0.2s ease-in;
     width: 100%;
     
-    border-bottom: 1px solid ${Colors.Accent};
+    border-bottom: 2px solid ${Colors.Accent};
 `
 
 const SectionContentsWrapper = withProps<IHeroSectionWrapperProps>(styled.div)`
     max-width: 1000px;
     min-width: 75%;
-    min-height: 50vh;
+    padding-top: 4em;
+    padding-bottom: 4em;
     overflow: hidden;
-
-    transform: translateX(${props => props.active ? 0 : (props.reverse ? DeltaMotion : -DeltaMotion)}px);
-    transition: all 0.2s ease-in;
 
     justify-content: center;
     align-items: center;
@@ -150,22 +211,18 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
         super(props)
 
         this.state = {
-            active: false,
+            active: true,
         }
     }
     public render(): JSX.Element {
-      return <SectionWrapper reverse={this.props.reverse} active={this.state.active}>
-            <Waypoint
-        onEnter={() => this.setState({active: true})} 
-        onLeave={() => this.setState({active: false})}
-        bottomOffset={"0%"}
-        topOffset={"0%"}>
-            <TitleWrapper active={this.state.active} reverse={this.props.reverse}>
+            return <ScrollMonitor margin={50} renderFunction={(
+               percent: number 
+            ) => <SectionWrapper reverse={this.props.reverse} active={this.state.active} style={{opacity: Math.max(0.5, percent * percent)}}>
+            <TitleWrapper active={this.state.active} reverse={this.props.reverse} style={{"transform": "translateX(" + ((1-percent) * DeltaMotion) + "px)"}}>
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
                         <Subtitle>{this.props.subtitle}</Subtitle>
             </TitleWrapper>
-          </Waypoint>
-                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered is-vcentered">
+                <SectionContentsWrapper reverse={this.props.reverse} active={this.state.active} className="columns is-centered" style={{alignItems: "flex-start", opacity: percent * percent, "transform": "translateY(" + ((1-percent) * DeltaMotion) + "px)"}}>
                     <InnerWrapper className="column">
                         <Description>{this.props.description}</Description>
                     </InnerWrapper>
@@ -174,5 +231,6 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
                     </InnerWrapper>
                 </SectionContentsWrapper>
               </SectionWrapper>
+            } />
     }
 }

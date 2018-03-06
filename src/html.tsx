@@ -37,7 +37,7 @@ module.exports = (props: HtmlProps) => {
     <html lang="en">
       <head>
         {props.headComponents}
-        <title>Oni - Modern IDE for (neo)vim</title>
+        <title>Oni - Modern Modal Editing</title>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta
@@ -46,7 +46,7 @@ module.exports = (props: HtmlProps) => {
         />
         <link rel="shortcut icon" type="image/x-icon" href={favicon} />
           <link href="https://fonts.googleapis.com/css?family=Poppins|Sintony" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" rel="stylesheet" />
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
@@ -63,7 +63,7 @@ module.exports = (props: HtmlProps) => {
            gtag('config', 'UA-113896624-1');
         `}}></script>
       </head>
-      <body>
+      <body style={{backgroundColor: "#2F3440"}}>
         <div
           id="___gatsby"
           dangerouslySetInnerHTML={{ __html: props.body }}

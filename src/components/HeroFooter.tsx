@@ -1,28 +1,11 @@
 import * as React from "react";
 
+import { Colors } from "./../components/Colors"
+import { withProps } from "./../components/withProps"
 import styled, { keyframes, ThemedStyledFunction } from "styled-components";
 
-export type StyledFunction<T> = ThemedStyledFunction<T, any>
-
-export function withProps<T, U extends HTMLElement = HTMLElement>(
-    styledFunction: StyledFunction<React.HTMLProps<U>>,
-): StyledFunction<T & React.HTMLProps<U>> {
-    return styledFunction
-}
-
-import * as Waypoint from "react-waypoint"
-
-const Colors = {
-    DarkBackground: "#212733",
-    DarkForeground: "#ECEFF4",
-    Background: "#2F3440",
-    Foreground: "#DCDCDC",
-    Accent: "#61AFEF",
-};
-
 const FooterLink = styled.a`
-    text-decoration: underline;
-    font-size: 0.9em;
+    font-size: 0.8em;
 
     .oni-footer.is-dark &:hover {
         color: ${Colors.Accent} !important;
@@ -66,7 +49,7 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
         super(props)
 
         this.state = {
-            isActive: false,
+            isActive: true,
         }
     }
 
@@ -75,17 +58,14 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
                     <div className="container">
                         <div className="columns">
                             <div className="column">
-            <Waypoint
-        onEnter={() => this.setState({isActive: true})} 
-        onLeave={() => this.setState({isActive: false})}>
                                 <p className="content">
                                     <p><strong>Oni brought to you by:</strong></p>
                                     <FooterList>
                                         <li><FooterLink href="https://github.com/onivim/oni/blob/master/BACKERS.md">Sponsors & Backers</FooterLink></li>
                                         <li><FooterLink href="https://github.com/onivim/oni/graphs/contributors">Contributors</FooterLink></li>
+                                        <li><FooterLink href="https://neovim.io">Neovim</FooterLink></li>
                                     </FooterList>
                                 </p>
-            </Waypoint>
                                 <CopyrightText>Copyright 2018 Bryan Phelps</CopyrightText>
                             </div>
                             <div className="column">

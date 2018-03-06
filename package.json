@@ -95,7 +95,6 @@
     "raw-loader": "^0.5.1",
     "react-addons-test-utils": "^15.5.1",
     "react-test-renderer": "16",
-    "react-waypoint": "^7.3.4",
     "remark-cli": "^3.0.1",
     "remark-preset-lint-recommended": "^2.0.0",
     "storybook-readme": "^3.0.6",
