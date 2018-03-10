@@ -48,12 +48,6 @@ const Link = (props: { url: string, title: string}) => {
     return <LinkWrapper href={props.url}>{props.title}</LinkWrapper>
 }
 
-
-
-// TODO: 
-// - Check if backer, if not, show 'Locked' experience (sign-in with github / twitter)
-// - Otherwise, show 'stable' and 'latest' builds
-
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
     constructor(props: IndexPageProps) {

@@ -1,6 +1,10 @@
-export const sendEvent = (category: string, action: string, label: string) => {
-    if (window.ga) {
-        const ga = window.ga as any
-        ga("send", "event", category, action, label)
+export const sendEvent = (category: string, action: string, label: string, value: string) => {
+    if (window.gtag) {
+        const ga = window.gtag as any
+        gtag("event", action, {
+            "event_category": category,
+            "event_label": label,
+            "event_value": value,
+        })
     }
 }

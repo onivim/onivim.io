@@ -9,9 +9,11 @@ import * as React from "react";
 // import { menuItems } from "../layouts";
 
 import { Colors } from "./Colors"
+import { CursorWrapper } from "./Cursor"
 import { NavBar } from "./NavBar"
+import * as Telemetry from "./../Telemetry";
 
-import styled from "styled-components"
+import styled, {keyframes} from "styled-components"
 
 const DownloadSectionWrapper = styled.div`
     margin: 1em;
@@ -20,6 +22,7 @@ const DownloadSectionWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     font-family: 'Roboto', sans-serif;
     color: ${Colors.Foreground};
@@ -43,7 +46,7 @@ const DownloadSectionSubtitle = styled.div`
 `
 
 const BuildItem = styled.div`
-    margin: 5em;
+    margin: 2em;
 
     display: flex !important;
     align-items: center;
@@ -206,82 +209,94 @@ export interface DownloadSectionState {
     downloadInfo: DownloadInfo
 }
 
+const SpinnerKeyframes = keyframes`
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+`
+
+const LoadingSpinnerWrapper = styled.div`
+    animation: ${SpinnerKeyframes} 1s linear infinite;
+    border-top: 48px solid white;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    opacity: 0.8;
+`
+
 export class DownloadSection extends React.PureComponent<DownloadSectionProps, DownloadSectionState> {
 
     constructor(props: DownloadSectionProps) {
         super(props);
 
-        this.state = {
-            downloadInfo: {
-                branch: "Stable",
-                version: "0.3.0",
-                commit: null,
-                releaseDate: 0,
-                releaseNotesUrl: null,
-                screenshotUrl: null,
-                packages: {
-                    windows: {
-                        exe: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.exe",
-                        zip: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-ia32-win.zip",
-                    },
-                    linux: {
-                        deb: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-amd64-linux.deb",
-                        rpm: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x86_64-linux.rpm",
-                        tar: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-x64-linux.tar.gz",
-                    },
-                    darwin: {
-                        dmg: "https://github.com/onivim/oni/releases/download/v0.3.0/Oni-0.3.0-osx.dmg",
-                    }
-                }
+        this.state = null
+    }
 
-            }
-        }
+    public componentDidMount(): void {
+        fetch(`https://api.onivim.io/v1/downloads/${this.props.buildType}`)
+            .then((res) => {
+                const result = res.json().then((info) => {
+                    this.setState({
+                        downloadInfo: info,
+                    })
+
+                    Telemetry.sendEvent("api.success", "downloads", "get", "success")
+                }, (err) => {
+                    Telemetry.sendEvent("api.failure", "downloads", "get", "failure")
+                })
+            }, (err) => {
+                Telemetry.sendEvent("api.failure", "downloads", "get", "failure")
+            })
     }
 
     public render(): JSX.Element {
-        return <DownloadSectionWrapper>
-                <HeroSection>
-                    <DownloadHeaderWrapper>
-                        {this.state.downloadInfo.branch}
-                    </DownloadHeaderWrapper>
-                    <DownloadVersionWrapper>
-            {this.state.downloadInfo.version}
-                    </DownloadVersionWrapper>
-                    <div>
-                        <Link url={this.state.downloadInfo.releaseNotesUrl} title="Release Notes" />
-                        <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
-                    </div>
-                </HeroSection>
-                <div className="columns is-centered is-vcentered" style={{width: "80%", maxWidth: "1000px"}}>
-                    <BuildItem className="column">
-                        <PlatformIconWrapper>
-                            <i className="fab fa-windows fa-5x" />
-                        </PlatformIconWrapper>
-                        <BuildItemButtonStrip>
-                            <BuildItemButton url={this.state.downloadInfo.packages.windows.exe} title={"Windows"} description={"Windows 7, 8, 10" } />
-                        </BuildItemButtonStrip>
-                        <a className="additional-download" href={this.state.downloadInfo.packages.windows.zip}>.zip</a>
-                    </BuildItem>
-                    <BuildItem className="column">
-                        <PlatformIconWrapper>
-                            <i className="fab fa-linux fa-5x" />
-                        </PlatformIconWrapper>
-                        <BuildItemButtonStrip>
-                            <BuildItemButton url={this.state.downloadInfo.packages.linux.deb} title={"Linux"} description={"Debian, Ubuntu" } />
-                            <BuildItemButton url={this.state.downloadInfo.packages.linux.rpm} title={"Linux"} description={"Red Hat, Fedora, SUSE" } />
-                        </BuildItemButtonStrip>
-                        <a className="additional-download" href={this.state.downloadInfo.packages.linux.tar}>.tar.gz</a>
-                    </BuildItem>
-                    <BuildItem className="column">
-                        <PlatformIconWrapper>
-                            <i className="fab fa-apple fa-5x" />
-                        </PlatformIconWrapper>
-                        <BuildItemButtonStrip>
-                            <BuildItemButton url={this.state.downloadInfo.packages.darwin.dmg} title={"Mac"} description={"macOS 10.9" } />
-                        </BuildItemButtonStrip>
-                        <a className="additional-download" href={this.state.downloadInfo.packages.darwin.dmg}>.dmg</a>
-                    </BuildItem>
+            const contents = this.state === null ? 
+            <DownloadSectionWrapper>
+                <LoadingSpinnerWrapper />
+                <div>Getting build info..</div>
+             </DownloadSectionWrapper> : <DownloadSectionWrapper><HeroSection>
+                <DownloadHeaderWrapper>
+                    {this.state.downloadInfo.branch}<CursorWrapper>H</CursorWrapper>
+                </DownloadHeaderWrapper>
+                <DownloadVersionWrapper>
+        {this.state.downloadInfo.version}
+                </DownloadVersionWrapper>
+                <div>
+                    <Link url={this.state.downloadInfo.releaseNotesUrl} title="Release Notes" />
+                    <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
                 </div>
-            </DownloadSectionWrapper>
+            </HeroSection>
+            <div className="columns is-centered is-vcentered" style={{width: "50%", maxWidth: "1000px"}}>
+                <BuildItem className="column">
+                    <PlatformIconWrapper>
+                        <i className="fab fa-windows fa-5x" />
+                    </PlatformIconWrapper>
+                    <BuildItemButtonStrip>
+                        <BuildItemButton url={this.state.downloadInfo.packages.windows.exe} title={"Windows"} description={"Windows 7, 8, 10" } />
+                    </BuildItemButtonStrip>
+                    <a className="additional-download" href={this.state.downloadInfo.packages.windows.zip}>.zip</a>
+                </BuildItem>
+                <BuildItem className="column">
+                    <PlatformIconWrapper>
+                        <i className="fab fa-linux fa-5x" />
+                    </PlatformIconWrapper>
+                    <BuildItemButtonStrip>
+                        <BuildItemButton url={this.state.downloadInfo.packages.linux.deb} title={"Linux"} description={"Debian, Ubuntu" } />
+                        <BuildItemButton url={this.state.downloadInfo.packages.linux.rpm} title={"Linux"} description={"Red Hat, Fedora, SUSE" } />
+                    </BuildItemButtonStrip>
+                    <a className="additional-download" href={this.state.downloadInfo.packages.linux.tar}>.tar.gz</a>
+                </BuildItem>
+                <BuildItem className="column">
+                    <PlatformIconWrapper>
+                        <i className="fab fa-apple fa-5x" />
+                    </PlatformIconWrapper>
+                    <BuildItemButtonStrip>
+                        <BuildItemButton url={this.state.downloadInfo.packages.darwin.dmg} title={"Mac"} description={"macOS 10.9" } />
+                    </BuildItemButtonStrip>
+                    <a className="additional-download" href={this.state.downloadInfo.packages.darwin.dmg}>.dmg</a>
+                </BuildItem>
+            </div>
+        </DownloadSectionWrapper>
+
+        return contents
     }
 }
