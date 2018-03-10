@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Colors } from "./../components/Colors"
+import { CursorWrapper } from "./../components/Cursor"
 import { withProps } from "./../components/withProps"
 
 import styled, { keyframes, ThemedStyledFunction } from "styled-components";
