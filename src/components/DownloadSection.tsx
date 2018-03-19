@@ -17,7 +17,7 @@ import styled, {keyframes} from "styled-components"
 
 const DownloadSectionWrapper = styled.div`
     margin: 1em;
-    min-height: 80vh;
+    min-height: 50vh;
 
     display: flex;
     flex-direction: column;
@@ -102,7 +102,6 @@ const PlatformIconWrapper = styled.div`
 const HeroSection = styled.div`
     display: flex;
     flex-direction: column;
-    padding-top: 5rem;
     justify-content: center;
     align-items: center;
 
