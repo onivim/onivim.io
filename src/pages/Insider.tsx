@@ -53,12 +53,13 @@ const HeroSectionSubHeader = styled.div`
 `
 
 export interface AuthenticatedSectionProps {
-    render: (isLoading: boolean, isAuthenticated: boolean) => JSX.Element
+    render: (isLoading: boolean, isAuthenticated: boolean, userName?: string) => JSX.Element
 }
 
 export interface AuthenticatedSectionState {
     isAuthenticated: boolean
     isLoading: boolean
+    userName: string
 }
 
 const makeAuthenticatedApiCall = (apiPath: string): Promise<Response> => {
@@ -73,6 +74,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
         this.state = {
             isLoading: true,
             isAuthenticated: false,
+            userName: null,
         }
     }
 
@@ -80,15 +82,19 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
 
         makeAuthenticatedApiCall("auth/me")
             .then((res) => {
-                if (res.status === 200) {
-                    this.setState({
-                        isAuthenticated: true,
-                        isLoading: false,
+                if (res.status !== 401) {
+                    const info = res.json().then((val) => {
+                        this.setState({
+                            isAuthenticated: !!val.username,
+                            isLoading: false,
+                            userName: val.username
+                        })
                     })
                 } else {
                     this.setState({
                         isAuthenticated: false,
                         isLoading: false,
+                        userName: null,
                     })
                 }
 
@@ -96,7 +102,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
     }
 
     public render(): JSX.Element {
-        return this.props.render(this.state.isLoading, this.state.isAuthenticated)
+        return this.props.render(this.state.isLoading, this.state.isAuthenticated, this.state.userName)
     }
 }
 
@@ -111,7 +117,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             // backgroundColor: "black"
             backgroundImage: "url('" + background + "')",
         };
-        const renderFunc = (isLoading: boolean, isAuthenticated: boolean): JSX.Element => {
+        const renderFunc = (isLoading: boolean, isAuthenticated: boolean, userName: string): JSX.Element => {
             if (isLoading) {
                 return <div>Loading</div>
             }
@@ -119,7 +125,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
             if (!isAuthenticated) {
                 return <UnauthenticatedContent />
             } else {
-                return <AuthenticatedContent />
+                return <AuthenticatedContent userName={userName} />
             }
         }
 
@@ -293,10 +299,10 @@ import {DownloadSection} from "./../components/DownloadSection"
         border-radius: 8em;
     `
     
-export const AuthenticatedContent = (): JSX.Element => {
+export const AuthenticatedContent = (props: { userName: string} ): JSX.Element => {
                     return <section className="section">
             <HeroSectionWrapper>
-                <HeroSectionHeader>Welcome back, Insider!</HeroSectionHeader>
+                <HeroSectionHeader>Welcome back, {props.userName}!</HeroSectionHeader>
                 <HeroSectionSubHeader>We really appreciate your support!</HeroSectionSubHeader>
                 <RotatingImageWrapper>
                     <TrophyWrapper>
