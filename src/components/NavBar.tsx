@@ -25,6 +25,7 @@ const NavBarItemContainer = styled.a`
         z-index: 1;
     }
 
+    font-size: 0.9em;
     color: ${Colors.Foreground} !important;
     border-bottom: 2px solid transparent;
 `
@@ -91,6 +92,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
             <NavBarItem href={"/Download"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <NavBarItem href={"/Features"}>Features</NavBarItem>
+        {/* <NavBarItem href={"/Insider"}>Insiders</NavBarItem>*/ }
             <NavBarItem href={"https://opencollective.com/oni"}>Support Oni</NavBarItem>
         </div>
         <div className="navbar-end">
