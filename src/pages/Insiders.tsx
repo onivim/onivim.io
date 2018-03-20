@@ -4,6 +4,7 @@ import styled, { keyframes } from "styled-components"
 
 import { HeroFooter } from "./../components/HeroFooter"
 import { NavBar } from "./../components/NavBar"
+import { HeaderSpacer } from "./../components/HeaderSpacer";
 
 interface IndexPageProps {
     location: {
@@ -144,7 +145,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
         return <div style={bodyStyle}>
             {/* Master head */}
             <NavBar logo={logo} />
-            <div style={{ height: "3.5em" }} />
+            <HeaderSpacer />
             <ContainerWrapper>
                 <AuthenticatedSection render={renderFunc} />
             </ContainerWrapper>
