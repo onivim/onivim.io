@@ -304,12 +304,12 @@ export const UnauthenticatedContent = (): JSX.Element => {
         </HeroSectionWrapper>
         <div className="container" style={{marginBottom: "4em"}}>
             <div className="columns is-centered">
-                <OptionsColumn className="column is-one-quarter">
+                <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Already an insider?</DonateHeader>
-                    <Button url="" text={"Sign in with GitHub"} icon={"fab fa-github"} backgroundColor={"#333"} />
+                    <Button url="https://api.onivim.io/auth/github" text={"Sign in with GitHub"} icon={"fab fa-github"} backgroundColor={"#333"} />
                 </OptionsColumn>
                 <div className="column is-one-quarter" />
-                <OptionsColumn className="column is-one-quarter">
+                <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Become an insider:</DonateHeader>
                     <a href="https://opencollective.com/oni/order/2524" target="_blank">
                         <img src={"https://opencollective.com/oni/donate/button@2x.png?color=white"} width={300} />
