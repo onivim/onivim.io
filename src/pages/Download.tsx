@@ -7,6 +7,7 @@ import { NavBar } from "./../components/NavBar"
 import { DownloadSection } from "./../components/DownloadSection";
 
 import { HeroFooter } from "./../components/HeroFooter"
+import { HeaderSpacer } from "./../components/HeaderSpacer";
 
 interface IndexPageProps {
     location: {
@@ -64,6 +65,7 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
         return <div style={bodyStyle}>
             <NavBar logo={logo}/>
+            <HeaderSpacer />
             <DownloadSection buildType="community" />
             <HeroFooter />
         </div>
