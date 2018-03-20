@@ -98,6 +98,12 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                     })
                 }
 
+            }, (err) => {
+                this.setState({
+                    isAuthenticated: false,
+                    isLoading: false,
+                    userName: null,
+                })
             })
     }
 
@@ -105,6 +111,10 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
         return this.props.render(this.state.isLoading, this.state.isAuthenticated, this.state.userName)
     }
 }
+
+import { LoadingSpinner } from "./../components/LoadingSpinner"
+
+
 
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
 
@@ -119,7 +129,9 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
         };
         const renderFunc = (isLoading: boolean, isAuthenticated: boolean, userName: string): JSX.Element => {
             if (isLoading) {
-                return <div>Loading</div>
+                return <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <LoadingSpinner prompt={"Loading..."} />
+                </div>
             }
 
             if (!isAuthenticated) {
@@ -200,25 +212,71 @@ const Button = (props: { url: string, text: string, icon: string, backgroundColo
     </ButtonWrapper>
 }
 
+const FeatureCardWrapper = styled.div`
+    border: 1px solid ${Colors.Colors.Accent}
+    border-radius: 4px;
+    box-shadow:  -9px 0px 20px 0 rgba(0,0,0,0.2), 9px 0px 20px 0 rgba(0, 0, 0, 0.2);
+
+    background-color: ${Colors.Colors.Background};
+    color: white;
+
+    width: 100%;
+    max-width: 450px;
+    margin: 1em 0em;
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+`
+
+const FeatureCardIconWrapper = styled.div`
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-right: 2px solid ${Colors.Colors.DarkBackground};
+
+    width: 96px;
+    height: 96px;
+`
+
+const FeatureCardDescriptionWrapper = styled.div`
+    flex: 1 1 auto;
+    width: 100%;
+    margin: 1em;
+
+    & .header {
+        font-weight: bold;
+    }
+
+    & .description {
+        font-size: 0.9em;
+    }
+`
+
 const FeatureCard = (props: { header: string, icon: string, text: string}): JSX.Element => {
-   return <div>
-            <div>
+   return <FeatureCardWrapper>
+            <FeatureCardIconWrapper className="is-hidden-mobile">
                 <i className={props.icon} />
-            </div>
-            <div>
-                <div>{props.header}</div>
-                <div>{props.text}</div>
-            </div>
-        </div>
+            </FeatureCardIconWrapper>
+            <FeatureCardDescriptionWrapper>
+                <div className="header">{props.header}</div>
+                <div className="description">{props.text}</div>
+            </FeatureCardDescriptionWrapper>
+        </FeatureCardWrapper>
 }
 
 const DonateHeader = styled.div`
+    font-weight: bold;
     font-size: 1em;
     color: white;
 
     border-bottom: 2px solid ${Colors.Colors.Accent};
-    margin: 8px;
-    padding: 4px;
+    margin: 1em;
+    padding: 1em;
     width: 100%;
     text-align: center;
 `
@@ -236,18 +294,18 @@ const OptionsSplitter = styled.div`
 `
 
 export const UnauthenticatedContent = (): JSX.Element => {
-    return <section className="section">
+    return <div>
         <HeroSectionWrapper>
             <HeroSectionHeader>Become an Insider!</HeroSectionHeader>
-            <HeroSectionSubHeader>Support Oni with a monthly donation</HeroSectionSubHeader>
+            <HeroSectionSubHeader>Support Oni's development with a monthly donation</HeroSectionSubHeader>
             <RotatingImageWrapper>
                 <img src={logo} style={{ "width": "100%" }} />
             </RotatingImageWrapper>
         </HeroSectionWrapper>
-        <div className="container">
+        <div className="container" style={{marginBottom: "4em"}}>
             <div className="columns is-centered">
                 <OptionsColumn className="column is-one-quarter">
-                    <DonateHeader>Already an insider? Login:</DonateHeader>
+                    <DonateHeader>Already an insider?</DonateHeader>
                     <Button url="" text={"Sign in with GitHub"} icon={"fab fa-github"} backgroundColor={"#333"} />
                 </OptionsColumn>
                 <div className="column is-one-quarter" />
@@ -264,24 +322,18 @@ export const UnauthenticatedContent = (): JSX.Element => {
                 </OptionsColumn>
             </div>
         </div>
-        <SectionWrapper>
-            <HeroSectionSubHeader>Get these perks:</HeroSectionSubHeader>
-            <Text>Oni is indepedently funded, and therefore can only continue with your support.</Text>
-            <div className="container">
-            <div className="columns is-centered">
-                <div className="column is-narrow">
-                    <FeatureCard icon={"fas fa-building"} header={"Insider Builds"} text={"Always have access to the latest built binaries."} /> 
-                </div>
-                <div className="column is-narrow">
-                    <FeatureCard icon={"fas fa-flag"} header={"Prioritized Issues"} text={"Issues logged by Insiders are tagged and have priority over other issues."} /> 
-                </div>
-                <div className="column is-narrow">
-                    <FeatureCard icon={"fas fa-flask"} header={"Support Development"} text={"Developing features and fixing bugs takes time - funding gives us the time and resources to build cool stuff!"} /> 
-                </div>
+        <SectionWrapper style={{backgroundColor: Colors.Colors.DarkBackground}}>
+
+            <div style={{margin: "4em"}}>
+            <HeroSectionSubHeader style={{textAlign: "center"}}>Get these perks:</HeroSectionSubHeader>
+            <div className="container" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                <FeatureCard icon={"fas fa-building fa-lg"} header={"Insider Builds"} text={"Always have access to the latest binaries and newest features."} /> 
+                <FeatureCard icon={"fas fa-flag fa-lg"} header={"Prioritized Issues"} text={"Issues logged by Insiders are tagged and have priority over other issues."} /> 
+                <FeatureCard icon={"fas fa-flask fa-lg"} header={"Support Development"} text={"Developing features and fixing bugs takes time - funding lets us keep building!"} /> 
             </div>
             </div>
         </SectionWrapper>
-    </section>
+    </div>
 
         }
         
@@ -300,7 +352,7 @@ import {DownloadSection} from "./../components/DownloadSection"
     `
     
 export const AuthenticatedContent = (props: { userName: string} ): JSX.Element => {
-                    return <section className="section">
+        return <section className="section">
             <HeroSectionWrapper>
                 <HeroSectionHeader>Welcome back, {props.userName}!</HeroSectionHeader>
                 <HeroSectionSubHeader>We really appreciate your support!</HeroSectionSubHeader>
