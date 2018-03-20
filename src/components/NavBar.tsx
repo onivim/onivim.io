@@ -92,8 +92,7 @@ const NavBarMenu = (props: { isActive: boolean}) => {
             <NavBarItem href={"/Download"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
             <NavBarItem href={"/Features"}>Features</NavBarItem>
-        {/* <NavBarItem href={"/Insider"}>Insiders</NavBarItem>*/ }
-            <NavBarItem href={"https://opencollective.com/oni"}>Support Oni</NavBarItem>
+            <NavBarItem href={"/Insiders"}>Insiders</NavBarItem>
         </div>
         <div className="navbar-end">
             <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
