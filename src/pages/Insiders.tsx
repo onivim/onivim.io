@@ -6,6 +6,8 @@ import { HeroFooter } from "./../components/HeroFooter"
 import { NavBar } from "./../components/NavBar"
 import { HeaderSpacer } from "./../components/HeaderSpacer";
 
+import * as Telemetry from "./../Telemetry"
+
 interface IndexPageProps {
     location: {
         pathname: string;
@@ -90,6 +92,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                             isLoading: false,
                             userName: val.username
                         })
+                        Telemetry.sendEvent("api.authentication.success", "insiders", "get", val.username)
                     })
                 } else {
                     this.setState({
@@ -97,6 +100,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                         isLoading: false,
                         userName: null,
                     })
+                        Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "401")
                 }
 
             }, (err) => {
@@ -105,6 +109,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                     isLoading: false,
                     userName: null,
                 })
+                Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "error")
             })
     }
 
@@ -298,6 +303,18 @@ const OptionsSplitter = styled.div`
     text-align: center;
 `
 
+const DescriptionText = styled.div`
+    color: white;
+    max-width: 800px;
+    margin: 2em;
+    font-size: 0.9em;
+    opacity: 0.9;
+`
+
+const Bold = styled.span`
+    font-weight: bold;
+`
+
 export const UnauthenticatedContent = (): JSX.Element => {
     return <div>
         <HeroSectionWrapper>
@@ -318,10 +335,6 @@ export const UnauthenticatedContent = (): JSX.Element => {
                 <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Become an insider:</DonateHeader>
                     <a href="https://www.patreon.com/bePatron?u=10422730" data-patreon-widget-type="become-patron-button"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
-                    <Button url="https://salt.bountysource.com/checkout/amount?team=oni" text="Support via Bountysource"icon="fas fa-dollar-sign" backgroundColor={"red"} />
-                    <a href="https://opencollective.com/oni/order/2524" target="_blank">
-                        <img src={"https://opencollective.com/oni/donate/button@2x.png?color=white"} width={300} />
-                    </a>
                 </OptionsColumn>
             </div>
         </div>
@@ -339,9 +352,33 @@ export const UnauthenticatedContent = (): JSX.Element => {
         </SectionWrapper>
         <SectionWrapper>
             <div style={{margin: "4em"}}>
+                <HeroSectionSubHeader style={{textAlign: "center"}}>Other funding options:</HeroSectionSubHeader>
+                <div className="container">
+                <div className="columns is-centered">
+                    <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <DonateHeader>Monthly / subscription:</DonateHeader>
+                            <Button url="https://salt.bountysource.com/checkout/amount?team=oni" text="Support via Bountysource"icon="fas fa-dollar-sign" backgroundColor={"red"} />
+                            <a href="https://opencollective.com/oni/order/2524" target="_blank">
+                                <img src={"https://opencollective.com/oni/donate/button@2x.png?color=white"} width={300} />
+                            </a>
+                    </OptionsColumn>
+                    <div className="column is-one-quarter" />
+                    <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <DonateHeader>One-time:</DonateHeader>
+                        <a href="https://www.paypal.me/bryphe" target="_blank">
+                        <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" style={{width: "100px"}} />
+                        </a>
+                    </OptionsColumn>
+                </div>
+                </div>
+            </div>
+        </SectionWrapper>
+        <SectionWrapper>
+            <div style={{margin: "4em"}}>
                 <HeroSectionSubHeader style={{textAlign: "center"}}>What's the difference between funding options?</HeroSectionSubHeader>
-                <div>The patreon funding goes directly to fund the maintainer, Bryan's time on the project. This allows him to spend more time on bug fixes, stabilization, issues, and reviewing PRs (and cutting releases).</div>
-                <div>The open collective and bountysource go to a shared pool which cover common expenses, like hosting fees, codesigning certificates, bug bounties, and contributing to other OSS projects.</div>
+                <DescriptionText className="container">The <Bold>Patreon</Bold> funding goes directly to fund my time on the project. This lets me spend more time on bug fixes, stabilization, issues, and reviewing PRs (and cutting releases). There is still lots of work (and lots of exciting features) on the horizon, and I need your help to get there!</DescriptionText>
+                <DescriptionText>The <Bold>open collective</Bold> and <Bold>Bountysource</Bold> go to a shared pool which cover common expenses, like hosting fees, code signing certificates, bug bounties, and contributing to our dependent OSS projects.</DescriptionText>
+                <DescriptionText>The perks above are available for anyone donating a monthly subscription, regardless of the platform.</DescriptionText>
             </div>
         </SectionWrapper>
     </div>
