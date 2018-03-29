@@ -39,7 +39,7 @@ const createAnchorItem = (className: string) => {
 };
 
 const PatreonIconLarge = () => {
-    return <span className="icon" style={{color: "#e8590c" }}>
+    return <span className="icon" style={{color: "#F96854" }}>
         <i className="fab fa-lg fa-patreon">
         </i>
     </span>;
