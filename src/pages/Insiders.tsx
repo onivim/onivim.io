@@ -6,6 +6,8 @@ import { HeroFooter } from "./../components/HeroFooter"
 import { NavBar } from "./../components/NavBar"
 import { HeaderSpacer } from "./../components/HeaderSpacer";
 
+import * as Telemetry from "./../Telemetry"
+
 interface IndexPageProps {
     location: {
         pathname: string;
@@ -90,6 +92,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                             isLoading: false,
                             userName: val.username
                         })
+                        Telemetry.sendEvent("api.authentication.success", "insiders", "get", val.username)
                     })
                 } else {
                     this.setState({
@@ -97,6 +100,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                         isLoading: false,
                         userName: null,
                     })
+                        Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "401")
                 }
 
             }, (err) => {
@@ -105,6 +109,7 @@ export class AuthenticatedSection extends React.PureComponent<AuthenticatedSecti
                     isLoading: false,
                     userName: null,
                 })
+                Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "error")
             })
     }
 
@@ -179,6 +184,7 @@ const ButtonWrapper = styled.a`
     width: 250px;
     padding: 4px;
     color: white;
+    margin: 1em;
 
     display: flex;
     flex-direction: row;
@@ -290,8 +296,23 @@ const OptionsColumn = styled.div`
 
 const OptionsSplitter = styled.div`
     margin: 8px;
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: white;
+    border-bottom: 1px solid white;
+    width: 50%;
+    text-align: center;
+`
+
+const DescriptionText = styled.div`
+    color: white;
+    max-width: 800px;
+    margin: 2em;
+    font-size: 0.9em;
+    opacity: 0.9;
+`
+
+const Bold = styled.span`
+    font-weight: bold;
 `
 
 export const UnauthenticatedContent = (): JSX.Element => {
@@ -307,31 +328,57 @@ export const UnauthenticatedContent = (): JSX.Element => {
             <div className="columns is-centered">
                 <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Already an insider?</DonateHeader>
+                    <Button url="https://api.onivim.io/auth/patreon" text={"Sign in with Patreon"} icon={"fab fa-patreon"} backgroundColor={"#F96854"} />
                     <Button url="https://api.onivim.io/auth/github" text={"Sign in with GitHub"} icon={"fab fa-github"} backgroundColor={"#333"} />
                 </OptionsColumn>
                 <div className="column is-one-quarter" />
                 <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Become an insider:</DonateHeader>
-                    <a href="https://opencollective.com/oni/order/2524" target="_blank">
-                        <img src={"https://opencollective.com/oni/donate/button@2x.png?color=white"} width={300} />
-                    </a>
-                    <OptionsSplitter>
-                        or
-                    </OptionsSplitter>
-                    <Button url="https://salt.bountysource.com/checkout/amount?team=oni" text="Support via BountySource"icon="fas fa-dollar-sign" backgroundColor={"red"} />
-                
+                    <a style={{marginTop: "1em"}}href="https://www.patreon.com/bePatron?u=10422730" data-patreon-widget-type="become-patron-button"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
                 </OptionsColumn>
             </div>
         </div>
         <SectionWrapper style={{backgroundColor: Colors.Colors.DarkBackground}}>
-
             <div style={{margin: "4em"}}>
-            <HeroSectionSubHeader style={{textAlign: "center"}}>Get these perks:</HeroSectionSubHeader>
-            <div className="container" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-                <FeatureCard icon={"fas fa-building fa-lg"} header={"Insider Builds"} text={"Always have access to the latest binaries and newest features."} /> 
-                <FeatureCard icon={"fas fa-flag fa-lg"} header={"Prioritized Issues"} text={"Issues logged by Insiders are tagged and have priority over other issues."} /> 
-                <FeatureCard icon={"fas fa-flask fa-lg"} header={"Support Development"} text={"Developing features and fixing bugs takes time - funding lets us keep building!"} /> 
+                <HeroSectionSubHeader style={{textAlign: "center"}}>Get these perks:</HeroSectionSubHeader>
+                <div className="container" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+                    <FeatureCard icon={"fas fa-building fa-lg"} header={"Master Builds"} text={"Always have access to the latest binaries and newest features."} /> 
+                    <FeatureCard icon={"fas fa-flag fa-lg"} header={"Prioritized Issues"} text={"Issues logged by Insiders are tagged and have priority over other issues."} /> 
+                    <FeatureCard icon={"fas fa-flask fa-lg"} header={"Support Development"} text={"Developing features and fixing bugs takes time - funding lets us keep building!"} /> 
+                    <FeatureCard icon={"fab fa-discord fa-lg"} header={"Insider Access"} text={"Chat with us on an exclusive #insider-only channel on our Discord!"} /> 
+                    <FeatureCard icon={"fab fa-youtube fa-lg"} header={"Exclusive Content"} text={"Insiders get the first look at new youtube content and tutorials!"} /> 
+                </div>
             </div>
+        </SectionWrapper>
+        <SectionWrapper>
+            <div style={{margin: "4em"}}>
+                <HeroSectionSubHeader style={{textAlign: "center"}}>Other funding options:</HeroSectionSubHeader>
+                <div className="container">
+                <div className="columns is-centered">
+                    <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <DonateHeader>Monthly / subscription:</DonateHeader>
+                            <Button url="https://salt.bountysource.com/checkout/amount?team=oni" text="Support via Bountysource"icon="fas fa-dollar-sign" backgroundColor={"red"} />
+                            <a href="https://opencollective.com/oni/order/2524" target="_blank">
+                                <img src={"https://opencollective.com/oni/donate/button@2x.png?color=white"} width={300} />
+                            </a>
+                    </OptionsColumn>
+                    <div className="column is-one-quarter" />
+                    <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                        <DonateHeader>One-time:</DonateHeader>
+                        <a href="https://www.paypal.me/bryphe" target="_blank">
+                        <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png" alt="PayPal" style={{width: "100px"}} />
+                        </a>
+                    </OptionsColumn>
+                </div>
+                </div>
+            </div>
+        </SectionWrapper>
+        <SectionWrapper>
+            <div style={{margin: "4em"}}>
+                <HeroSectionSubHeader style={{textAlign: "center"}}>What's the difference between funding options?</HeroSectionSubHeader>
+                <DescriptionText className="container">The <Bold>Patreon</Bold> funding goes directly to fund my time on the project. This lets me spend more time on bug fixes, stabilization, issues, and reviewing PRs (and cutting releases). There is still lots of work (and lots of exciting features) on the horizon, and I need your help to get there!</DescriptionText>
+                <DescriptionText>The <Bold>open collective</Bold> and <Bold>Bountysource</Bold> go to a shared pool which cover common expenses, like hosting fees, code signing certificates, bug bounties, and contributing to our dependent OSS projects.</DescriptionText>
+                <DescriptionText>The perks above are available for anyone donating a monthly subscription, regardless of the platform.</DescriptionText>
             </div>
         </SectionWrapper>
     </div>

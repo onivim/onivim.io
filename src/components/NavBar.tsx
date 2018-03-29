@@ -38,6 +38,13 @@ const createAnchorItem = (className: string) => {
     };
 };
 
+const PatreonIconLarge = () => {
+    return <span className="icon" style={{color: "#F96854" }}>
+        <i className="fab fa-lg fa-patreon">
+        </i>
+    </span>;
+};
+
 const GitHubIconLarge = () => {
     return <span className="icon" style={{color: "#EEE" }}>
         <i className="fab fa-lg fa-github">
@@ -95,6 +102,9 @@ const NavBarMenu = (props: { isActive: boolean}) => {
             <NavBarItem href={"/Insiders"}>Insiders</NavBarItem>
         </div>
         <div className="navbar-end">
+            <NavBarItemDesktopOnly href={"https://www.patreon.com/onivim"}>
+                <PatreonIconLarge />
+            </NavBarItemDesktopOnly>
             <NavBarItemDesktopOnly href={"https://github.com/onivim/oni"}>
                 <GitHubIconLarge />
             </NavBarItemDesktopOnly>
