@@ -334,7 +334,7 @@ export const UnauthenticatedContent = (): JSX.Element => {
                 <div className="column is-one-quarter" />
                 <OptionsColumn className="column is-one-quarter" style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                     <DonateHeader>Become an insider:</DonateHeader>
-                    <a href="https://www.patreon.com/bePatron?u=10422730" data-patreon-widget-type="become-patron-button"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
+                    <a style={{marginTop: "1em"}}href="https://www.patreon.com/bePatron?u=10422730" data-patreon-widget-type="become-patron-button"><img src="https://c5.patreon.com/external/logo/become_a_patron_button.png" /></a>
                 </OptionsColumn>
             </div>
         </div>
