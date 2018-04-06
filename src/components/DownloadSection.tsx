@@ -8,6 +8,8 @@
 import * as React from "react";
 // import { menuItems } from "../layouts";
 
+const TimeAgo: any = require("react-timeago").default
+
 import { Colors } from "./Colors"
 import { CursorWrapper } from "./Cursor"
 import { NavBar } from "./NavBar"
@@ -222,6 +224,25 @@ const LoadingSpinnerWrapper = styled.div`
     opacity: 0.8;
 `
 
+const UpdateTextWrapper = styled.div`
+    font-size: 0.9rem;
+`
+
+const DownloadVersion = (props: {downloadInfo: DownloadInfo}): JSX.Element => {
+
+    if (!props.downloadInfo.releaseDate) {
+        return <DownloadVersionWrapper>
+            {props.downloadInfo.version}
+        </DownloadVersionWrapper>
+    } else {
+        return <DownloadVersionWrapper style={{textAlign: "center"}}>
+                <div>{props.downloadInfo.version}</div>
+                <UpdateTextWrapper><span>last update: </span><TimeAgo date={props.downloadInfo.releaseDate} /></UpdateTextWrapper>
+            </DownloadVersionWrapper>
+    }
+    
+}
+
 export class DownloadSection extends React.PureComponent<DownloadSectionProps, DownloadSectionState> {
 
     constructor(props: DownloadSectionProps) {
@@ -231,7 +252,9 @@ export class DownloadSection extends React.PureComponent<DownloadSectionProps, D
     }
 
     public componentDidMount(): void {
-        fetch(`https://api.onivim.io/v1/downloads/${this.props.buildType}`)
+
+        const baseUrl = process.env["NODE_ENV"] === "development" ? "http://localhost:5000" : "https://api.onivim.io"
+        fetch(`${baseUrl}/v1/downloads/meta/${this.props.buildType}`)
             .then((res) => {
                 const result = res.json().then((info) => {
                     this.setState({
@@ -248,6 +271,7 @@ export class DownloadSection extends React.PureComponent<DownloadSectionProps, D
     }
 
     public render(): JSX.Element {
+
             const contents = this.state === null ? 
             <DownloadSectionWrapper>
                 <LoadingSpinnerWrapper />
@@ -256,9 +280,7 @@ export class DownloadSection extends React.PureComponent<DownloadSectionProps, D
                 <DownloadHeaderWrapper>
                     {this.state.downloadInfo.branch}<CursorWrapper>H</CursorWrapper>
                 </DownloadHeaderWrapper>
-                <DownloadVersionWrapper>
-        {this.state.downloadInfo.version}
-                </DownloadVersionWrapper>
+                <DownloadVersion downloadInfo={this.state.downloadInfo} />
                 <div>
                     <Link url={this.state.downloadInfo.releaseNotesUrl} title="Release Notes" />
                     <Link url="https://github.com/onivim/oni/wiki/Installation-Guide" title="Installation Guide" />
