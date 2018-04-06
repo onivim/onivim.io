@@ -66,7 +66,9 @@ export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
         return <div style={bodyStyle}>
             <NavBar logo={logo}/>
             <HeaderSpacer />
-            <DownloadSection buildType="community" />
+            <div style={{minHeight: "75vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <DownloadSection buildType="community" />
+            </div>
             <HeroFooter />
         </div>
     }

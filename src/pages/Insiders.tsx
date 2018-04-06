@@ -411,6 +411,6 @@ export const AuthenticatedContent = (props: { userName: string} ): JSX.Element =
                 </RotatingImageWrapper>
                 <HeroSectionSubHeader style={{ width: "100%", textAlign: "center" }}>As a thank you, here's the latest master build:</HeroSectionSubHeader>
             </HeroSectionWrapper>
-            <DownloadSection buildType={"community"} />
+            <DownloadSection buildType={"master"} />
         </section>
 }
