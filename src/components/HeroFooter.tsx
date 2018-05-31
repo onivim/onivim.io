@@ -55,42 +55,42 @@ export class HeroFooter extends React.PureComponent<{}, IHeroFooterState> {
   public render(): JSX.Element {
     return (
       <SectionContainer isActive={this.state.isActive} className="section hero oni-footer is-dark">
-      <div className="container">
-      <div className="columns">
-      <div className="column">
-      <div className="content">
-      <p><strong>Oni brought to you by:</strong></p>
-      <FooterList>
-      <li><FooterLink href="https://github.com/onivim/oni/blob/master/BACKERS.md">Sponsors & Backers</FooterLink></li>
-      <li><FooterLink href="https://github.com/onivim/oni/graphs/contributors">Contributors</FooterLink></li>
-      <li><FooterLink href="https://neovim.io">Neovim</FooterLink></li>
-      </FooterList>
-      </div>
-      <CopyrightText>Copyright 2018 Bryan Phelps</CopyrightText>
-      </div>
-      <div className="column">
-      <div className="content">
-      <p><strong>Website built with:</strong></p>
-      <FooterList>
-      <li><FooterLink href="https://bulma.io">Bulma</FooterLink></li>
-      <li><FooterLink href="https://www.gatsbyjs.org">Gatsby</FooterLink></li>
-      <li><FooterLink href="http://fontawesome.io">Font Awesome</FooterLink></li>
-      <li><FooterLink href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</FooterLink></li>
-      </FooterList>
-      </div>
-      </div>
-      <div className="column">
-      <p><strong>Keep in touch:</strong></p>
-      <div className="content">
-      <SocialLinksContainer>
-      <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_vim</a></p>
-      <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameBorder="0" scrolling="0" width="160px" height="30px"></iframe></p>
-      </SocialLinksContainer>
-      </div>
-      </div>
-      </div>
-      </div>
-      </SectionContainer>
+-             <div className="container">
+-                 <div className="columns">
+-                     <div className="column">
+-                         <p className="content">
+-                             <p><strong>Oni brought to you by:</strong></p>
+-                             <FooterList>
+-                                 <li><FooterLink href="https://github.com/onivim/oni/blob/master/BACKERS.md">Sponsors & Backers</FooterLink></li>
+-                                 <li><FooterLink href="https://github.com/onivim/oni/graphs/contributors">Contributors</FooterLink></li>
+-                                 <li><FooterLink href="https://neovim.io">Neovim</FooterLink></li>
+-                             </FooterList>
+-                         </p>
+-                         <CopyrightText>Copyright 2018 Bryan Phelps</CopyrightText>
+-                     </div>
+-                     <div className="column">
+-                         <p className="content">
+-                             <p><strong>Website built with:</strong></p>
+-                             <FooterList>
+-                                 <li><FooterLink href="https://bulma.io">Bulma</FooterLink></li>
+-                                 <li><FooterLink href="https://www.gatsbyjs.org">Gatsby</FooterLink></li>
+-                                 <li><FooterLink href="http://fontawesome.io">Font Awesome</FooterLink></li>
+-                                 <li><FooterLink href="https://www.toptal.com/designers/subtlepatterns">Subtle Patterns</FooterLink></li>
+-                             </FooterList>
+-                         </p>
+-                     </div>
+-                     <div className="column">
+-                         <p><strong>Keep in touch:</strong></p>
+-                         <p className="content">
+-                         <SocialLinksContainer>
+-                         <p><a href="https://twitter.com/oni_vim?ref_src=twsrc%5Etfw" className="twitter-follow-button" data-size="large" langdata-show-count="false">Follow @oni_vim</a></p>
+-                         <p><iframe src="https://ghbtns.com/github-btn.html?user=onivim&repo=oni&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></p>
+-                         </SocialLinksContainer>
+-                         </p>
+-                     </div>
+-                 </div>
+-             </div>
+-         </SectionContainer>
     );
   }
 }
