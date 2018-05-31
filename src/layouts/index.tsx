@@ -1,12 +1,15 @@
-import Link from "gatsby-link";
 import * as React from "react";
+
+import Link from "gatsby-link";
+import { Segment, Icon, Container, Sidebar, Button } from "semantic-ui-react";
+
+import "prismjs/themes/prism-okaidia.css";
+
 // import HeaderMenu from "../components/HeaderMenu/HeaderMenu";
 // import SidebarMenu from "../components/SidebarMenu/SidebarMenu";
-import { Segment, Icon, Container, Sidebar, Button } from "semantic-ui-react";
 import "../css/styles.css";
 import "../css/responsive.css";
 // import "../css/semantic.min.css";
-import "prismjs/themes/prism-okaidia.css";
 
 interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
   location: {
@@ -16,10 +19,9 @@ interface DefaultLayoutProps extends React.HTMLProps<HTMLDivElement> {
 }
 
 export default class DefaultLayout extends React.PureComponent<DefaultLayoutProps, void> {
-
-    public render(): JSX.Element {
-        return this.props.children()
-    }
+  public render(): JSX.Element {
+    return this.props.children();
+  }
 }
 
 // export default class DefaultLayout extends React.PureComponent<DefaultLayoutProps, void> {
