@@ -216,7 +216,7 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
     public render(): JSX.Element {
             return (
               <ScrollMonitor margin={50} renderFunction={(
-               percent: number 
+               percent: number,
             ) => <SectionWrapper reverse={this.props.reverse} active={this.state.active} style={{opacity: Math.max(0.5, percent * percent)}}>
             <TitleWrapper active={this.state.active} reverse={this.props.reverse} style={{"transform": "translateX(" + ((1-percent) * DeltaMotion) + "px)"}}>
                         <Title>{this.props.title}<CursorWrapper>H</CursorWrapper></Title>
@@ -227,7 +227,7 @@ export class HeroSection extends React.PureComponent<IHeroSectionProps, IHeroSec
                         <Description>{this.props.description}</Description>
                     </InnerWrapper>
                     <InnerWrapper className="column">
-                        { this.props.image ? this.props.image : <div style={{maxWidth:"640px", maxHeight: "640px"}} />}
+                        { this.props.image ? this.props.image : <div style={{maxWidth:"640px", maxHeight: "640px"}} /> }
                     </InnerWrapper>
                 </SectionContentsWrapper>
               </SectionWrapper>
