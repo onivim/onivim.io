@@ -1,14 +1,14 @@
 import * as React from "react";
 
 import styled, { keyframes }  from "styled-components";
-import { withProps } from "./withProps"
+import { withProps } from "./withProps";
 
-import { logo } from "./../pages/logo-256x256.png"
+import { logo } from "./../pages/logo-256x256.png";
 
-import { Colors } from "./../components/Colors"
+import { Colors } from "./../components/Colors";
 
 export interface INavBarProps {
-    backgroundColor?: string
+    backgroundColor?: string;
 }
 
 export interface INavBarState {
@@ -28,56 +28,72 @@ const NavBarItemContainer = styled.a`
     font-size: 0.9em;
     color: ${Colors.Foreground} !important;
     border-bottom: 2px solid transparent;
-`
+`;
 
 const createAnchorItem = (className: string) => {
     return class HOC extends React.PureComponent<{href: string }, {}> {
         public render(): JSX.Element {
-            return <NavBarItemContainer className={className} href={this.props.href} onClick={() => sendEvent("navbar", "click", this.props.href)}>{this.props.children}</NavBarItemContainer>;
+            return (
+              <NavBarItemContainer
+                className={className}
+                href={this.props.href} onClick={() => sendEvent("navbar", "click", this.props.href)}>
+                  {this.props.children}
+              </NavBarItemContainer>
+            );
         }
     };
 };
 
 const PatreonIconLarge = () => {
-    return <span className="icon" style={{color: "#F96854" }}>
-        <i className="fab fa-lg fa-patreon">
-        </i>
-    </span>;
+    return (
+      <span className="icon" style={{color: "#F96854" }}>
+        <i className="fab fa-lg fa-patreon"></i>
+      </span>
+    );
 };
 
 const GitHubIconLarge = () => {
-    return <span className="icon" style={{color: "#EEE" }}>
-        <i className="fab fa-lg fa-github">
-        </i>
-    </span>;
+    return (
+      <span className="icon" style={{color: "#EEE" }}>
+        <i className="fab fa-lg fa-github"></i>
+      </span>
+    );
 };
 
 const YoutubeIconLarge = () => {
-    return <span className="icon" style={{color: "#F00" }}>
+    return (
+      <span className="icon" style={{color: "#F00" }}>
         <i className="fab fa-lg fa-youtube">
         </i>
-    </span>;
+      </span>
+    );
 };
 
 const DiscordIconLarge = () => {
-    return <span className="icon" style={{color: "#7289DA" }}>
+    return (
+      <span className="icon" style={{color: "#7289DA" }}>
         <i className="fab fa-lg fa-discord">
         </i>
-    </span>;
-}
+      </span>
+    );
+};
 
 const TwitterIconLarge = () => {
-    return <span className="icon" style={{color: "#55acee" }}>
+    return (
+      <span className="icon" style={{color: "#55acee" }}>
         <i className="fab fa-lg fa-twitter">
         </i>
-    </span>;
+      </span>
+    );
 };
 
 const RedditIconLarge = () => {
-    return <span className="icon" style={{color: "orange" }}>
+    return (
+      <span className="icon" style={{color: "orange" }}>
         <i className="fab fa-lg fa-reddit">
         </i>
-    </span>;
+      </span>
+    );
 };
 
 const NavBarItem = createAnchorItem("navbar-item");
@@ -86,15 +102,15 @@ const NavBarItemDesktopOnly = createAnchorItem("navbar-item is-hidden-desktop-on
 
 const NavigationMenuWrapper = styled.nav`
     color: ${Colors.Foreground};
-`
+`;
 
-import { sendEvent } from "./../Telemetry"
+import { sendEvent } from "./../Telemetry";
 
 const NavBarMenu = (props: { isActive: boolean}) => {
-
     const menuClass = props.isActive ? "navbar-menu is-active" : "navbar-menu";
 
-    return <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
+    return (
+      <NavigationMenuWrapper className={menuClass} id="navMenuDocumentation">
         <div className="navbar-start">
             <NavBarItem href={"/Download"}>Download</NavBarItem>
             <NavBarItem href={"https://onivim.github.io/oni-docs/#/"}>Documentation</NavBarItem>
@@ -121,8 +137,8 @@ const NavBarMenu = (props: { isActive: boolean}) => {
                 <RedditIconLarge />
             </NavBarItemDesktopOnly>
         </div>
-    </NavigationMenuWrapper>;
-
+      </NavigationMenuWrapper>
+    );
 };
 
 const NavBarWrapper = withProps<INavBarProps>(styled.nav)`
@@ -131,35 +147,35 @@ const NavBarWrapper = withProps<INavBarProps>(styled.nav)`
     & .navbar-item, 
     & .navbar-menu,
     & .navbar-link {
-        background-color: ${p => p.backgroundColor ? p.backgroundColor : Colors.Background};
+        background-color: ${(p) => p.backgroundColor ? p.backgroundColor : Colors.Background};
         color: ${Colors.Foreground};
         font-family: 'Roboto', sans-serif;
     }
-`
+`;
 
 const BrandEntranceKeyframes = keyframes`
     0% { transform: scale(0.8); opacity: 0.8; }
     100%% { transform: scale(1); opacity: 1; }
-`
+`;
 
 export const NavBarBrandWrapper = styled.div`
     animation: ${BrandEntranceKeyframes} 0.25s ease-in forwards;
-`
+`;
 
 export interface INavBarProps {
-    logo: string
-}
+    logo: string;
+};
 
 export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
     constructor(props: any) {
         super(props);
+
         this.state = {
             isActive: false,
         };
     }
 
     public render(): JSX.Element {
-
             const burgerClass = this.state.isActive ? "navbar-burger burger is-active" : "navbar-burger burger";
 
             return <NavBarWrapper className="navbar is-dark is-fixed-top" backgroundColor={this.props.backgroundColor}>
@@ -193,4 +209,3 @@ export class NavBar extends React.PureComponent<INavBarProps, INavBarState> {
         });
     }
 }
-

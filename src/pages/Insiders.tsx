@@ -1,20 +1,20 @@
 import * as React from "react";
 
-import styled, { keyframes } from "styled-components"
+import styled, { keyframes } from "styled-components";
 
-import { HeroFooter } from "./../components/HeroFooter"
-import { NavBar } from "./../components/NavBar"
+import { HeroFooter } from "./../components/HeroFooter";
+import { NavBar } from "./../components/NavBar";
 import { HeaderSpacer } from "./../components/HeaderSpacer";
 
-import * as Telemetry from "./../Telemetry"
+import * as Telemetry from "./../Telemetry";
 
 interface IndexPageProps {
-    location: {
-        pathname: string;
-    };
+  location: {
+    pathname: string;
+  };
 }
-    import * as Colors from "./../components/Colors"
-        
+
+import * as Colors from "./../components/Colors";
 
 const logo = require("./logo-256x256.png");
 const header = require("./oni-headline-small.png");
@@ -25,7 +25,7 @@ const ContainerWrapper = styled.div`
     width: 100%;
 
     background-color: black;
-`
+`;
 
 const HeroSectionWrapper = styled.div`
     height: 50vh;
@@ -35,7 +35,7 @@ const HeroSectionWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const SectionWrapper = styled.div`
     width: 100%;
@@ -44,126 +44,124 @@ const SectionWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-`
+`;
 
 const HeroSectionHeader = styled.div`
     font-size: 3em;
     color: white;
-`
+`;
+
 const HeroSectionSubHeader = styled.div`
     font-size: 1.2em;
     color: white;
-`
+`;
 
 export interface AuthenticatedSectionProps {
-    render: (isLoading: boolean, isAuthenticated: boolean, userName?: string) => JSX.Element
+  render: (isLoading: boolean, isAuthenticated: boolean, userName?: string) => JSX.Element;
 }
 
 export interface AuthenticatedSectionState {
-    isAuthenticated: boolean
-    isLoading: boolean
-    userName: string
-}
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  userName: string;
+};
 
 const makeAuthenticatedApiCall = (apiPath: string): Promise<Response> => {
-    return fetch(`https://api.onivim.io/${apiPath}?${new Date().getTime()}`, { credentials: "include" })
-}
+  return fetch(`https://api.onivim.io/${apiPath}?${new Date().getTime()}`, { credentials: "include" });
+};
 
 export class AuthenticatedSection extends React.PureComponent<AuthenticatedSectionProps, AuthenticatedSectionState> {
+  constructor(props: AuthenticatedSectionProps) {
+    super(props);
 
-    constructor(props: AuthenticatedSectionProps) {
-        super(props)
+    this.state = {
+      isAuthenticated: false,
+      isLoading: true,
+      userName: null,
+    };
+  }
 
-        this.state = {
-            isLoading: true,
-            isAuthenticated: false,
-            userName: null,
-        }
-    }
+  public componentDidMount(): void {
+    makeAuthenticatedApiCall("auth/me")
+    .then((res) => {
+      if (res.status !== 401) {
+        const info = res.json().then((val) => {
+          this.setState({
+            isAuthenticated: !!val.username,
+            isLoading: false,
+            userName: val.username,
+          });
 
-    public componentDidMount(): void {
+          Telemetry.sendEvent("api.authentication.success", "insiders", "get", val.username);
+        });
+      } else {
+        this.setState({
+          isAuthenticated: false,
+          isLoading: false,
+          userName: null,
+        });
+        Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "401");
+      }
 
-        makeAuthenticatedApiCall("auth/me")
-            .then((res) => {
-                if (res.status !== 401) {
-                    const info = res.json().then((val) => {
-                        this.setState({
-                            isAuthenticated: !!val.username,
-                            isLoading: false,
-                            userName: val.username
-                        })
-                        Telemetry.sendEvent("api.authentication.success", "insiders", "get", val.username)
-                    })
-                } else {
-                    this.setState({
-                        isAuthenticated: false,
-                        isLoading: false,
-                        userName: null,
-                    })
-                        Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "401")
-                }
+    }, (err) => {
+      this.setState({
+        isAuthenticated: false,
+        isLoading: false,
+        userName: null,
+      });
+      Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "error");
+    });
+  }
 
-            }, (err) => {
-                this.setState({
-                    isAuthenticated: false,
-                    isLoading: false,
-                    userName: null,
-                })
-                Telemetry.sendEvent("api.authentication.failure", "insiders", "get", "error")
-            })
-    }
-
-    public render(): JSX.Element {
-        return this.props.render(this.state.isLoading, this.state.isAuthenticated, this.state.userName)
-    }
+  public render(): JSX.Element {
+    return this.props.render(this.state.isLoading, this.state.isAuthenticated, this.state.userName);
+  }
 }
 
-import { LoadingSpinner } from "./../components/LoadingSpinner"
-
-
+import { LoadingSpinner } from "./../components/LoadingSpinner";
 
 export default class HomePage extends React.PureComponent<IndexPageProps, {}> {
+  constructor(props: IndexPageProps) {
+    super(props);
+  }
 
-    constructor(props: IndexPageProps) {
-        super(props);
-    }
+  public render(): JSX.Element {
+    const bodyStyle = {
+      backgroundImage: "url('" + background + "')",
+    };
+    const renderFunc = (isLoading: boolean, isAuthenticated: boolean, userName: string): JSX.Element => {
+      if (isLoading) {
+        return (
+          <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <LoadingSpinner prompt={"Loading..."} />
+          </div>
+        );
+      }
 
-    public render(): JSX.Element {
-        const bodyStyle = {
-            // backgroundColor: "black"
-            backgroundImage: "url('" + background + "')",
-        };
-        const renderFunc = (isLoading: boolean, isAuthenticated: boolean, userName: string): JSX.Element => {
-            if (isLoading) {
-                return <div style={{height: "100vh", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    <LoadingSpinner prompt={"Loading..."} />
-                </div>
-            }
+      if (!isAuthenticated) {
+        return <UnauthenticatedContent />;
+      } else {
+        return <AuthenticatedContent userName={userName} />;
+      }
+    };
 
-            if (!isAuthenticated) {
-                return <UnauthenticatedContent />
-            } else {
-                return <AuthenticatedContent userName={userName} />
-            }
-        }
-
-        return <div style={bodyStyle}>
-            {/* Master head */}
-            <NavBar logo={logo} />
-            <HeaderSpacer />
-            <ContainerWrapper>
-                <AuthenticatedSection render={renderFunc} />
-            </ContainerWrapper>
-            <HeroFooter />
-        </div>;
-    }
+    return <div style={bodyStyle}>
+      {/* Master head */}
+      <NavBar logo={logo} />
+      <HeaderSpacer />
+      <ContainerWrapper>
+      <AuthenticatedSection render={renderFunc} />
+      </ContainerWrapper>
+      <HeroFooter />
+      </div>;
+  };
 }
 
 const RotatingImageKeyframes = keyframes`
     0% { transform: rotateY(0deg); }
     75% { transform: rotateY(0deg); }
     100% { transform: rotateY(360deg); }
-`
+`;
 
 const RotatingImageWrapper = styled.div`
     width: 128px;
@@ -171,12 +169,12 @@ const RotatingImageWrapper = styled.div`
 
     margin: 128px;
     animation: ${RotatingImageKeyframes} 10s linear infinite;
-`
+`;
 
 const Text = styled.div`
     font-size: 1;
     color: white;
-`
+`;
 
 const ButtonWrapper = styled.a`
     background-color: grey;
@@ -195,29 +193,32 @@ const ButtonWrapper = styled.a`
         color: white;
         transform: translateY(-2px);
     }
-`
+`;
 
 const ButtonIconWrapper = styled.div`
     margin: 8px;
     flex: 0 0 auto;
-`
+`;
 
 const ButtonTextWrapper = styled.div`
     flex: 1 1 auto;
     text-align: center;
-`
+`;
 
 const Button = (props: { url: string, text: string, icon: string, backgroundColor: string, color: string = "white" }): JSX.Element => {
-    const color = props.color || "white"
-    return <ButtonWrapper href={props.url} style={{ backgroundColor: props.backgroundColor, color: props.color }}>
-        <ButtonIconWrapper>
-            <i className={props.icon}/>
-        </ButtonIconWrapper>
-        <ButtonTextWrapper>
-            {props.text}
-        </ButtonTextWrapper>
+  const color = props.color || "white";
+
+  return (
+    <ButtonWrapper href={props.url} style={{ backgroundColor: props.backgroundColor, color: props.color }}>
+    <ButtonIconWrapper>
+    <i className={props.icon}/>
+    </ButtonIconWrapper>
+    <ButtonTextWrapper>
+    {props.text}
+    </ButtonTextWrapper>
     </ButtonWrapper>
-}
+  );
+};
 
 const FeatureCardWrapper = styled.div`
     border: 1px solid ${Colors.Colors.Accent}
@@ -236,7 +237,7 @@ const FeatureCardWrapper = styled.div`
 
     justify-content: center;
     align-items: center;
-`
+`;
 
 const FeatureCardIconWrapper = styled.div`
     flex: 0 0 auto;
@@ -248,7 +249,7 @@ const FeatureCardIconWrapper = styled.div`
 
     width: 96px;
     height: 96px;
-`
+`;
 
 const FeatureCardDescriptionWrapper = styled.div`
     flex: 1 1 auto;
@@ -262,19 +263,21 @@ const FeatureCardDescriptionWrapper = styled.div`
     & .description {
         font-size: 0.9em;
     }
-`
+`;
 
 const FeatureCard = (props: { header: string, icon: string, text: string}): JSX.Element => {
-   return <FeatureCardWrapper>
-            <FeatureCardIconWrapper className="is-hidden-mobile">
-                <i className={props.icon} />
-            </FeatureCardIconWrapper>
-            <FeatureCardDescriptionWrapper>
-                <div className="header">{props.header}</div>
-                <div className="description">{props.text}</div>
-            </FeatureCardDescriptionWrapper>
-        </FeatureCardWrapper>
-}
+  return (
+    <FeatureCardWrapper>
+    <FeatureCardIconWrapper className="is-hidden-mobile">
+    <i className={props.icon} />
+    </FeatureCardIconWrapper>
+    <FeatureCardDescriptionWrapper>
+    <div className="header">{props.header}</div>
+    <div className="description">{props.text}</div>
+    </FeatureCardDescriptionWrapper>
+    </FeatureCardWrapper>
+  );
+};
 
 const DonateHeader = styled.div`
     font-weight: bold;
@@ -286,13 +289,13 @@ const DonateHeader = styled.div`
     padding: 1em;
     width: 100%;
     text-align: center;
-`
+`;
 
 const OptionsColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 
 const OptionsSplitter = styled.div`
     margin: 8px;
@@ -301,7 +304,7 @@ const OptionsSplitter = styled.div`
     border-bottom: 1px solid white;
     width: 50%;
     text-align: center;
-`
+`;
 
 const DescriptionText = styled.div`
     color: white;
@@ -309,11 +312,11 @@ const DescriptionText = styled.div`
     margin: 2em;
     font-size: 0.9em;
     opacity: 0.9;
-`
+`;
 
 const Bold = styled.span`
     font-weight: bold;
-`
+`;
 
 export const UnauthenticatedContent = (): JSX.Element => {
     return <div>
@@ -382,23 +385,22 @@ export const UnauthenticatedContent = (): JSX.Element => {
             </div>
         </SectionWrapper>
     </div>
+};
 
-        }
-        
-import {DownloadSection} from "./../components/DownloadSection"
-        
-        const TrophyWrapper = styled.div`
+import {DownloadSection} from "./../components/DownloadSection";
+
+const TrophyWrapper = styled.div`
     background-color: ${Colors.Colors.Accent};
-        color: white;
-        width: 100%;
-        height: 100%;
-    
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 8em;
-    `
-    
+    color: white;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8em;
+`;
+
 export const AuthenticatedContent = (props: { userName: string} ): JSX.Element => {
         return <section className="section">
             <HeroSectionWrapper>
@@ -413,4 +415,4 @@ export const AuthenticatedContent = (props: { userName: string} ): JSX.Element =
             </HeroSectionWrapper>
             <DownloadSection buildType={"master"} />
         </section>
-}
+};

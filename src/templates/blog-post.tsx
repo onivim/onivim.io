@@ -4,7 +4,7 @@ import { Header, Container, Segment, Icon, Label, Button, Grid, Card, Image, Ite
 import { MarkdownRemark, ImageSharp, MarkdownRemarkConnection } from "../graphql-types";
 import BlogTitle from "../components/BlogTitle";
 
-import { NavBar } from "./../components/NavBar"
+import { NavBar } from "./../components/NavBar";
 
 interface BlogPostProps {
   data: {

@@ -34,10 +34,10 @@ exports.createPages = ({graphql, boundActionCreators}) => {
   const {createPage} = boundActionCreators;
 
   return new Promise((resolve, reject) => {
-    const templates = ['blogPost'/*, 'tagsPage', 'blogPage'*/]
+    const templates = ['blogPost'/* , 'tagsPage', 'blogPage' */]
       .reduce((mem, templateName) => {
         return Object.assign({}, mem,
-        {[templateName]: path.resolve(`src/templates/${kebabCase(templateName)}.tsx`)});
+          {[templateName]: path.resolve(`src/templates/${kebabCase(templateName)}.tsx`)});
       }, {});
 
     graphql(
