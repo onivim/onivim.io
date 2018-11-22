@@ -214,8 +214,8 @@ const Sections = {
               Become a backer via <a href="https://www.bountysource.com/teams/oni">BountySource</a>
             </li>
             <li>
-              <a href="https://github.com/onivim/oni/issues/new">Report a bug</a> 
-              or <a href="https://github.com/onivim/oni/issues/new">suggest a feature</a>
+              <a href="https://github.com/onivim/oni/issues/new">Report a bug</a> or 
+              <a href="https://github.com/onivim/oni/issues/new">suggest a feature</a>
             </li>
             <li>
               Fix an <a href="https://github.com/onivim/oni/issues">issue</a> and 
