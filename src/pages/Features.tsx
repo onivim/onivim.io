@@ -161,7 +161,7 @@ const Sections = {
             </li>
             <li>
               Compatible with most 
-              <a href="https://github.com/onivim/oni/wiki/Configuration#initvim">Vim plugins</a>
+              <a href="https://github.com/onivim/oni/wiki/Configuration#initvim"> Vim plugins</a>
             </li>
             <li>...and most <a href="http://langserver.org/">language servers</a></li>
           </ul>
